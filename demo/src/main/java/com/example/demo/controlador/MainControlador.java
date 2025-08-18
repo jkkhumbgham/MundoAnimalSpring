@@ -14,8 +14,8 @@ public class MainControlador {
     @Autowired
     ServicioMascotas servicio;
 
-    //mostrar varios perros
-    @GetMapping("/Perros")
+    //
+    @GetMapping("/Mascotas")
     public String MostrarMascotas(Model model){
         model.addAttribute("mascotas", servicio.getAllMascotas());
         return "mascotas";

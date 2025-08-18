@@ -195,7 +195,10 @@ body {
     margin:20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+.contenedor-perros img{
+    height: 70px;
+    width: 70px;
+}
 .servicio{
     padding-top: 60px;
 }
@@ -687,5 +690,5 @@ footer {
     
 }
 .mover{
-    margin-top: 120px;
+    padding-top: 120px;
 }

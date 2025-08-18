@@ -45,12 +45,12 @@
         </div>
     </nav>
     </header>
-    <main class="mover">
+    <main class="mover principal">
         <h2 class="text-center">Nuestras Mascotas</h2>
         <div class="contenedor-perros d-flex align-items-center justify-content-center">
             <div class="card col-lg-3 col-md-5" th:each="mascota : ${mascotas}" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="iconos d-flex align-items-center justify-content-center"><img th:src="${mascota.foto}" alt="'Foto de'+ ${mascota.nombre}"></div>
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <img th:src="${mascota.foto}" alt="' foto de '+ ${mascota.nombre}">
                         <h6 class="card-title mb-2" th:text="${mascota.nombre}"></h6>
                         <ul>
                             <li>
@@ -63,7 +63,7 @@
                                 <span th:text="${mascota.sexo}"></span>
                             </li>
                             <li>
-                                <span th:text="${mascota.peso}"></span>
+                                <span th:text="${mascota.peso} + ' kg'"></span>
                             </li>
                         </ul>
                     </div>
