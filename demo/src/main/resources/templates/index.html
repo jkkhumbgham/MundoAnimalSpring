@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/Styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark personalizado">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="/images/Logo.jpg" width="30" height="30" class="d-inline-block align-top mr-2 logo-principal" alt="">
+            <div class="d-flex flex-column lh-1">
+                <span class="font-weight-bold">Mundo Animal</span>
+                <small class="">Clínica Veterinaria</small>
+            </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#inicio">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#servicios">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#nosotros">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contacto">Contacto</a>
+                </li>
+            </ul>
+            <a class="btn btn-llamar d-flex align-items-center">
+                <img src="/images/Telefono.png" width="30" height="30" alt="Logo Telefono"> Llamar Ahora
+            </a>
+        </div>
+    </nav>
+    </header>
+    <main>
+        <section class="principal">
+            <div class="container">
+                <div class="row align-items-center">
+                
+             
+                <div class="col-md-6 texto-principal" id="inicio">
+                    <span class="placa">
+                    ⭐ Mundo Animal - Cuidado integral
+                    </span>
+                    <h1>
+                    Cuidamos a tu <span class="resaltar">mascota</span> con amor
+                    </h1>
+                    <p>
+                    Brindamos atención veterinaria de calidad con tecnología moderna y un equipo apasionado por el bienestar de tu mejor amigo.
+                    </p>
+                    <div class="botones">
+                    <a href="#" class="btn agendar">
+                        <img src="/images/calendario.png" alt="Calendario" class="icono-btn">
+                        Agendar Cita
+                    </a>
+                    <a href="#" class="btn conoce">Conocer Servicios</a>
+                    </div>
+                </div>
+
+               
+                <div class="col-md-6 imagen-principal">
+                    <img src="/images/perrito-hero.avif" alt="Perrito feliz">
+                    <div class="cuidado d-flex align-items-center"><img src="/images/corazon.png" alt="Icono corazon"><p>Cuidado especializado</p></div>
+                </div>
+                
+                 <div class="stats d-flex">
+                    <div class="stat text-center">
+                    <h3>500+</h3>
+                    <p>Mascotas felices</p>
+                    </div>
+                    <div class="stat text-center">
+                    <h3>15+</h3>
+                    <p>Años de experiencia</p>
+                    </div>
+                    <div class="stat text-center">
+                    <h3>24/7</h3>
+                    <p>Urgencias</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+        <section class="servicios completo d-flex flex-column align-items-center">
+            <div class="cabezal d-flex flex-column justify-content-center align-items-center texto-principal">
+                <div class="nuestros-servicios d-flex align-items-center" id="servicios"><img src="/images/corazonhueco.png" alt="Icono corazon hueco"><p>Nuestros servicios</p></div>
+                <h1>Cuidado integral para <span class="resaltar">tu mascota</span></h1>
+                <p>Ofrecemos una amplia gama de servicios veterinarios con tecnología de punta y un equipo profesional dedicado al bienestar animal.</p>
+            </div>
+            <div class="servicio d-flex align-items-center row justify-content-center">
+                <div class="card col-lg-3 col-md-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="iconos icon-pink d-flex align-items-center justify-content-center"><img src="/images/estetoscopio (1).png" alt="Icono"></div>
+                        <h6 class="card-title mb-2">Consultas Generales</h6>
+                        <p class="card-text">Exámenes completos y diagnósticos para mantener la salud de tu mascota al día.</p>
+                    </div>
+                </div>
+                <div class="card col-lg-3 col-md-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="iconos icon-blue d-flex align-items-center justify-content-center"><img src="/images/bisturi.png" alt="Icono"></div>
+                        <h6 class="card-title mb-2">Cirugías</h6>
+                        <p class="card-text">Procedimientos quirúrgicos especializados con tecnología moderna y cuidado post-operatorio.</p>
+                    </div>
+                </div>
+                <div class="card col-lg-3 col-md-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="iconos icon-pink d-flex align-items-center justify-content-center"><img src="/images/me-gusta.png" alt="Icono"></div>
+                        <h6 class="card-title mb-2">Emergencias 24/7</h6>
+                        <p class="card-text">Atención de urgencias las 24 horas para cuando tu mascota más lo necesite.</p>
+                    </div>
+                </div>
+                <div class="card col-lg-3 col-md-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="iconos icon-green d-flex align-items-center justify-content-center"><img src="/images/escudo-con-simbolo-de-hospital.png" alt="Icono"></div>
+                        <h6 class="card-title mb-2">Vacunación</h6>
+                        <p class="card-text">Programas completos de vacunación para proteger a tu mascota de enfermedades.</p>
+                    </div>
+                </div>
+                <div class="card col-lg-3 col-md-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="iconos icon-purple d-flex align-items-center justify-content-center"><img src="/images/grupo.png" alt="Icono"></div>
+                        <h6 class="card-title mb-2">Cuidado Especializado</h6>
+                        <p class="card-text">Tratamientos especializados para diferentes especies y condiciones médicas.</p>
+                    </div>
+                </div>
+                <div class="card col-lg-3 col-md-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="iconos icon-blue d-flex align-items-center justify-content-center"><img src="/images/reloj.png" alt="Icono"></div>
+                        <h6 class="card-title mb-2">Chequeos Preventivos</h6>
+                        <p class="card-text">Controles regulares para prevenir problemas de salud antes de que aparezcan.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="consultar texto-principal d-flex flex-column align-items-center">
+                <h3>¿Necesitas consultar sobre un servicio específico?</h3>
+                <p>Nuestro equipo está disponible para responder todas tus preguntas y ayudarte a elegir el mejor cuidado para tu mascota.</p>
+                <div class="botones">
+                    <a href="#" class="btn contactar">Contactar Especialista</a>
+                    <a href="#" class="btn precios">Ver Precios</a>
+                </div>
+            </div>
+        </section>
+        <section class="sobre-nosotros">
+            <div class="cabeza-nosotros d-flex flex-column justify-content-center align-items-center texto-principal">
+                <div class="nosotros d-flex align-items-center" id="nosotros"><img src="/images/corazonhueco.png" alt="Icono corazon hueco"><p>Sobre Nosotros</p></div>
+                <h1>Dedicados al <span class="resaltado">bienestar animal</span></h1>
+                <p>Somos una clínica veterinaria comprometida con brindar la mejor atención médica para tus mascotas, combinando experiencia, tecnología y mucho amor.</p>
+            </div>
+            <div class="mision d-flex justify-content-center">
+                <div class="mision-texto col-lg-5 col-md-7 ">
+                    <h3>Nuestra misión es simple: cuidar a quienes amas</h3>
+                    <p>En Mundo Animal, entendemos que tu mascota es parte de tu familia. Por eso, ofrecemos atención personalizada y tratamientos de última generación en un ambiente cálido y profesional.</p>
+                    <p>Nuestro equipo de veterinarios especializados cuenta con años de experiencia y formación continua para garantizar que tu mascota reciba el mejor cuidado posible.</p>
+                    <ul>
+                        <li>Tecnología médica de vanguardia</li>
+                        <li>Atención personalizada para cada mascota</li>
+                        <li>Seguimiento post-tratamiento</li>
+                        <li>Servicios de emergencia 24/7</li>
+                    </ul>
+                </div>
+                <div class="imagen d-flex align-items-center justify-content-center col-lg-5 col-md-7 ">
+                        <img src="/images/gato.avif" alt="">
+                </div>
+            </div>
+            <div class="datos completo d-flex row justify-content-center">
+                <div class="card col-lg-2 col-md-5" style="width: 18rem;">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <div class="iconos icon-yellow d-flex align-items-center justify-content-center"><img src="/images/de-confianza.png" alt="Icono"></div>
+                        <h6 class="card-title acomodo mb-2">15+</h6>
+                        <p class="acomodo">Años de experiencia</p>
+                    </div>
+                </div>
+                <div class="card col-lg-2 col-md-5" style="width: 18rem;">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <div class="iconos icon-pink d-flex align-items-center justify-content-center"><img src="/images/me-gusta.png" alt="Icono"></div>
+                        <h6 class="card-title acomodo mb-2">500+</h6>
+                        <p class="acomodo">Mascotas atendidas</p>
+                    </div>
+                </div>
+                <div class="card col-lg-2 col-md-5" style="width: 18rem;">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <div class="iconos icon-blue d-flex align-items-center justify-content-center"><img src="/images/grupo.png" alt="Icono"></div>
+                        <h6 class="card-title acomodo mb-2">10+</h6>
+                        <p class="acomodo">Especialistas certificados</p>
+                    </div>
+                </div>
+                <div class="card col-lg-2 col-md-5" style="width: 18rem;">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <div class="iconos icon-green d-flex align-items-center justify-content-center"><img src="/images/reloj.png" alt="Icono"></div>
+                        <h6 class="card-title acomodo mb-2">24/7</h6>
+                        <p class="acomodo">Disponibilidad de urgencias</p>
+                    </div>
+                </div>
+            </div>
+            <div class="especialista d-flex flex-column align-items-center">
+                <h3>Nuestro Equipo de Especialistas</h3>
+                <div class="especialistas d-flex row justify-content-center">
+                    <div class="card col-lg-3 col-md-5" style="width: 18rem;">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <div class="iconos d-flex align-items-center justify-content-center"><img src="/images/Maria.jpg" alt="Icono"></div>
+                            <h6 class="card-title acomodo mb-2">Dr. María González</h6>
+                            <p class="acomodo">Medicina Interna</p>
+                        </div>
+                    </div>
+                    <div class="card col-lg-3 col-md-5" style="width: 18rem;">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <div class="iconos d-flex align-items-center justify-content-center"><img src="/images/Carlos.jpg" alt="Icono"></div>
+                            <h6 class="card-title acomodo mb-2">Dr. Carlos Rodríguez</h6>
+                            <p class="acomodo">Cirugía Veterinaria</p>
+                        </div>
+                    </div>
+                    <div class="card col-lg-3 col-md-5" style="width: 18rem;">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <div class="iconos d-flex align-items-center justify-content-center"><img src="/images/grupo.png" alt="Icono"></div>
+                            <h6 class="card-title acomodo mb-2">Dra. Ana López</h6>
+                            <p class="acomodo">Dermatología Veterinaria</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="contactanos d-flex flex-column align-items-center">
+            <div class="cabeza-contacto d-flex flex-column justify-content-center align-items-center texto-principal">
+                <div class="contacto d-flex align-items-center" id="contacto"><img src="/images/corazonhueco.png" alt="Icono corazon hueco"><p>Contacto</p></div>
+                <h1>¿Listo para cuidar a <span class="resaltar">tu mascota</span>?</h1>
+                <p> Ponte en contacto con nosotros para agendar una cita o resolver cualquier duda. Estamos aquí para ayudarte y a tu mascota.</p>
+            </div>
+            <div class="d-flex row">
+                <div class="formulario col-lg-6">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Envíanos un mensaje</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Completa el formulario y nos pondremos en contacto contigo lo antes posible.</h6>
+                            <form class="d-flex flex-column">
+                                <div class="d-flex align-items-center form">
+                                    <div class="d-flex flex-column grupo">
+                                        <label for="nombre">Tu nombre</label>
+                                        <input type="text" name="nombre" id="nombre" placeholder="Juan Perez">
+                                    </div>
+                                    <div class="d-flex flex-column grupo">
+                                        <label for="correo">Email</label>
+                                        <input type="email" name="correo" id="correo" placeholder="juan@gmail.com">
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center form">
+                                    <div class="d-flex flex-column grupo">
+                                        <label for="telefono">Telefono</label>
+                                        <input type="text" name="telefono" id="telefono" placeholder="+1 (555) 123-456">
+                                    </div>
+                                    <div class="d-flex flex-column grupo">
+                                        <label for="mascota">Nombre de tu mascota</label>
+                                        <input type="text" name="mascota" id="mascota" placeholder="Max">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-column grupo completo">
+                                        <label for="comentarios">Mensaje</label>
+                                        <input type="text" name="comentarios" id="comentarios" placeholder="Cuentanos como podemos ayudar a tu mascota...">
+                                    </div>
+                                </div>
+                                <a type="submit" class="submit-btn d-flex align-items-center justify-content-center">Enviar Mensaje</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class=" d-flex flex-column align-items-center col-lg-6 info">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">¿Emergencia?</h5>
+                                <p class="card-text">Si tu mascota necesita atención médica urgente, llámanos inmediatamente al número de emergencias.</p>
+                                <a class="btn btn-emergencia d-flex align-items-center">
+                                <img src="/images/Telefono.png" width="30" height="30" alt="Logo Telefono"> Llamar Emergencias
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card map" style="width: 18rem;">
+                            <div class="card-body">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d63627.73778317076!2d-74.11742503691725!3d4.641537505235615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8e3f9a3359dc0763%3A0x297dbd43b824f560!2sGalerias%20Plaza%2C%20Carrera%2027%2C%20Bogot%C3%A1!3m2!1d4.6415387!2d-74.0762249!4m5!1s0x8e3f9a3359dc0763%3A0x297dbd43b824f560!2sGalerias%20Plaza%2C%20Carrera%2027%2C%20Bogot%C3%A1!3m2!1d4.6415387!2d-74.0762249!5e0!3m2!1ses-419!2sco!4v1755127027325!5m2!1ses-419!2sco" width="460" height="180" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="d-flex align-items-center justify-content-center">
+            <div class="completo contenido d-flex justify-content-center">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="seccion info-principal d-flex flex-column align-items-start">
+                    <div class="logo d-flex align-items-center justify-content-center">
+                        <img src="/images/Logo.jpg" alt="Logo">
+                        <div class="logo-text">
+                            <h3>Mundo Animal</h3>
+                            <p>Clínica Veterinaria</p>
+                        </div>
+                    </div>
+                    <p class="descripcion">
+                        Dedicados al cuidado y bienestar de tu mascota con más de 15 años de experiencia. Brindamos servicios veterinarios de calidad con tecnología moderna y mucho amor.
+                    </p>
+                    <div class="social">
+                        <a href="#" class="social-link facebook">
+                            <img src="/images/facebook.png" alt="logo facebook">
+                        </a>
+                        <a href="#" class="social-link instagram">
+                            <img src="/images/instagram.png" alt="logo instagram">
+                        </a>
+                        <a href="#" class="social-link twitter">
+                            <img src="/images/twitter.png" alt="logo x">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="seccion d-flex flex-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Servicios</a></li>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Precios</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="seccion">
+                    <h3>Contacto</h3>
+                    <div class="info-contacto">
+                        <div class="item d-flex align-items-center">
+                            <img class="icono" src="/images/ubicacion.png" alt="logo ubicacion">
+                            <div>
+                                Av. Principal 123<br>
+                                Centro, Ciudad 12345
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="icono" src="/images/telefono-azul.png" alt="logo telefono">
+                            <a href="">+1 (555) 123-4567</a>
+                        </div>
+                        <div class="item">
+                            <img class="icono" src="/images/correo-verde.png" alt="logo correo">
+                            <a href="mailto:info@mundoanimal.com">info@mundoanimal.com</a>
+                        </div>
+                        
+                        <h3 class="horarios">Horarios de Atención</h3>
+                        <p class="horas">Lunes - Viernes: 8:00 - 18:00</p>
+                        <p class="horas">Sábados: 9:00 - 15:00</p>
+                        <p class="horas">Domingos: Solo emergencias</p>
+                    </div>
+                </div>
+                </div>
+                <div class="d-flex completo flex-column align-items-center justify-content-center">
+                    <div class="emergencia d-flex align-items-center">
+                    <p><strong>Servicio de Emergencias 24/7</strong><br>Para urgencias fuera del horario normal, contamos con servicio de emergencias.</p>
+                    <a href="#" class="btn-emergencia-footer">Llamar Emergencias</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="footer-bottom">
+                    © 2025 Mundo Animal. Todos los derechos reservados.
+                </div>
+            </div>
+    </footer>
+</body>
+</html>
