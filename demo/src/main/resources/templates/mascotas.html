@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/Styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark personalizado">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="/images/Logo.jpg" width="30" height="30" class="d-inline-block align-top mr-2 logo-principal" alt="">
+            <div class="d-flex flex-column lh-1">
+                <span class="font-weight-bold">Mundo Animal</span>
+                <small class="">Clínica Veterinaria</small>
+            </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#inicio">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#servicios">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#nosotros">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contacto">Contacto</a>
+                </li>
+            </ul>
+            <a class="btn btn-llamar d-flex align-items-center">
+                <img src="/images/Telefono.png" width="30" height="30" alt="Logo Telefono"> Llamar Ahora
+            </a>
+        </div>
+    </nav>
+    </header>
+    <main class="mover">
+        <h2 class="text-center">Nuestras Mascotas</h2>
+        <div class="contenedor-perros d-flex align-items-center justify-content-center">
+            <div class="card col-lg-3 col-md-5" th:each="mascota : ${mascotas}" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="iconos d-flex align-items-center justify-content-center"><img th:src="${mascota.foto}" alt="'Foto de'+ ${mascota.nombre}"></div>
+                        <h6 class="card-title mb-2" th:text="${mascota.nombre}"></h6>
+                        <ul>
+                            <li>
+                                <span th:text="${mascota.especie}"></span>
+                            </li>
+                            <li>
+                                <span th:text="${mascota.raza}"></span>
+                            </li>
+                            <li>
+                                <span th:text="${mascota.sexo}"></span>
+                            </li>
+                            <li>
+                                <span th:text="${mascota.peso}"></span>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </main>
+    <footer class="d-flex align-items-center justify-content-center">
+            <div class="completo contenido d-flex justify-content-center">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="seccion info-principal d-flex flex-column align-items-start">
+                    <div class="logo d-flex align-items-center justify-content-center">
+                        <img src="/images/Logo.jpg" alt="Logo">
+                        <div class="logo-text">
+                            <h3>Mundo Animal</h3>
+                            <p>Clínica Veterinaria</p>
+                        </div>
+                    </div>
+                    <p class="descripcion">
+                        Dedicados al cuidado y bienestar de tu mascota con más de 15 años de experiencia. Brindamos servicios veterinarios de calidad con tecnología moderna y mucho amor.
+                    </p>
+                    <div class="social">
+                        <a href="#" class="social-link facebook">
+                            <img src="/images/facebook.png" alt="logo facebook">
+                        </a>
+                        <a href="#" class="social-link instagram">
+                            <img src="/images/instagram.png" alt="logo instagram">
+                        </a>
+                        <a href="#" class="social-link twitter">
+                            <img src="/images/twitter.png" alt="logo x">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="seccion d-flex flex-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Servicios</a></li>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Precios</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="seccion">
+                    <h3>Contacto</h3>
+                    <div class="info-contacto">
+                        <div class="item d-flex align-items-center">
+                            <img class="icono" src="/images/ubicacion.png" alt="logo ubicacion">
+                            <div>
+                                Av. Principal 123<br>
+                                Centro, Ciudad 12345
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="icono" src="/images/telefono-azul.png" alt="logo telefono">
+                            <a href="">+1 (555) 123-4567</a>
+                        </div>
+                        <div class="item">
+                            <img class="icono" src="/images/correo-verde.png" alt="logo correo">
+                            <a href="mailto:info@mundoanimal.com">info@mundoanimal.com</a>
+                        </div>
+                        
+                        <h3 class="horarios">Horarios de Atención</h3>
+                        <p class="horas">Lunes - Viernes: 8:00 - 18:00</p>
+                        <p class="horas">Sábados: 9:00 - 15:00</p>
+                        <p class="horas">Domingos: Solo emergencias</p>
+                    </div>
+                </div>
+                </div>
+                <div class="d-flex completo flex-column align-items-center justify-content-center">
+                    <div class="emergencia d-flex align-items-center">
+                    <p><strong>Servicio de Emergencias 24/7</strong><br>Para urgencias fuera del horario normal, contamos con servicio de emergencias.</p>
+                    <a href="#" class="btn-emergencia-footer">Llamar Emergencias</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="footer-bottom">
+                    © 2025 Mundo Animal. Todos los derechos reservados.
+                </div>
+            </div>
+    </footer>
+</body>
+<script src="/JS/mascotas.js"></script>
+</html>

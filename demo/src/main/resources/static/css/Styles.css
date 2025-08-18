@@ -190,7 +190,7 @@ body {
 }
 .card{
     width: 500px !important;
-    height: 200px;
+    height: auto;
     border-radius: 20px;
     margin:20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -681,4 +681,11 @@ footer {
     height: 50px;
     width: 50px;
     border-radius: 20px;
+}
+.contenedor-perros {
+    flex-wrap: wrap;
+    
+}
+.mover{
+    margin-top: 120px;
 }
