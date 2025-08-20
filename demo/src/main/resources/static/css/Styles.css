@@ -189,15 +189,15 @@ body {
     margin-bottom: 20px;
 }
 .card{
-    width: 500px !important;
+    width: auto;
     height: auto;
     border-radius: 20px;
     margin:20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .contenedor-perros img{
-    height: 70px;
-    width: 70px;
+    height: 400px;
+    width: 400px;
 }
 .servicio{
     padding-top: 60px;
@@ -680,9 +680,9 @@ footer {
     height: 220px;
     margin-top: 15px;
 }
-.logo-principal{
-    height: 50px;
-    width: 50px;
+td img{
+    height: 60px;
+    width: 60px;
     border-radius: 20px;
 }
 .contenedor-perros {
@@ -691,4 +691,45 @@ footer {
 }
 .mover{
     padding-top: 120px;
+}
+.no-hover:hover{
+    transform: none !important;
+}
+.btn-tabla{
+    height: 30px !important;
+    width: 44px !important;
+}
+.btn-tabla img{
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+}
+.contenedor-botones{
+    column-gap: 0px;
+    justify-content: space-around;
+}
+.cabeza a{
+    color: white;
+}
+.profile-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.badge-health {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.9rem;
 }
