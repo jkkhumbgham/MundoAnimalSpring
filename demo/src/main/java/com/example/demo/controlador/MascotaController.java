@@ -5,19 +5,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.entidades.mascota;
+import com.example.demo.entidades.Mascota;
 import com.example.demo.servicio.ServicioMascotaImpl;
 
 
 @Controller
+@RequestMapping("/Mascota")
 public class MascotaController {
     @Autowired
     ServicioMascotaImpl servicioMascotas;
-    //mostrar un perro
-    @GetMapping("/Mascota/{id}")
+    //mostrar una mascota
+    @GetMapping("/{id}")
 public String verDetalleMascota(@PathVariable int id, Model model) {
-    mascota mascota = servicioMascotas.getMascotaById(id);
+    Mascota mascota = servicioMascotas.getMascotaById(id);
     if(mascota!= null){
         model.addAttribute("mascota", mascota);
         return "mascota-detalle"; // nombre del template
@@ -31,7 +33,7 @@ public String verDetalleMascota(@PathVariable int id, Model model) {
     } */
 
     //http://localhost:8080/Mascotas-Tabla
-    @GetMapping("/Mascota")
+    @GetMapping("")
     public String MostrarMascotasTabla(Model model){
         model.addAttribute("mascotas", servicioMascotas.getAllMascotas());
         return "mascotas-tabla";

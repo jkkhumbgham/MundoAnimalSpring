@@ -195,6 +195,9 @@ body {
     margin:20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.mitad {
+    width: 500px !important;
+}
 .contenedor-perros img{
     height: 400px;
     width: 400px;
@@ -673,7 +676,7 @@ footer {
     width: 20px;
 }
 .personalizado{
-    background-color: #0d111b !important;
+    
     width: 100% !important;
 }
 .map{
@@ -732,4 +735,19 @@ td img{
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 0.9rem;
+}
+.btn-inicio {
+    color: rgb(250, 60, 60) !important;
+    border: solid 1px rgb(248, 60, 60);
+    margin-right: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 16px;    
+    height: 40px;
+}
+.btn-inicio img{
+    margin-right: 10px;
+}
+.btn-inicio:hover {
+    filter: brightness(0.85);
 }

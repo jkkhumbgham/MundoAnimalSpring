@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entidades.mascota;
+import com.example.demo.entidades.Mascota;
 import com.example.demo.repositorio.RepositorioMascotas;
 @Service
 public class ServicioMascotaImpl implements ServicioMascotas {
@@ -13,12 +13,12 @@ public class ServicioMascotaImpl implements ServicioMascotas {
     RepositorioMascotas repositorio;
 
     @Override
-    public Collection<mascota> getAllMascotas() {
+    public Collection<Mascota> getAllMascotas() {
         return repositorio.getAllMascotas();
     }
 
     @Override
-    public mascota getMascotaById(int id) {
+    public Mascota getMascotaById(int id) {
         return repositorio.getMascotaById(id);
     }
 }

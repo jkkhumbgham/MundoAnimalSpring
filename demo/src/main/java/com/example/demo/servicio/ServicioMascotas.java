@@ -2,9 +2,9 @@ package com.example.demo.servicio;
 
 import java.util.Collection;
 
-import com.example.demo.entidades.mascota;
+import com.example.demo.entidades.Mascota;
 
 public interface ServicioMascotas {
-    public Collection<mascota> getAllMascotas();
-    public mascota getMascotaById(int id);
+    public Collection<Mascota> getAllMascotas();
+    public Mascota getMascotaById(int id);
 }
