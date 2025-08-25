@@ -12,6 +12,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Mascota {
     private int id;
+    private int dueñoid;
     private List<String> vacunas;
     private List<String> alergias;
     private List<String> medicamentos;

@@ -1,6 +1,7 @@
 package com.example.demo.servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,4 +22,10 @@ public class ServicioMascotaImpl implements ServicioMascotas {
     public Mascota getMascotaById(int id) {
         return repositorio.getMascotaById(id);
     }
+
+    @Override
+    public List<Mascota> getMascotasByUsuario(int usuario) {
+        return RepositorioMascotas.getMascotasByUsuario(usuario);
+    }
+
 }

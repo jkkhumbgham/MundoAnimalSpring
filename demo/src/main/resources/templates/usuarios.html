@@ -55,11 +55,14 @@
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <h4 class="mb-4">
                         <span class="fw-bold">Base de Datos de</span>
-                        <span class="resaltar">Pacientes</span>
-                        <h6><span th:text="'mostrando 5 de ' + ${mascotas.size()} + ' pacientes mostrados'"></span></h6>
+                        <span class="resaltar">Dueños</span>
+                        <h6><span th:text="'mostrando 5 de ' + ${usuarios.size()} + ' dueños mostrados'"></span></h6>
                     </h4>
                 </div>
-                
+                <a class="btn btn-llamar d-flex align-items-center" th:href="@{/usuarios/agregar}">
+                    <img src="/images/mas.png" width="30" height="30" alt="Logo Mas"> Nuevo Dueño
+                </a>
+
             </div>
         </div>
             <table class="table align-middle table-hover text-center">
@@ -67,53 +70,37 @@
                     <tr>
                         <th>Foto</th>
                         <th>Nombre</th>
-                        <th>Especie</th>
-                        <th>Raza</th>
-                        <th>Peso</th>
-                        <th>Estado</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="mascota : ${mascotas}"  
+                    <tr th:each="usuario : ${usuarios}"  
                         style="cursor: pointer;">
                         
                         <td class="align-middle">
-                            <img th:src="${mascota.foto}" 
-                                 alt="Imagen de + ${mascota.nombre}" 
+                            <img th:src="${usuario.foto}" 
+                                 alt="Imagen de + ${usuario.nombre}" 
                                  class="rounded-circle" 
                                  width="50" height="50" />
                         </td>
 
-                        <td th:text="${mascota.nombre}" class="align-middle"></td>
-                        <td th:text="${mascota.especie}" class="align-middle"></td>
-                        <td th:text="${mascota.raza}" class="align-middle"></td>
-                        <td th:text="${mascota.peso + ' kg'}" class="align-middle"></td>
-                        <td class="align-middle">
-                            <span class="badge rounded-pill bg-success" 
-                                  th:if="${mascota.estado == 'Saludable'}"
-                                  th:text="${mascota.estado}"></span>
-                            <span class="badge rounded-pill bg-warning text-dark" 
-                                  th:if="${mascota.estado == 'En tratamiento'}"
-                                  th:text="${mascota.estado}"></span>
-                            <span class="badge rounded-pill bg-info text-dark" 
-                                  th:if="${mascota.estado == 'Recuperándose'}"
-                                  th:text="${mascota.estado}"></span>
-                            <span class="badge rounded-pill bg-primary" 
-                                  th:if="${mascota.estado == 'Control rutinario'}"
-                                  th:text="${mascota.estado}"></span>
-                        </td>
-
+                        <td th:text="${usuario.nombre}" class="align-middle"></td>
+                        <td th:text="${usuario.telefono}" class="align-middle"></td>
+                        <td th:text="${usuario.email}" class="align-middle"></td>
                         <td class="align-middle">
                             <div class="d-flex contenedor-botones">
-                                <button class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
-                                th:onclick="|window.location.href='/Mascota/${mascota.id}'|">
-                                    <img src="/images/ojo.png" alt="Icono Ojo">
-                                </button>
-                                <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center">
+                                <a class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center" th:href="|/usuarios/delete/${usuario.id}|">
+                                    <img src="/images/borrar.png" alt="Icono Borrar">
+                                </a>
+                                <a class="btn-tabla btn btn-sm btn-outline-info d-flex align-items-center justify-content-center" th:href="|/usuarios/editar/${usuario.id}|">
                                     <img src="/images/editar.png" alt="Icono Editar">
-                                </button>
-                            </div>
+                                </a>
+                                <a class="btn-tabla btn btn-sm btn-outline-info d-flex align-items-center justify-content-center" th:href="|/usuarios/${usuario.id}|">
+                                    <img src="/images/mas.png" alt="Icono mas">
+                                </a>
+                            </div>  
                         </td>
                     </tr>
                 </tbody>
