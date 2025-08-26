@@ -58,12 +58,21 @@
                         <span class="resaltar">Mascotas</span>
                     </h4>
                 </div>
+
+                <!--
                 <a href="#">
                     <button class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center"
                     th:onclick="|window.location.href='/mascotas/agregar'|">
                         <img src="/images/mas.png" alt="Icono mas">
                     </button>
                 </a>
+                -->
+                <a th:href="@{/usuarios/{Usuarioid}/mascotas/agregar(Usuarioid=${usuario.id})}">
+                    <button class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center">
+                        <img src="/images/mas.png" alt="Icono mas">
+                    </button>
+                </a>
+
             </div>
         </div>
             <table class="table align-middle table-hover text-center">

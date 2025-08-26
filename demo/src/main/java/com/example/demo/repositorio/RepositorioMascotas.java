@@ -1,14 +1,14 @@
 package com.example.demo.repositorio;
 
-import com.example.demo.entidades.*;
-
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
+
+import com.example.demo.entidades.Mascota;
 
 @Repository
 public class RepositorioMascotas {
@@ -53,7 +53,7 @@ public class RepositorioMascotas {
     public static List<Mascota> getMascotasByUsuario(int usuario) {
         List<Mascota> mascotasUsuario = new ArrayList<>();
         for (Mascota mascota : mascotas.values()) {
-            if (mascota.getDueñoid() == usuario) {
+            if (mascota.getDueñoid() != null && mascota.getDueñoid() == usuario) {
                 mascotasUsuario.add(mascota);
             }
         }
@@ -75,5 +75,21 @@ public class RepositorioMascotas {
     public void deleteMascota(Integer id){
         mascotas.remove(id);
     }
+
+    //Actualizar mascota
+    public void updateMascota(Mascota mascota) {
+    Mascota existente = getMascotaById(mascota.getId());
+    if (existente != null) {
+        existente.setNombre(mascota.getNombre());
+        existente.setEspecie(mascota.getEspecie());
+        existente.setRaza(mascota.getRaza());
+        existente.setSexo(mascota.getSexo());
+        existente.setPeso(mascota.getPeso());
+        existente.setFoto(mascota.getFoto());
+        existente.setEstado(mascota.getEstado());
+
+    }
+}
+
 
 }

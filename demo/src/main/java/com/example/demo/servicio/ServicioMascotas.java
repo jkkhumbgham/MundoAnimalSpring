@@ -11,4 +11,5 @@ public interface ServicioMascotas {
     public List<Mascota> getMascotasByUsuario(int usuario);
     public void deleteMascota(Integer id);
     public void addMascota(Mascota mascota);
+    public void updateMascota(Mascota mascota);
 }

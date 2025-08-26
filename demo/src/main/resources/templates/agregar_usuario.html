@@ -79,9 +79,20 @@
                 Agregar Usuario
             </button>
             </form>
+
+            
+            <div class="d-flex justify-content-center mt-3">
+                <a th:href="@{/usuarios/{Usuarioid}/mascotas/agregar(Usuarioid=${usuario.id})}" 
+                class="btn btn-nuevo">
+                    Agregar Mascota
+                </a>
+            </div>
+
+            
         </div>
         </div>
     </main>
+
     <footer class="d-flex align-items-center justify-content-center">
             <div class="completo contenido d-flex justify-content-center">
                 <div class="d-flex align-items-center justify-content-center">

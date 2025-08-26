@@ -37,4 +37,9 @@ public class ServicioMascotaImpl implements ServicioMascotas {
     public void addMascota(Mascota mascota){
         repositorio.addMascota(mascota);
     }
+    
+    @Override
+    public void updateMascota(Mascota mascota){
+        repositorio.addMascota(mascota);
+    }
 }

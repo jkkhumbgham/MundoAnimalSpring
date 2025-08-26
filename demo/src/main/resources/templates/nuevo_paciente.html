@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mascotas</title>
+    <title>Nueva Mascota</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/css/Styles.css}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
 </head>
 <body>
 <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark personalizado">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light personalizado">
         <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="/images/Logo.jpg" width="30" height="30" class="d-inline-block align-top mr-2 logo-principal" alt="">
             <div class="d-flex flex-column lh-1">
@@ -29,133 +28,85 @@
                 <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
             </ul>
-            <a class="btn btn-llamar d-flex align-items-center">
-                <img src="/images/Telefono.png" width="30" height="30"> Llamar Ahora
-            </a>
         </div>
     </nav>
 </header>
 
-<main class="mover principal">
-    <h2 class="text-center mt-5 pt-4">Nuestras Mascotas</h2>
-    <div class="contenedor-perros d-flex flex-wrap justify-content-center">
-        <div class="card" th:each="mascota : ${mascotas}">
-            <div class="card-body d-flex flex-column align-items-center">
-                <img th:src="${mascota.foto}" th:alt="'Foto de ' + ${mascota.nombre}">
-                <h6 class="card-title mt-2" th:text="${mascota.nombre}"></h6>
-                <ul class="list-unstyled text-center mb-2">
-                    <li><span th:text="${mascota.especie}"></span></li>
-                    <li><span th:text="${mascota.raza}"></span></li>
-                    <li><span th:text="${mascota.sexo}"></span></li>
-                    <li><span th:text="${mascota.peso} + ' kg'"></span></li>
-                </ul>
+<main class="mover principal d-flex flex-column align-items-center p-4">
+    <div class="container formulario">
+        <div class="card p-4">
+            <h4 class="text-center mb-4">Información de la Mascota</h4>
 
-                <!-- Botones -->
-                <div class="d-flex contenedor-botones">
-                    <!-- Ver -->
-                    <a class="btn-tabla btn btn-sm btn-outline-info d-flex align-items-center justify-content-center"
-                       th:href="@{/mascotas/{id}(id=${mascota.id})}">
-                        <img src="/images/mas.png" alt="Icono Ver" width="18" height="18">
-                    </a>
+            <form th:object="${mascota}" th:action="@{/mascotas}" method="post" class="form d-flex flex-column">
+                <!-- ID Oculto -->
+                <input th:field="*{id}" type="hidden"/>
 
-                    <!-- Editar -->
-                    <a class="btn-tabla btn btn-sm btn-outline-primary d-flex align-items-center justify-content-center"
-                       th:href="@{/mascotas/update/{id}(id=${mascota.id})}">
-                        <img src="/images/editar.png" alt="Icono Editar" width="18" height="18">
-                    </a>
+                <!-- Dueño Oculto -->
+                <input th:field="*{dueñoid}" type="hidden" th:value="${mascota.dueñoid}"/>
 
-                    <!-- Eliminar -->
-                    <form th:action="@{/mascotas/delete/{id}(id=${mascota.id})}" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
-                                onclick="return confirm('¿Seguro que quieres eliminar esta mascota?');">
-                            <img src="/images/borrar.png" alt="Icono Borrar" width="18" height="18">
-                        </button>
-                    </form>
+                <div class="grupo">
+                    <label for="nombre">Nombre</label>
+                    <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre de la mascota" required class="completo">
                 </div>
 
-            </div>
+                <div class="grupo">
+                    <label for="especie">Especie</label>
+                    <input th:field="*{especie}" type="text" id="especie" name="especie" placeholder="Ej: Perro, Gato" required class="completo">
+                </div>
+
+                <div class="grupo">
+                    <label for="raza">Raza</label>
+                    <input th:field="*{raza}" type="text" id="raza" name="raza" placeholder="Raza de la mascota" class="completo">
+                </div>
+
+                <div class="grupo">
+                    <label for="estado">Estado</label>
+                    <input th:field="*{estado}" type="text" id="estado" name="estado" placeholder="Estado de la mascota" class="completo">
+                </div>
+
+                <div class="grupo">
+                    <label for="sexo">Sexo</label>
+                    <select th:field="*{sexo}" id="sexo" name="sexo" class="completo">
+                        <option value="" disabled>Seleccione</option>
+                        <option value="Macho">Macho</option>
+                        <option value="Hembra">Hembra</option>
+                    </select>
+                </div>
+
+                <div class="grupo">
+                    <label for="peso">Peso (kg)</label>
+                    <input th:field="*{peso}" type="number" step="0.1" id="peso" name="peso" placeholder="Peso de la mascota" class="completo">
+                </div>
+
+                <div class="grupo">
+                    <label for="foto">Foto (URL)</label>
+                    <input th:field="*{foto}" type="text" id="foto" name="foto" placeholder="https://ejemplo.com/foto.jpg" class="completo">
+                </div>
+
+                <button type="submit" class="submit-btn d-flex align-items-center justify-content-center mt-3">
+                    Guardar Mascota
+                </button>
+            </form>
         </div>
     </div>
 </main>
 
-
-    <footer class="d-flex align-items-center justify-content-center">
-            <div class="completo contenido d-flex justify-content-center">
-                <div class="d-flex align-items-center justify-content-center">
-                    <div class="seccion info-principal d-flex flex-column align-items-start">
-                    <div class="logo d-flex align-items-center justify-content-center">
-                        <img src="/images/Logo.jpg" alt="Logo">
-                        <div class="logo-text">
-                            <h3>Mundo Animal</h3>
-                            <p>Clínica Veterinaria</p>
-                        </div>
+<footer class="d-flex align-items-center justify-content-center mt-4">
+    <div class="completo contenido d-flex justify-content-center">
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="seccion info-principal d-flex flex-column align-items-start">
+                <div class="logo d-flex align-items-center justify-content-center">
+                    <img src="/images/Logo.jpg" alt="Logo">
+                    <div class="logo-text">
+                        <h3>Mundo Animal</h3>
+                        <p>Clínica Veterinaria</p>
                     </div>
-                    <p class="descripcion">
-                        Dedicados al cuidado y bienestar de tu mascota con más de 15 años de experiencia. Brindamos servicios veterinarios de calidad con tecnología moderna y mucho amor.
-                    </p>
-                    <div class="social">
-                        <a href="#" class="social-link facebook">
-                            <img src="/images/facebook.png" alt="logo facebook">
-                        </a>
-                        <a href="#" class="social-link instagram">
-                            <img src="/images/instagram.png" alt="logo instagram">
-                        </a>
-                        <a href="#" class="social-link twitter">
-                            <img src="/images/twitter.png" alt="logo x">
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="seccion d-flex flex-column">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Servicios</a></li>
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Precios</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div class="seccion">
-                    <h3>Contacto</h3>
-                    <div class="info-contacto">
-                        <div class="item d-flex align-items-center">
-                            <img class="icono" src="/images/ubicacion.png" alt="logo ubicacion">
-                            <div>
-                                Av. Principal 123<br>
-                                Centro, Ciudad 12345
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img class="icono" src="/images/telefono-azul.png" alt="logo telefono">
-                            <a href="">+1 (555) 123-4567</a>
-                        </div>
-                        <div class="item">
-                            <img class="icono" src="/images/correo-verde.png" alt="logo correo">
-                            <a href="mailto:info@mundoanimal.com">info@mundoanimal.com</a>
-                        </div>
-                        
-                        <h3 class="horarios">Horarios de Atención</h3>
-                        <p class="horas">Lunes - Viernes: 8:00 - 18:00</p>
-                        <p class="horas">Sábados: 9:00 - 15:00</p>
-                        <p class="horas">Domingos: Solo emergencias</p>
-                    </div>
-                </div>
-                </div>
-                <div class="d-flex completo flex-column align-items-center justify-content-center">
-                    <div class="emergencia d-flex align-items-center">
-                    <p><strong>Servicio de Emergencias 24/7</strong><br>Para urgencias fuera del horario normal, contamos con servicio de emergencias.</p>
-                    <a href="#" class="btn-emergencia-footer">Llamar Emergencias</a>
-                    </div>
-                </div>
-                <hr>
-                <div class="footer-bottom">
-                    © 2025 Mundo Animal. Todos los derechos reservados.
                 </div>
             </div>
-    </footer>
+        </div>
+    </div>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -48,6 +48,7 @@
         </div>
     </nav>
     </header>
+
     <main class="mover principal d-flex flex-column align-items-center p-4">
     <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;">
         <div class="card-body">
@@ -115,14 +116,25 @@
                                     <img src="/images/editar.png" alt="Icono Editar">
                                 </button>
                                 <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
-                                th:onclick="|window.location.href='/mascotas/editar/${mascota.id}'|">
-                                    <img src="/images/editar.png" alt="Icono Editar">
+                                th:onclick="|window.location.href='/mascotas/delete/${mascota.id}'|">
+                                    <img src="/images/borrar.png" alt="Icono borrar">
                                 </button>
                             </div>
                         </td>
-                    </tr>
+                    </div>
+
+                    </tr>   
                 </tbody>
             </table>
+
+
+<div class="d-flex justify-content-center mt-3">
+    <a th:href="@{/usuarios/{Usuarioid}/mascotas/agregar(Usuarioid=${usuarioId})}" 
+       class="btn btn-nuevo">
+        Agregar Mascota
+    </a>
+</div>
+
         </div>
     </div>
 </main>
