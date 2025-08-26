@@ -9,4 +9,7 @@ public interface ServicioMascotas {
     public Collection<Mascota> getAllMascotas();
     public Mascota getMascotaById(int id);
     public List<Mascota> getMascotasByUsuario(int usuario);
+    public void saveMascota(Mascota mascota);
+    public void deleteMascota(Integer id);
+    public void addMascota(Mascota mascota);
 }

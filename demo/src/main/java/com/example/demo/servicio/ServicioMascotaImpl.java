@@ -27,5 +27,18 @@ public class ServicioMascotaImpl implements ServicioMascotas {
     public List<Mascota> getMascotasByUsuario(int usuario) {
         return RepositorioMascotas.getMascotasByUsuario(usuario);
     }
+    @Override
+    public void addMascota(Mascota nuevaMascota){
+        repositorio.addMascota(nuevaMascota);
+    }
 
+    @Override
+    public void deleteMascota(Integer id){
+        repositorio.deleteMascota(id);
+    }
+
+    @Override
+    public void saveMascota(Mascota mascota){
+        repositorio.saveMascota(mascota);
+    }
 }

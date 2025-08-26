@@ -59,4 +59,22 @@ public class RepositorioMascotas {
         }
         return mascotasUsuario;
     }
+     public void addMascota(Mascota nuevaMascota){
+        int nuevoId = mascotas.size() + 1; 
+        nuevaMascota.setId(nuevoId);
+        mascotas.put(nuevaMascota.getId(), nuevaMascota);
+    }
+
+    //Eliminar mascota
+    public void deleteMascota(Integer id){
+        mascotas.remove(id);
+    }
+
+    public void saveMascota(Mascota mascota){
+        if(mascota.getId() == 0){
+            int nuevoId = mascotas.keySet().stream().max(Integer::compare).orElse(0) + 1;
+            mascota.setId(nuevoId);
+        }
+        mascotas.put(mascota.getId(), mascota);
+    }
 }
