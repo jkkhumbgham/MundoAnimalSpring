@@ -14,7 +14,9 @@ import org.springframework.stereotype.Repository;
 public class RepositorioMascotas {
     private static Map<Integer, Mascota> mascotas = new HashMap<>();
 
-    public RepositorioMascotas() {
+    public RepositorioMascotas() { 
+
+        // crearrr
         // Crear algunas mascotas de ejemplo
     Mascota perro1 = new Mascota(1,1,List.of("rabia", "leucemia"),List.of("ninguna conocida"),List.of("ninguno"),"Sana", "https://cdn.pixabay.com/photo/2018/09/14/07/57/yellow-lab-3676436_960_720.jpg", "Andres Garcia","Fido", "Perro", "Labrador", "Macho", "Saludable",java.sql.Date.valueOf("2025-08-10"),java.sql.Date.valueOf("2020-01-01"), 30.5f, 123456);
     Mascota gato1 = new Mascota(2, 2,List.of("rabia","triple felina", "leucemia"),List.of("ninguna conocida"),List.of("ninguno"),"Sana","https://images.unsplash.com/photo-1592194996308-7b43878e84a6","Alvaro Morata", "Whiskers", "Gato", "Siamés", "Hembra", "Saludable",java.sql.Date.valueOf("2025-08-1"),java.sql.Date.valueOf("2019-06-15"), 10.2f, 654321);
