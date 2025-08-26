@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Mascota {
-    private int id;
-    private int dueñoid;
+    private Integer id;
+    private Integer dueñoid;
     private List<String> vacunas;
     private List<String> alergias;
     private List<String> medicamentos;
@@ -29,6 +29,9 @@ public class Mascota {
     private float peso;
     private int microchipID;
     
+
+    public Mascota() {
+    }
 
 
     public int getEdad() {

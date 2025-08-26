@@ -1,6 +1,5 @@
 package com.example.demo.controlador;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,76 +7,82 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entidades.Mascota;
 import com.example.demo.servicio.ServicioMascotaImpl;
 
 
 @Controller
-@RequestMapping("/Mascota")
+
 public class MascotaController {
     @Autowired
     ServicioMascotaImpl servicioMascotas;
     //mostrar una mascota
-    @GetMapping("/{id}")
+    //CRUD TABLA GLOBAL
+    @GetMapping("/mascotas/{id}")
 public String verDetalleMascota(@PathVariable int id, Model model) {
     Mascota mascota = servicioMascotas.getMascotaById(id);
     if(mascota!= null){
         model.addAttribute("mascota", mascota);
         return "mascota-detalle"; // nombre del template
-    }else return "La mascota no existe";
+    }else {
+        return "redirect:/mascotas";
+    }
 }
-    //http://localhost:8080/Mascotas
-    /*@GetMapping("/Mascotas")
-    public String MostrarMascotas(Model model){
-        model.addAttribute("mascotas", servicioMascotas.getAllMascotas());
-        return "mascotas";
-    } */
+   
 
-    //http://localhost:8080/Mascotas-Tabla
-    @GetMapping("")
+    //http://localhost:8080/mascotas
+    @GetMapping("/mascotas")
     public String MostrarMascotasTabla(Model model){
         model.addAttribute("mascotas", servicioMascotas.getAllMascotas());
         return "mascotas-tabla";
     }
-    
-    @GetMapping("/mascotas/delete/{id}")
-    public String eliminarMascota(@PathVariable Integer id){
+
+    @GetMapping({"/mascotas/delete/{id}","/usuarios/{Usuarioid}/mascotas/delete/{id}"})
+    public String eliminarMascota(@PathVariable(value = "id") Integer id, @PathVariable(value = "Usuarioid", required = false) Integer Usuarioid){
         servicioMascotas.deleteMascota(id);
-        return "redirect:/Mascota";
+        if (Usuarioid != null) {
+            return "redirect:/usuarios/" + Usuarioid;
+        }else {
+            return "redirect:/mascotas";
+        }
 
     }
 
-    //Añadir mascota en formulario
-    @GetMapping("/mascotas/add")
-    public String mostrarFormularioCrear(Model model) {
-
-        model.addAttribute("mascota", new Mascota(0, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0));
+    @GetMapping({"/mascotas/agregar","/usuarios/{Usuarioid}/mascotas/agregar"})
+    public String agregarMascota(@PathVariable(value = "Usuarioid", required = false) Integer Usuarioid,Model model) {
+        Mascota mascota = new Mascota();
+        model.addAttribute("mascota", mascota);
+        mascota.setDueñoid(Usuarioid);
         return "nuevo_paciente";
     }
+    @PostMapping({"/mascotas","/usuarios/{Usuarioid}"})
+    public String agregarfinal(@PathVariable(value = "Usuarioid", required = false) Integer Usuarioid, @ModelAttribute("mascota") Mascota mascota) {
+        servicioMascotas.addMascota(mascota);
 
-
-    //Guardar nueva mascota
-    @PostMapping("/mascotas/add")
-    public String agregarMascota(@ModelAttribute("mascota")Mascota mascota) {
-        //TODO: process POST request
-        servicioMascotas.saveMascota(mascota);
-        return "redirect:/mascotas";
+        if (Usuarioid != null) {
+            return "redirect:/usuarios/" + Usuarioid;
+        }else {
+            return "redirect:/mascotas";
+        }
     }
 
-    //Editar mascota
-    @GetMapping("/mascotas/update/{id}")
-    public String msotrarFormularioEditar(@PathVariable("id") Integer id, Model model) {
+    @GetMapping({"/mascotas/editar/{id}", "/usuarios/{Usuarioid}/mascotas/editar/{id}"})
+    public String editarMascota(@PathVariable int id,@PathVariable(value = "Usuarioid", required = false) Integer Usuarioid, Model model) {
         Mascota mascota = servicioMascotas.getMascotaById(id);
-        model.addAttribute("mascota",mascota);
+        model.addAttribute("mascota", mascota);
+        mascota.setDueñoid(Usuarioid);
         return "nuevo_paciente";
     }
 
-    @PostMapping("/mascotas/update")
-    public String actualizarMascota(@ModelAttribute("mascota") Mascota mascota) {
-        servicioMascotas.saveMascota(mascota);
-        return "redirect:/mascotas";
+    @PostMapping({"/mascotas/editar","/usuarios/{Usuarioid}/mascotas/editar"})
+    public String actualizarMascota(@PathVariable(value = "Usuarioid", required = false) Integer Usuarioid,@ModelAttribute("mascota") Mascota mascota) {
+        servicioMascotas.addMascota(mascota);
+        if (Usuarioid != null) {
+            return "redirect:/usuarios/" + Usuarioid;
+        }else {
+            return "redirect:/mascotas";
+        }
     }
+
 }
-    
