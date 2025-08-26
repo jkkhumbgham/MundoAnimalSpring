@@ -1,11 +1,10 @@
 package com.example.demo.repositorio;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
-
-import java.util.HashMap;
 
 import com.example.demo.entidades.Usuario;
 
@@ -28,7 +27,7 @@ public class RepositorioUsuarios {
         usuarios.put(9, new Usuario(9, "Simba", "999999999", "carlos@example.com", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7", RepositorioMascotas.getMascotasByUsuario(9)));
         usuarios.put(10, new Usuario(10, "Estefania Alba", "000000000", "carlos@example.com", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7", RepositorioMascotas.getMascotasByUsuario(10)));
         usuarios.put(11, new Usuario(11, "Margarita Castro", "888888888", "carlos@example.com", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7", RepositorioMascotas.getMascotasByUsuario(11)));
-    }
+}
 
     public Collection<Usuario> getAllUsuarios() {
         return usuarios.values();

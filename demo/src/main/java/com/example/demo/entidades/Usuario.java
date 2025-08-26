@@ -16,4 +16,7 @@ public class Usuario {
     private String foto;
     private List<Mascota> mascotas;
 
+
+
+
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${mascota.id} != null ? 'Editar Mascota' : 'Nueva Mascota'">Nueva Mascota</title>
+    <link rel="stylesheet" th:href="@{/css/Styles.css}">
+</head>
+<body>
+    <main class="principal d-flex flex-column align-items-center p-4 formulario">
+        <div class="card shadow-lg rounded-4 form-card">
+            <div class="card-body">
+                <h4 class="mb-4" th:text="${mascota.id} != null ? 'Editar Mascota' : 'Registrar Nueva Mascota'">
+                    Registrar Nueva Mascota
+                </h4>
+
+                <form th:action="@{${mascota.id} != null ? '/mascotas/update' : '/mascotas/add'}"
+                      th:object="${mascota}" method="post" class="form">
+
+                    <input type="hidden" th:field="*{id}"/>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input th:field="*{nombre}" id="nombre" type="text" class="form-control completo" placeholder="Nombre de la mascota">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="especie">Especie</label>
+                        <input th:field="*{especie}" id="especie" type="text" class="form-control completo" placeholder="Ej. Perro, Gato...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="raza">Raza</label>
+                        <input th:field="*{raza}" id="raza" type="text" class="form-control completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="peso">Peso (kg)</label>
+                        <input th:field="*{peso}" id="peso" type="number" step="0.1" class="form-control completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <input th:field="*{estado}" id="estado" type="text" class="form-control completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sexo">Sexo</label>
+                        <select th:field="*{sexo}" id="sexo" class="form-control completo">
+                            <option value="">Seleccione</option>
+                            <option value="Macho">Macho</option>
+                            <option value="Hembra">Hembra</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="microchipID">Microchip ID</label>
+                        <input th:field="*{microchipID}" id="microchipID" type="number" class="form-control completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                        <input th:field="*{fechaNacimiento}" id="fechaNacimiento" type="date" class="form-control completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="foto">Foto (URL)</label>
+                        <input th:field="*{foto}" id="foto" type="text" class="form-control completo" placeholder="https://...">
+                    </div>
+                    
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="submit" class="submit-btn">Guardar</button>
+                        <a th:href="@{/mascotas}" class="btn conoce" style="display:block; margin-top: 10px; text-align: center;">Cancelar</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

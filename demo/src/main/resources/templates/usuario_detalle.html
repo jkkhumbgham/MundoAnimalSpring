@@ -48,6 +48,7 @@
         </div>
     </nav>
     </header>
+
     <main class="mover principal d-flex flex-column align-items-center p-4">
     <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;">
         <div class="card-body">
@@ -58,11 +59,10 @@
                         <span class="resaltar">Mascotas</span>
                     </h4>
                 </div>
-                <a href="#">
-                    <button class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center">
-                        <img src="/images/mas.png" alt="Icono mas">
-                    </button>
-                </a>
+            <a class="btn btn-outline-success d-flex align-items-center justify-content-center"
+            th:href="@{'/mascotas/agregar?duenoId=' + ${usuario.id}}">
+            <img src="/images/mas.png" width="20" height="20" alt="Icono más">
+            </a>
             </div>
         </div>
             <table class="table align-middle table-hover text-center">
@@ -109,13 +109,16 @@
 
                         <td class="align-middle">
                             <div class="d-flex contenedor-botones">
-                                <button class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
-                                th:onclick="|window.location.href='/Mascota/${mascota.id}'|">
+                              <a class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
+                                th:href="@{'/mascotas/' + ${mascota.id}}">
                                     <img src="/images/ojo.png" alt="Icono Ojo">
-                                </button>
-                                <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center">
-                                    <img src="/images/editar.png" alt="Icono Editar">
-                                </button>
+                                </a>
+
+                                
+                                <a th:href="@{/mascotas/update/{id}(id=${mascota.id})}" 
+                                class="btn-tabla btn btn-outline-primary">
+                                <img src="/images/editar.png" alt="Editar">
+                                </a>
                             </div>
                         </td>
                     </tr>

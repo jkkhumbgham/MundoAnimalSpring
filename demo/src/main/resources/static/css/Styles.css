@@ -701,6 +701,16 @@ td img{
 .btn-tabla{
     height: 30px !important;
     width: 44px !important;
+
+    background: linear-gradient(90deg, #ebdbe9, #e0d6db);
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .btn-tabla img{
     width: 20px;
@@ -750,4 +760,46 @@ td img{
 }
 .btn-inicio:hover {
     filter: brightness(0.85);
+}
+
+
+/* Tarjeta del formulario */
+.form-card {
+    background-color: #f5f0e1; 
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    max-width: 500px;  
+    width: 90%;       
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.form-card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* Centrar el título dentro de la tarjeta */
+.form-card h4 {
+    text-align: center;
+    color: #F72585;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+/* Botón cancelar más lindo */
+.form-card .btn.conoce {
+    background-color: #ddd6ce;
+    color: #333 !important;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-card .btn.conoce:hover {
+    background-color: #cbbfae;
+    color: #000 !important;
 }
