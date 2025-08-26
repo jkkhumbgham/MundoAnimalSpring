@@ -59,10 +59,16 @@ public class RepositorioMascotas {
         }
         return mascotasUsuario;
     }
-     public void addMascota(Mascota nuevaMascota){
-        int nuevoId = mascotas.size() + 1; 
-        nuevaMascota.setId(nuevoId);
-        mascotas.put(nuevaMascota.getId(), nuevaMascota);
+    public void addMascota(Mascota mascota) {
+        if (mascota.getId() == null) {
+            int tam=mascotas.size();
+            int lastId = mascotas.get(tam).getId();
+            mascota.setId(lastId+1);
+            mascotas.put(mascota.getId(), mascota);
+        }else{
+
+            mascotas.put(mascota.getId(), mascota);
+        }
     }
 
     //Eliminar mascota
@@ -70,11 +76,4 @@ public class RepositorioMascotas {
         mascotas.remove(id);
     }
 
-    public void saveMascota(Mascota mascota){
-        if(mascota.getId() == 0){
-            int nuevoId = mascotas.keySet().stream().max(Integer::compare).orElse(0) + 1;
-            mascota.setId(nuevoId);
-        }
-        mascotas.put(mascota.getId(), mascota);
-    }
 }

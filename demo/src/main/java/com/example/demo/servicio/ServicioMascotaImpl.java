@@ -27,10 +27,6 @@ public class ServicioMascotaImpl implements ServicioMascotas {
     public List<Mascota> getMascotasByUsuario(int usuario) {
         return RepositorioMascotas.getMascotasByUsuario(usuario);
     }
-    @Override
-    public void addMascota(Mascota nuevaMascota){
-        repositorio.addMascota(nuevaMascota);
-    }
 
     @Override
     public void deleteMascota(Integer id){
@@ -38,7 +34,7 @@ public class ServicioMascotaImpl implements ServicioMascotas {
     }
 
     @Override
-    public void saveMascota(Mascota mascota){
-        repositorio.saveMascota(mascota);
+    public void addMascota(Mascota mascota){
+        repositorio.addMascota(mascota);
     }
 }

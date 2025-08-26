@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entidades.Usuario;
+import com.example.demo.servicio.ServicioMascotas;
 import com.example.demo.servicio.ServicioUsuario;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UsuarioController {
     @Autowired
     private ServicioUsuario servicioUsuario;
+    @Autowired
+    private ServicioMascotas servicioMascotas;
 
 
     @GetMapping("")
@@ -59,6 +62,7 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public String getUsuario(@PathVariable int id, Model model) {
         Usuario usuario = servicioUsuario.getUsuarioById(id);
+        usuario.setMascotas(servicioMascotas.getMascotasByUsuario(id));
         model.addAttribute("usuario", usuario);
         return "usuario_detalle";
     }

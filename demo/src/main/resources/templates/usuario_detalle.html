@@ -59,7 +59,8 @@
                     </h4>
                 </div>
                 <a href="#">
-                    <button class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center">
+                    <button class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center"
+                    th:onclick="|window.location.href='/mascotas/agregar'|">
                         <img src="/images/mas.png" alt="Icono mas">
                     </button>
                 </a>
@@ -110,11 +111,16 @@
                         <td class="align-middle">
                             <div class="d-flex contenedor-botones">
                                 <button class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
-                                th:onclick="|window.location.href='/Mascota/${mascota.id}'|">
+                                th:onclick="|window.location.href='/mascotas/${mascota.id}'|">
                                     <img src="/images/ojo.png" alt="Icono Ojo">
                                 </button>
-                                <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center">
+                                <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                                th:onclick="|window.location.href='/mascotas/editar/${mascota.id}'|">
                                     <img src="/images/editar.png" alt="Icono Editar">
+                                </button>
+                                <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                                th:onclick="|window.location.href='/mascotas/delete/${mascota.id}'|">
+                                    <img src="/images/borrar.png" alt="Icono Borrar">
                                 </button>
                             </div>
                         </td>
