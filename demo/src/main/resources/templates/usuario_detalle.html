@@ -123,14 +123,32 @@
                                 th:onclick="|window.location.href='/mascotas/${mascota.id}'|">
                                     <img src="/images/ojo.png" alt="Icono Ojo">
                                 </button>
-                                <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                                <!-- Botón Editar -->
+                                <button class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
+                                th:if="${usuarioId != null}"
+                                th:onclick="|window.location.href='/usuarios/${usuarioId}/mascotas/editar/${mascota.id}'|">
+                                    <img src="/images/editar.png" alt="Icono Editar">
+                                </button>
+
+                                <button class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
+                                th:if="${usuarioId == null}"
                                 th:onclick="|window.location.href='/mascotas/editar/${mascota.id}'|">
                                     <img src="/images/editar.png" alt="Icono Editar">
                                 </button>
+
+                                <!-- Botón Borrar -->
                                 <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                                th:if="${usuarioId != null}"
+                                th:onclick="|window.location.href='/usuarios/${usuarioId}/mascotas/delete/${mascota.id}'|">
+                                    <img src="/images/borrar.png" alt="Icono Borrar">
+                                </button>
+
+                                <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                                th:if="${usuarioId == null}"
                                 th:onclick="|window.location.href='/mascotas/delete/${mascota.id}'|">
                                     <img src="/images/borrar.png" alt="Icono Borrar">
                                 </button>
+
                             </div>
                         </td>
                     </tr>

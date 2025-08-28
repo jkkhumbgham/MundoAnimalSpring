@@ -60,6 +60,7 @@ public class UsuarioController {
         Usuario usuario = servicioUsuario.getUsuarioById(id);
         usuario.setMascotas(servicioMascotas.getMascotasByUsuario(id));
         model.addAttribute("usuario", usuario);
+        model.addAttribute("usuarioId", id);
         return "usuario_detalle";
     }
     
