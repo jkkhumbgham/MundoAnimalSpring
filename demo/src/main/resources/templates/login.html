@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión - Mundo Animal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/Styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #ffe4ee 100%);
+            min-height: 100vh;
+        }
+        .login-card {
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            background: #fff;
+            padding: 2.5rem 2rem;
+        }
+        .login-title {
+            color: #ff2e7a;
+            font-weight: 700;
+        }
+        .btn-login {
+            background: linear-gradient(90deg, #ff2e7a 0%, #ff6a00 100%);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+        }
+        .btn-login:hover {
+            background: linear-gradient(90deg, #ff6a00 0%, #ff2e7a 100%);
+        }
+        .tab-btn {
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: #222;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .tab-btn.active {
+            background: #ffe4ee;
+            color: #ff2e7a;
+        }
+        .input-group-text {
+            background: #f8fafc;
+            border: none;
+        }
+        .form-control {
+            background: #f8fafc;
+            border: none;
+            border-radius: 8px;
+        }
+        .register-link {
+            color: #ff2e7a;
+            font-weight: 600;
+        }
+        .register-link:hover {
+            text-decoration: underline;
+        }
+        .acceso-sistema {
+            background: #fff;
+            border: 1px solid #ff2e7a;
+            color: #ff2e7a;
+            border-radius: 24px;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            margin: 1rem auto 2rem auto;
+            display: block;
+        }
+        .volver-inicio {
+            border: 1px solid #007bff;
+            color: #007bff;
+            background: #fff;
+            border-radius: 12px;
+            font-weight: 500;
+            padding: 0.3rem 1.2rem;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="mb-4">
+        <div class="container-fluid py-3 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <img src="/images/Logo.jpg" width="40" height="40" class="mr-2" alt="Logo">
+                <div>
+                    <span class="font-weight-bold" style="font-size: 1.3rem;">Mundo Animal</span><br>
+                    <small>Iniciar Sesión</small>
+                </div>
+            </div>
+            <a th:href="@{/}" class="volver-inicio">← Volver al Inicio</a>
+        </div>
+    </header>
+    <main class="d-flex flex-column align-items-center justify-content-center" style="min-height: 80vh;">
+        <span class="acceso-sistema text-center">
+            <img src="https://img.icons8.com/ios-filled/24/ff2e7a/login-rounded-right.png" style="vertical-align: middle; margin-right: 6px;"/>
+            Acceso al sistema
+        </span>
+        <h2 class="text-center login-title mb-1">Iniciar <span style="color:#ff2e7a;">Sesión</span></h2>
+        <p class="text-center mb-4" style="color:#555;">Accede a tu cuenta de Mundo Animal</p>
+        <div class="login-card mx-auto" style="max-width: 400px; width: 100%;">
+            <h5 class="text-center mb-3 font-weight-bold">Bienvenido de vuelta</h5>
+            <p class="text-center mb-3" style="color:#888;">Ingresa tus credenciales para acceder a tu cuenta</p>
+            <div class="d-flex justify-content-center mb-3">
+                <button type="button" class="tab-btn active" disabled>
+                    <img src="https://img.icons8.com/ios-glyphs/20/000000/user--v1.png" style="margin-right:4px;"/> Cliente
+                </button>
+                <button type="button" class="tab-btn" disabled>
+                    <img src="https://img.icons8.com/ios-glyphs/20/000000/briefcase.png" style="margin-right:4px;"/> Profesional
+                </button>
+            </div>
+            <p class="text-center mb-3" style="color:#888; font-size:0.95rem;">
+                Accede para ver la información de tus mascotas y agendar citas
+            </p>
+            <form th:action="@{/login}" method="post">
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <img src="https://img.icons8.com/ios-glyphs/20/000000/new-post.png"/>
+                            </span>
+                        </div>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <img src="https://img.icons8.com/ios-glyphs/20/000000/lock--v1.png"/>
+                            </span>
+                        </div>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Tu contraseña" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-login btn-block mt-3">
+                    <img src="https://img.icons8.com/ios-filled/20/ffffff/login-rounded-right.png" style="margin-right:6px;"/> Iniciar Sesión
+                </button>
+            </form>
+            <div class="text-center mt-3">
+                ¿No tienes cuenta? <a href="#" class="register-link">Regístrate aquí</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

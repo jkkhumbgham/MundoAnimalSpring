@@ -26,25 +26,16 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#inicio">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#servicios">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#nosotros">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contacto">Contacto</a>
-                </li>
             </ul>
-            <a class="btn btn-inicio d-flex align-items-center">
-                <img src="/images/ingresar.png" width="30" height="30" alt="Logo Iniciar Sesion"> Iniciar Sesion
-            </a>
-            <a class="btn btn-llamar d-flex align-items-center">
-                <img src="/images/Telefono.png" width="30" height="30" alt="Logo Telefono"> Llamar Ahora
-            </a>
+            <div class="d-flex align-items-center">
+                <span th:if="${session.usuarioLogueado != null}" class="font-weight-bold mr-3" th:text="'¡Hola, ' + ${session.usuarioLogueado.nombre} + '!'"></span>
+                <a th:if="${session.usuarioLogueado == null}" class="btn btn-inicio d-flex align-items-center" th:href="@{/login}">
+                    <img src="/images/ingresar.png" width="30" height="30" alt="Logo Iniciar Sesion"> Iniciar Sesión
+                </a>
+                <a th:if="${session.usuarioLogueado != null}" class="btn btn-llamar d-flex align-items-center" th:href="@{/logout}">
+                    Cerrar Sesión
+                </a>
+            </div>
         </div>
     </nav>
     </header>
