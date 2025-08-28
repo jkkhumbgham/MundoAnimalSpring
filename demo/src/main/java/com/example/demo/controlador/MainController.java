@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.servicio.ServicioMascotas;
+import com.example.demo.entidades.Usuario;
+import com.example.demo.servicio.ServicioUsuario;
 
 import org.springframework.ui.Model;
 
@@ -15,17 +16,17 @@ import org.springframework.ui.Model;
 @Controller
 public class MainController {
     @Autowired
-    ServicioMascotas servicio;
+    ServicioUsuario servicio;
 
         @PostMapping("/login")
-    public String doLogin(@RequestParam String username,
-                        @RequestParam String password,
-                        Model model) {
-        if ("usuario".equals(username) && "contraseña".equals(password)) {
-            return "privado";
+    public String doLogin(@RequestParam String email, @RequestParam String password, Model model) {
+        Usuario usuario=servicio.getUsuarioEmail(email);
+        if (usuario.getContraseña().equals(password)&& usuario!=null) {
+            return "redirect:/usuarios/"+usuario.getId();
+        }else {
+            model.addAttribute("error", "Usuario o contraseña incorrectos");
+            return "login";
         }
-        model.addAttribute("error", "Usuario o contraseña incorrectos");
-        return "login";
     }
 
     @GetMapping("/login")
@@ -33,9 +34,5 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/privado")
-    public String privado() {
-        return "privado"; 
-    }
     
 }

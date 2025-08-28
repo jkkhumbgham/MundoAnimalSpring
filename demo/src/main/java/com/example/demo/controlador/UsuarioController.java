@@ -38,7 +38,7 @@ public class UsuarioController {
     }
     @GetMapping("/agregar")
     public String agregarUsuario(Model model) {
-        Usuario usuario = new Usuario(null, "", "", "", "", null);
+        Usuario usuario = new Usuario(null, "","", "", "", "", null);
         model.addAttribute("usuario", usuario);
         return "agregar_usuario";
     }

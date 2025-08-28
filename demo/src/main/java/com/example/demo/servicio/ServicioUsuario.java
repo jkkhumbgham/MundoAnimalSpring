@@ -10,5 +10,6 @@ public interface ServicioUsuario {
     Usuario getUsuarioById(int id);
     void addUsuario(Usuario usuario);
     void removeUsuario(int id);
+    public Usuario getUsuarioEmail(String email);
     
 }

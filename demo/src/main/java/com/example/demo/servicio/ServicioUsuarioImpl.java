@@ -30,6 +30,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
     public void removeUsuario(int id) {
         repositorio.removeUsuario(id);
     }
-
     
+    @Override
+    public Usuario getUsuarioEmail(String email) {
+        return repositorio.getUsuarioEmail(email);
+    }
 }
