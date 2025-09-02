@@ -2,6 +2,7 @@ package com.example.demo.controlador;
 
 import java.util.Collection;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entidades.Usuario;
-import com.example.demo.servicio.ServicioMascotas;
+
 import com.example.demo.servicio.ServicioUsuario;
 
 
@@ -21,8 +22,7 @@ import com.example.demo.servicio.ServicioUsuario;
 public class UsuarioController {
     @Autowired
     private ServicioUsuario servicioUsuario;
-    @Autowired
-    private ServicioMascotas servicioMascotas;
+
 
 
     @GetMapping("")
@@ -32,7 +32,7 @@ public class UsuarioController {
         return "usuarios";
     }
     @GetMapping("/delete/{id}")
-    public String eliminarUsuario(@PathVariable int id) {
+    public String eliminarUsuario(@PathVariable Long id) {
         servicioUsuario.removeUsuario(id);
         return "redirect:/usuarios";
     }
@@ -50,15 +50,14 @@ public class UsuarioController {
     }
 
     @GetMapping("/editar/{id}")
-    public String editarUsuario(@PathVariable int id, Model model) {
+    public String editarUsuario(@PathVariable Long id, Model model) {
         Usuario usuario = servicioUsuario.getUsuarioById(id);
         model.addAttribute("usuario", usuario);
         return "agregar_usuario";
     }
     @GetMapping("/{id}")
-    public String getUsuario(@PathVariable int id, Model model) {
+    public String getUsuario(@PathVariable Long id, Model model) {
         Usuario usuario = servicioUsuario.getUsuarioById(id);
-        usuario.setMascotas(servicioMascotas.getMascotasByUsuario(id));
         model.addAttribute("usuario", usuario);
         model.addAttribute("usuarioId", id);
         return "usuario_detalle";

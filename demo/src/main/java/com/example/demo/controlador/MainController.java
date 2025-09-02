@@ -20,8 +20,9 @@ public class MainController {
 
         @PostMapping("/login")
     public String doLogin(@RequestParam String email, @RequestParam String password, Model model) {
-        Usuario usuario=servicio.getUsuarioEmail(email);
-        if (usuario.getContraseña().equals(password)&& usuario!=null) {
+        Usuario usuario=servicio.getByEmail(email);
+        if (password.equals(usuario.getContraseña())) {
+
             return "redirect:/usuarios/"+usuario.getId();
         }else {
             model.addAttribute("error", "Usuario o contraseña incorrectos");

@@ -7,9 +7,10 @@ import com.example.demo.entidades.Usuario;
 public interface ServicioUsuario {
 
     Collection<Usuario> getAllUsuarios();
-    Usuario getUsuarioById(int id);
+    Usuario getUsuarioById(Long id);
     void addUsuario(Usuario usuario);
-    void removeUsuario(int id);
-    public Usuario getUsuarioEmail(String email);
+    void removeUsuario(Long id);
+    void updateUsuario(Usuario usuario);
+    public Usuario getByEmail(String email);
     
 }

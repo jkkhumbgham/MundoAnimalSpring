@@ -14,25 +14,30 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
     @Override
     public Collection<Usuario> getAllUsuarios() {
-        return repositorio.getAllUsuarios();
+        return repositorio.findAll();
     }
 
     @Override
-    public Usuario getUsuarioById(int id) {
-        return repositorio.getUsuarioById(id);
+    public Usuario getUsuarioById(Long id) {
+        return repositorio.findById(id).get();
     }
     @Override
     public void addUsuario(Usuario usuario) {
-        repositorio.addUsuario(usuario);
+        repositorio.save(usuario);
     }
 
     @Override
-    public void removeUsuario(int id) {
-        repositorio.removeUsuario(id);
+    public void removeUsuario(Long id) {
+        repositorio.deleteById(id);
+    }
+
+    @Override
+    public void updateUsuario(Usuario usuario) {
+        repositorio.save(usuario);
     }
     
     @Override
-    public Usuario getUsuarioEmail(String email) {
-        return repositorio.getUsuarioEmail(email);
+    public Usuario getByEmail(String email) {
+        return repositorio.findByEmail(email);
     }
 }

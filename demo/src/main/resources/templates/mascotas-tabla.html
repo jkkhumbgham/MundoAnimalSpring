@@ -103,6 +103,9 @@
                             <span class="badge rounded-pill bg-primary" 
                                   th:if="${mascota.estado == 'Control rutinario'}"
                                   th:text="${mascota.estado}"></span>
+                            <span class="badge rounded-pill bg-danger text-dark"
+                                th:if="${mascota.estado == 'inactivo'}"
+                                th:text="${mascota.estado}"></span>
                         </td>
 
                         <td class="align-middle">
@@ -128,12 +131,6 @@
             </table>
 
 
-<div class="d-flex justify-content-center mt-3">
-    <a th:href="@{/usuarios/{Usuarioid}/mascotas/agregar(Usuarioid=${usuarioId})}" 
-       class="btn btn-nuevo">
-        Agregar Mascota
-    </a>
-</div>
 
         </div>
     </div>

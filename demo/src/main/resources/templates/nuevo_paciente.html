@@ -42,7 +42,7 @@
                 <input th:field="*{id}" type="hidden"/>
 
                 <!-- Dueño Oculto -->
-                <input th:field="*{dueñoid}" type="hidden" th:value="${mascota.dueñoid}"/>
+                <input th:field="*{dueño}" type="hidden" th:value="${mascota.dueño}"/>
 
                 <div class="grupo">
                     <label for="nombre">Nombre</label>
@@ -91,21 +91,83 @@
     </div>
 </main>
 
-<footer class="d-flex align-items-center justify-content-center mt-4">
-    <div class="completo contenido d-flex justify-content-center">
-        <div class="d-flex align-items-center justify-content-center">
-            <div class="seccion info-principal d-flex flex-column align-items-start">
-                <div class="logo d-flex align-items-center justify-content-center">
-                    <img src="/images/Logo.jpg" alt="Logo">
-                    <div class="logo-text">
-                        <h3>Mundo Animal</h3>
-                        <p>Clínica Veterinaria</p>
+<footer class="d-flex align-items-center justify-content-center">
+            <div class="completo contenido d-flex justify-content-center">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="seccion info-principal d-flex flex-column align-items-start">
+                    <div class="logo d-flex align-items-center justify-content-center">
+                        <img src="/images/Logo.jpg" alt="Logo">
+                        <div class="logo-text">
+                            <h3>Mundo Animal</h3>
+                            <p>Clínica Veterinaria</p>
+                        </div>
+                    </div>
+                    <p class="descripcion">
+                        Dedicados al cuidado y bienestar de tu mascota con más de 15 años de experiencia. Brindamos servicios veterinarios de calidad con tecnología moderna y mucho amor.
+                    </p>
+                    <div class="social">
+                        <a href="#" class="social-link facebook">
+                            <img src="/images/facebook.png" alt="logo facebook">
+                        </a>
+                        <a href="#" class="social-link instagram">
+                            <img src="/images/instagram.png" alt="logo instagram">
+                        </a>
+                        <a href="#" class="social-link twitter">
+                            <img src="/images/twitter.png" alt="logo x">
+                        </a>
                     </div>
                 </div>
+                
+                <div class="seccion d-flex flex-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Servicios</a></li>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Precios</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="seccion">
+                    <h3>Contacto</h3>
+                    <div class="info-contacto">
+                        <div class="item d-flex align-items-center">
+                            <img class="icono" src="/images/ubicacion.png" alt="logo ubicacion">
+                            <div>
+                                Av. Principal 123<br>
+                                Centro, Ciudad 12345
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="icono" src="/images/telefono-azul.png" alt="logo telefono">
+                            <a href="">+1 (555) 123-4567</a>
+                        </div>
+                        <div class="item">
+                            <img class="icono" src="/images/correo-verde.png" alt="logo correo">
+                            <a href="mailto:info@mundoanimal.com">info@mundoanimal.com</a>
+                        </div>
+                        
+                        <h3 class="horarios">Horarios de Atención</h3>
+                        <p class="horas">Lunes - Viernes: 8:00 - 18:00</p>
+                        <p class="horas">Sábados: 9:00 - 15:00</p>
+                        <p class="horas">Domingos: Solo emergencias</p>
+                    </div>
+                </div>
+                </div>
+                <div class="d-flex completo flex-column align-items-center justify-content-center">
+                    <div class="emergencia d-flex align-items-center">
+                    <p><strong>Servicio de Emergencias 24/7</strong><br>Para urgencias fuera del horario normal, contamos con servicio de emergencias.</p>
+                    <a href="#" class="btn-emergencia-footer">Llamar Emergencias</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="footer-bottom">
+                    © 2025 Mundo Animal. Todos los derechos reservados.
+                </div>
             </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

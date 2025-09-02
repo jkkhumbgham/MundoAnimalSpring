@@ -115,6 +115,9 @@
                             <span class="badge rounded-pill bg-primary" 
                                   th:if="${mascota.estado == 'Control rutinario'}"
                                   th:text="${mascota.estado}"></span>
+                            <span class="badge rounded-pill bg-danger text-dark"
+                                th:if="${mascota.estado == 'inactivo'}"
+                                th:text="${mascota.estado}"></span>
                         </td>
 
                         <td class="align-middle">
