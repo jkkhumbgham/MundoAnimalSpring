@@ -36,10 +36,8 @@ public class Mascota {
     @Column(name = "alergia")
     private List<String> alergias = new ArrayList<>();
     
-    @ElementCollection
-    @CollectionTable(name = "mascota_medicamentos", joinColumns = @JoinColumn(name = "mascota_id"))
-    @Column(name = "medicamento")
-    private List<String> medicamentos = new ArrayList<>();
+    
+    private List<Tratamiento> tratamiento;
 
     private String observaciones;
     private String foto;
@@ -57,14 +55,13 @@ public class Mascota {
     public Mascota() {
     }
 
-    public Mascota(Long id, Usuario dueño, List<String> vacunas, List<String> alergias, List<String> medicamentos,
+    public Mascota(Long id, Usuario dueño, List<String> vacunas, List<String> alergias,
                    String observaciones, String foto, String nombre, String especie, String raza, String sexo,
                    String estado, Date ultimavisita, Date fechaNacimiento, float peso, int microchipID) {
         this.id = id;
         this.dueño = dueño;
         this.vacunas = vacunas != null ? vacunas : new ArrayList<>();
         this.alergias = alergias != null ? alergias : new ArrayList<>();
-        this.medicamentos = medicamentos != null ? medicamentos : new ArrayList<>();
         this.observaciones = observaciones;
         this.foto = foto;
         this.nombre = nombre;
@@ -78,14 +75,13 @@ public class Mascota {
         this.microchipID = microchipID;
     }
 
-    public Mascota(List<String> vacunas, List<String> alergias, List<String> medicamentos,
+    public Mascota(List<String> vacunas, List<String> alergias,
                String observaciones, String foto, String nombre, String especie,
                String raza, String sexo, String estado, Date ultimavisita,
                Date fechaNacimiento, float peso, int microchipID) {
 
     this.vacunas = vacunas != null ? new ArrayList<>(vacunas) : new ArrayList<>();
     this.alergias = alergias != null ? new ArrayList<>(alergias) : new ArrayList<>();
-    this.medicamentos = medicamentos != null ? new ArrayList<>(medicamentos) : new ArrayList<>();
     this.observaciones = observaciones;
     this.foto = foto;
     this.nombre = nombre;
@@ -138,12 +134,7 @@ public class Mascota {
         this.alergias = alergias;
     }
 
-    public List<String> getMedicamentos() {
-        return medicamentos;
-    }
-    public void setMedicamentos(List<String> medicamentos) {
-        this.medicamentos = medicamentos;
-    }
+    
 
     public String getObservaciones() {
         return observaciones;
@@ -220,6 +211,14 @@ public class Mascota {
     }
     public void setMicrochipID(int microchipID) {
         this.microchipID = microchipID;
+    }
+
+    public List<Tratamiento> getTratamiento() {
+        return tratamiento;
+    }
+
+    public void setTratamiento(List<Tratamiento> tratamiento) {
+        this.tratamiento = tratamiento;
     }
 }
 

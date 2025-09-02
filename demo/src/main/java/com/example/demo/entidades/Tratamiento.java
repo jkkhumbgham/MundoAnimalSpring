@@ -1,6 +1,8 @@
 package com.example.demo.entidades;
 
 
+import java.util.List;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
@@ -8,9 +10,16 @@ public class Tratamiento {
     @Id
     @GeneratedValue
     private Long id;
+    public List<Medicamento> getMedicamentos() {
+        return medicamentos;
+    }
+    public void setMedicamentos(List<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
+    }
     private String nombre;
     private Veterinario veterinario;
     private Mascota mascota;
+    private List<Medicamento> medicamentos;
     public Long getId() {
         return id;
     }
