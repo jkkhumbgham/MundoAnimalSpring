@@ -3,6 +3,7 @@ package com.example.demo.entidades;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Medicamento {
@@ -12,6 +13,9 @@ public class Medicamento {
     private String nombre;
     private int precio;
     private int unidades;
+    @ManyToOne
+    private Tratamiento tratamiento;
+    
     public Long getId() {
         return id;
     }

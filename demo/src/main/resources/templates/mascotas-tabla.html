@@ -50,7 +50,10 @@
     </header>
 
     <main class="mover principal d-flex flex-column align-items-center p-4">
-    <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;">
+        <div th:if="${rol==dueno}">
+            <H6>Parece que estas en el lugar equivocado, necesitas permisos para ver esta pagina</H6>
+        </div>
+    <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;" th:if="${rol==veterinario}">
         <div class="card-body">
             <div class="cabeza d-flex align-items-center justify-content-between mb-4">
                 <div class="d-flex flex-column align-items-center justify-content-center">

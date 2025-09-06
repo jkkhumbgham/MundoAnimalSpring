@@ -13,6 +13,9 @@ import com.example.demo.entidades.Usuario;
 import com.example.demo.servicio.ServicioMascotaImpl;
 import com.example.demo.servicio.ServicioUsuarioImpl;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class MascotaController {
 
@@ -36,17 +39,24 @@ public class MascotaController {
 
     // Mostrar todas las mascotas
     @GetMapping("/mascotas")
-    public String mostrarMascotasTabla(Model model) {
-        model.addAttribute("mascotas", servicioMascotas.getAllMascotas());
-        return "mascotas-tabla";
+    public String mostrarMascotasTabla(HttpServletRequest request, Model model) {
+         String role = null;
+
+    if (request.getCookies() != null) {
+        for (Cookie cookie : request.getCookies()) {
+            if ("userRole".equals(cookie.getName())) {
+                role = cookie.getValue();
+                break;
+            }
+        }
     }
 
-    // Listar mascotas de un usuario específico
-    @GetMapping("/usuarios/{usuarioId}/mascotas")
-    public String listarMascotasUsuario(@PathVariable("usuarioId") Long usuarioId, Model model) {
-        model.addAttribute("usuarioId", usuarioId);
-        return "mascotas-tabla";
+        model.addAttribute("mascotas", servicioMascotas.getAllMascotas());
+        model.addAttribute("rol", role);
+        return "mascotas"; 
+    
     }
+
 
     // Eliminar mascota
     @GetMapping({"/mascotas/delete/{id}", "/usuarios/{usuarioId}/mascotas/delete/{id}"})
