@@ -37,7 +37,7 @@
         <div class="card p-4">
             <h4 class="text-center mb-4">Información de la Mascota</h4>
 
-            <form th:object="${mascota}" th:action="@{/mascotas}" method="post" class="form d-flex flex-column">
+            <form th:object="${mascota}" th:action="${usuarioId != null} ? @{/usuarios/{usuarioId}/mascotas/editar(usuarioId=${usuarioId})} : @{/mascotas/editar}" method="post" class="form d-flex flex-column">
                 <!-- ID Oculto -->
                 <input th:field="*{id}" type="hidden"/>
 

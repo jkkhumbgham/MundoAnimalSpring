@@ -16,6 +16,9 @@ import com.example.demo.entidades.Usuario;
 
 import com.example.demo.servicio.ServicioUsuario;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+
 
 @Controller
 @RequestMapping("/usuarios")
@@ -26,9 +29,20 @@ public class UsuarioController {
 
 
     @GetMapping("")
-    public String listarUsuarios(Model model) {
+    public String listarUsuarios(HttpServletRequest request, Model model) {
+        String role = null;
+
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if ("userRole".equals(cookie.getName())) {
+                    role = cookie.getValue();
+                    break;
+                }
+            }
+        }
         Collection<Usuario> usuarios = servicioUsuario.getAllUsuarios();
         model.addAttribute("usuarios", usuarios);
+        model.addAttribute("rol", role);
         return "usuarios";
     }
     @GetMapping("/delete/{id}")
@@ -56,10 +70,21 @@ public class UsuarioController {
         return "agregar_usuario";
     }
     @GetMapping("/{id}")
-    public String getUsuario(@PathVariable Long id, Model model) {
+    public String getUsuario(HttpServletRequest request, @PathVariable Long id, Model model) {
+        String role = null;
+
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if ("userRole".equals(cookie.getName())) {
+                    role = cookie.getValue();
+                    break;
+                }
+            }
+        }
         Usuario usuario = servicioUsuario.getUsuarioById(id);
         model.addAttribute("usuario", usuario);
         model.addAttribute("usuarioId", id);
+        model.addAttribute("rol", role);
         return "usuario_detalle";
     }
     

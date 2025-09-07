@@ -17,12 +17,10 @@ import jakarta.transaction.Transactional;
 @Repository
 public interface RepositorioMascotas extends JpaRepository<Mascota, Long> {
     
-    
     @Modifying
     @Transactional
-    @Query("UPDATE Mascota m SET m.estado = 'inactivo' WHERE m.id = :id")
-    void softDeleteById(@Param("id") Long id);
-    
+    @Query("UPDATE Mascota m SET m.estado =:estado WHERE m.id = :id")
+    void updateEstadoById(@Param("id") Long id, @Param("estado") String estado);
 
     
 }

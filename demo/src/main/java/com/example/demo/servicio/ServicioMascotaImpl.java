@@ -25,9 +25,20 @@ public class ServicioMascotaImpl implements ServicioMascotas {
     }
 
     @Override
-    public void softdeleteById(Long id){
-        repositorio.softDeleteById(id);
+    public void softdeleteById(Long id) {
+    Mascota mascota = repositorio.findById(id).orElse(null);
+    if (mascota != null) {
+        if ("inactivo".equalsIgnoreCase(mascota.getEstado())) {
+            // Restaurar el estado original
+            repositorio.updateEstadoById(id, mascota.getEstadoOriginal());
+        } else {
+            // Guardar el estado actual antes de poner inactivo
+            mascota.setEstadoOriginal(mascota.getEstado());
+            repositorio.save(mascota);
+            repositorio.updateEstadoById(id, "inactivo");
+        }
     }
+}
 
     
 

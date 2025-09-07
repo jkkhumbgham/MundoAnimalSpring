@@ -52,6 +52,7 @@ public class Mascota {
     private Date fechaNacimiento;
     private float peso;
     private int microchipID;
+    private String estadoOriginal;
 
     // ---- Constructores ----
     public Mascota() {
@@ -77,6 +78,7 @@ public class Mascota {
         this.microchipID = microchipID;
     }
 
+
     public Mascota(List<String> vacunas, List<String> alergias,
                String observaciones, String foto, String nombre, String especie,
                String raza, String sexo, String estado, Date ultimavisita,
@@ -95,6 +97,7 @@ public class Mascota {
     this.fechaNacimiento = fechaNacimiento;
     this.peso = peso;
     this.microchipID = microchipID;
+    this.estadoOriginal="Activo";
 }
 
 
@@ -105,6 +108,12 @@ public class Mascota {
         }
         LocalDate fecha = this.fechaNacimiento.toLocalDate();
         return Period.between(fecha, LocalDate.now()).getYears();
+    }
+     public String getEstadoOriginal() {
+    return estadoOriginal;
+    }
+    public void setEstadoOriginal(String estadoOriginal) {
+        this.estadoOriginal = estadoOriginal;
     }
 
     // ---- Getters & Setters ----

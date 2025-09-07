@@ -53,7 +53,7 @@ public class MascotaController {
 
         model.addAttribute("mascotas", servicioMascotas.getAllMascotas());
         model.addAttribute("rol", role);
-        return "mascotas"; 
+        return "mascotas-tabla"; 
     
     }
 
@@ -74,7 +74,7 @@ public class MascotaController {
     @GetMapping("/usuarios/{usuarioId}/mascotas/agregar")
     public String agregarMascota(@PathVariable("usuarioId") Long usuarioId, Model model) {
         Mascota mascota = new Mascota();
-        Usuario dueño = servicioUsuarios.getUsuarioById(usuarioId); // 👈 buscar el dueño
+        Usuario dueño = servicioUsuarios.getUsuarioById(usuarioId);
         mascota.setDueño(dueño);
         model.addAttribute("mascota", mascota);
         return "nuevo_paciente";
@@ -97,19 +97,23 @@ public class MascotaController {
                                 Model model) {
         Mascota mascota = servicioMascotas.getMascotaById(id);
         model.addAttribute("mascota", mascota);
+        model.addAttribute("usuarioId", usuarioId);
         return "nuevo_paciente";
     }
 
-    // Actualizar mascota existente
-    @PostMapping({"/mascotas/editar", "/usuarios/{usuarioId}/mascotas/editar"})
-    public String actualizarMascota(@PathVariable(value = "usuarioId", required = false) Long usuarioId,
-                                    @ModelAttribute("mascota") Mascota mascota) {
+        // Editar desde la lista de mascotas
+    @PostMapping("/mascotas/editar")
+    public String actualizarMascota(@ModelAttribute("mascota") Mascota mascota) {
         servicioMascotas.updateMascota(mascota);
-        if (usuarioId != null) {
-            return "redirect:/usuarios/" + usuarioId;
-        } else {
-            return "redirect:/mascotas";
-        }
+        return "redirect:/mascotas";
+    }
+
+    // Editar desde un usuario específico
+    @PostMapping("/usuarios/{usuarioId}/mascotas/editar")
+    public String actualizarMascotaUsuario(@PathVariable Long usuarioId,
+                                        @ModelAttribute("mascota") Mascota mascota) {
+        servicioMascotas.updateMascota(mascota);
+        return "redirect:/usuarios/" + usuarioId;
     }
 
 }
