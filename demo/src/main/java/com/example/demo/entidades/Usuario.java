@@ -20,6 +20,7 @@ public class Usuario {
     private Long id;
     private String nombre;
     private String telefono;
+    private int cedula;
     private String email;
     private String contraseña;
     private String foto;
@@ -38,9 +39,10 @@ public class Usuario {
         this.mascotas = mascotas;
     }
 
-     public Usuario( String nombre, String telefono, String email, String contraseña, String foto) {
+     public Usuario( String nombre, String telefono, String email, String contraseña, String foto, int cedula) {
         this.nombre = nombre;
         this.telefono = telefono;
+        this.cedula = cedula;
         this.email = email;
         this.contraseña = contraseña;
         this.foto = foto;
@@ -101,6 +103,14 @@ public class Usuario {
 
     public void setMascotas(List<Mascota> mascotas) {
         this.mascotas = mascotas;
+    }
+
+    public int getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
     }
 
 }

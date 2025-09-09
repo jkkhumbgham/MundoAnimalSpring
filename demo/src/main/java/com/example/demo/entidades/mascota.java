@@ -17,6 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "mascotas")
@@ -53,6 +54,12 @@ public class Mascota {
     private float peso;
     private int microchipID;
     private String estadoOriginal;
+    @Transient
+    private String vacunasTexto;
+
+    @Transient
+    private String alergiasTexto;
+
 
     // ---- Constructores ----
     public Mascota() {
@@ -78,6 +85,22 @@ public class Mascota {
         this.microchipID = microchipID;
     }
 
+
+    public String getVacunasTexto() {
+        return vacunasTexto;
+    }
+
+    public void setVacunasTexto(String vacunasTexto) {
+        this.vacunasTexto = vacunasTexto;
+    }
+
+    public String getAlergiasTexto() {
+        return alergiasTexto;
+    }
+
+    public void setAlergiasTexto(String alergiasTexto) {
+        this.alergiasTexto = alergiasTexto;
+    }
 
     public Mascota(List<String> vacunas, List<String> alergias,
                String observaciones, String foto, String nombre, String especie,
@@ -231,5 +254,6 @@ public class Mascota {
     public void setTratamiento(List<Tratamiento> tratamiento) {
         this.tratamiento = tratamiento;
     }
+
 }
 

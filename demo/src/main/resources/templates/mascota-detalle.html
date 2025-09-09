@@ -39,9 +39,6 @@
                     <a class="nav-link" href="#contacto">Contacto</a>
                 </li>
             </ul>
-            <a class="btn btn-inicio d-flex align-items-center">
-                <img src="/images/ingresar.png" width="30" height="30" alt="Logo Iniciar Sesion"> Iniciar Sesion
-            </a>
             <a class="btn btn-llamar d-flex align-items-center">
                 <img src="/images/Telefono.png" width="30" height="30" alt="Logo Telefono"> Llamar Ahora
             </a>
@@ -57,8 +54,8 @@
       </div>
       <div class="col-md-8">
         <h3 class="mb-1" th:text="${mascota.nombre}"></h3>
-        <p class="mb-1 text-muted" th:text="'Raza: ' + ${mascota.raza} + ' • ' + ${mascota.edad} + ' años'"></p>
-        <p class="mb-0"><strong>Propietario:</strong> <span th:text="${mascota.dueño}"></span></p>
+        <p class="mb-1 text-muted" th:text="'Raza: ' + ${mascota.raza} + ' • ' + ${mascota.getEdad} + ' años'"></p>
+        <p class="mb-0"><strong>Propietario:</strong> <span th:text="${mascota.dueño.nombre}"></span></p>
       </div>
       <div class="col-md-2 text-md-end">
         <span class="badge-health" th:text="${mascota.estado}"></span>
@@ -120,7 +117,8 @@
             <span class="badge bg-light text-dark" th:each="vacuna : ${mascota.vacunas}" th:text="${vacuna}"></span>
           </p>
           <p><strong>Alergias:</strong> <span class="badge bg-light text-dark" th:each="alergia : ${mascota.alergias}" th:text="${alergia}"></span></p>
-          <p><strong>Medicamentos Actuales:</strong> <span class="badge bg-light text-dark" th:each="medicamento : ${mascota.medicamentos}" th:text="${medicamento}"></span></p>
+          <p><strong>Medicamentos Actuales:</strong> <span class="badge bg-light text-dark" ></span></p>
+          <!--th:each="medicamento : ${mascota.medicamentos}" th:text="${medicamento}"-->
           <p><strong>Observaciones:</strong> <p th:text="${mascota.observaciones}"></p></p>
         </div>
       </div>
@@ -142,10 +140,9 @@
   <div class="tab-pane fade" id="contacto" role="tabpanel">
     <div class="profile-card">
       <h5>Información del Propietario</h5>
-      <p><strong>Nombre:</strong> <span th:text="${mascota.dueño}"></span></p>
-      <p><strong>Teléfono:</strong> <span>TELEFONO</span></p>
-      <p><strong>Email:</strong> <span>EMAIL</span></p>
-      <p><strong>Dirección:</strong> <span>DIRECCION</span></p>
+      <p><strong>Nombre:</strong> <span th:text="${mascota.dueño.nombre}"></span></p>
+      <p><strong>Teléfono:</strong> <span th:text="${mascota.dueño.telefono}"></span></p>
+      <p><strong>Email:</strong> <span th:text="${mascota.dueño.email}"></span></p>
     </div>
   </div>
 

@@ -1,9 +1,12 @@
 package com.example.demo.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Medicamento {
@@ -13,8 +16,8 @@ public class Medicamento {
     private String nombre;
     private int precio;
     private int unidades;
-    @ManyToOne
-    private Tratamiento tratamiento;
+    @ManyToMany(mappedBy = "medicamentos")
+    private List<Tratamiento> tratamientos = new ArrayList<>();
     
     public Long getId() {
         return id;

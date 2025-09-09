@@ -1,5 +1,7 @@
 package com.example.demo.controlador;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,6 +79,7 @@ public class MascotaController {
         Usuario dueño = servicioUsuarios.getUsuarioById(usuarioId);
         mascota.setDueño(dueño);
         model.addAttribute("mascota", mascota);
+        model.addAttribute("agregar", true);
         return "nuevo_paciente";
     }
 
@@ -86,9 +89,25 @@ public class MascotaController {
         if (mascota.getDueño() == null) {
             throw new IllegalStateException("No se puede guardar la mascota sin dueño");
         }
-        servicioMascotas.addMascota(mascota);
-        return "redirect:/usuarios/" + mascota.getDueño().getId(); // 👈 ahora usamos objeto Usuario
+         if (mascota.getVacunasTexto() != null && !mascota.getVacunasTexto().isBlank()) {
+        mascota.setVacunas(
+            Arrays.stream(mascota.getVacunasTexto().split(","))
+                  .map(String::trim)
+                  .toList()
+        );
+        }
+
+        if (mascota.getAlergiasTexto() != null && !mascota.getAlergiasTexto().isBlank()) {
+        mascota.setAlergias(
+            Arrays.stream(mascota.getAlergiasTexto().split(","))
+                  .map(String::trim)
+                  .toList()
+        );
+        
     }
+    servicioMascotas.addMascota(mascota);
+        return "redirect:/usuarios/" + mascota.getDueño().getId(); // ahora usamos objeto Usuario
+}
 
     // Formulario para editar mascota
     @GetMapping({"/mascotas/editar/{id}", "/usuarios/{usuarioId}/mascotas/editar/{id}"})
@@ -96,8 +115,11 @@ public class MascotaController {
                                 @PathVariable(value = "usuarioId", required = false) Long usuarioId,
                                 Model model) {
         Mascota mascota = servicioMascotas.getMascotaById(id);
+        mascota.setVacunasTexto(String.join(", ", mascota.getVacunas()));
+        mascota.setAlergiasTexto(String.join(", ", mascota.getAlergias()));
         model.addAttribute("mascota", mascota);
         model.addAttribute("usuarioId", usuarioId);
+        model.addAttribute("agregar", false);
         return "nuevo_paciente";
     }
 

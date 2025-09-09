@@ -37,12 +37,44 @@
         <div class="card p-4">
             <h4 class="text-center mb-4">Información de la Mascota</h4>
 
-            <form th:object="${mascota}" th:action="${usuarioId != null} ? @{/usuarios/{usuarioId}/mascotas/editar(usuarioId=${usuarioId})} : @{/mascotas/editar}" method="post" class="form d-flex flex-column">
+            <form th:object="${mascota}" th:action="${agregar} ? ( @{/mascotas}) :(${usuarioId != null} ? @{/usuarios/{usuarioId}/mascotas/editar(usuarioId=${usuarioId})} : @{/mascotas/editar})" method="post" class="form d-flex flex-column">
                 <!-- ID Oculto -->
                 <input th:field="*{id}" type="hidden"/>
 
                 <!-- Dueño Oculto -->
                 <input th:field="*{dueño}" type="hidden" th:value="${mascota.dueño}"/>
+                <input type="hidden" th:field="*{fechaNacimiento}" th:if="${agregar==false}">
+                <div class="grupo" th:if="${agregar}">
+                    <label for="fecha">Fecha de Nacimiento</label>
+                    <input type="date" th:field="*{fechaNacimiento}" id="fecha" name="fecha" placeholder="Pon la fecha de nacimiento de tu perrito" class="completo">
+                </div>
+                
+                <div class="grupo" th:if="${agregar}">
+                    <label for="chip">ID de Microchip</label>
+                    <input type="text" th:field="*{microchipID}" id="chip" name="chip" placeholder="Pon el ID del microchip" class="completo">
+                </div>
+                <div class="grupo">
+                    <label for="ultima">Fecha de la ultima visita</label>
+                    <input type="date" th:field="*{ultimavisita}" id="ultima" name="ultima" placeholder="Fecha de la ultima visita" class="completo">
+                </div>
+                <div class="grupo" th:if="${agregar}">
+                    <label for="observaciones">Observaciones</label>
+                    <input type="text" th:field="*{observaciones}" id="observaciones" name="observaciones" placeholder="Pon las observaciones pertinentes" class="completo">
+                </div>
+
+                <div class="grupo">
+                    <label for="vacunas">Vacunas:</label>
+                    <input type="text" th:field="*{vacunasTexto}" id="vacunas" name="vacunas" placeholder="Ej: Rabia, Moquillo, Parvovirus" class="completo"/>
+                </div>
+
+                <div class="grupo">
+                    <label for="alergias">Alergias:</label>
+                    <input type="text" th:field="*{alergiasTexto}" id="alergias" name="alergias" placeholder="Ej: Polvo, Polen, Chocolate" class="completo"/>
+                </div>
+
+                
+                <input type="hidden" th:field="*{estadoOriginal}">
+                
 
                 <div class="grupo">
                     <label for="nombre">Nombre</label>
@@ -61,7 +93,12 @@
 
                 <div class="grupo">
                     <label for="estado">Estado</label>
-                    <input th:field="*{estado}" type="text" id="estado" name="estado" placeholder="Estado de la mascota" class="completo">
+                    <select th:field="*{estado}" id="estado" name="estado" class="completo">
+                        <option value="Saludable">Saludable</option>
+                        <option value="En tratamiento">En tratamiento</option>
+                        <option value="Recuperandose">Recuperándose</option>
+                        <option value="Control rutinario">Control rutinario</option>
+                    </select>
                 </div>
 
                 <div class="grupo">

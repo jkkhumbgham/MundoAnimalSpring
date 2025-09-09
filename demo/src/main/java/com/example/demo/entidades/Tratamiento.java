@@ -1,14 +1,17 @@
 package com.example.demo.entidades;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Tratamiento {
@@ -23,8 +26,13 @@ public class Tratamiento {
     @ManyToOne
     private Mascota mascota;
 
-    @OneToMany(mappedBy = "tratamiento",cascade = CascadeType.ALL)
-    private List<Medicamento> medicamentos;
+    @ManyToMany
+    @JoinTable(
+        name = "tratamiento_medicamento",
+        joinColumns = @JoinColumn(name = "tratamiento_id"),
+        inverseJoinColumns = @JoinColumn(name = "medicamento_id")
+    )
+    private List<Medicamento> medicamentos = new ArrayList<>();
 
     public List<Medicamento> getMedicamentos() {
         return medicamentos;

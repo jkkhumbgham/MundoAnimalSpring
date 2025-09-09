@@ -15,18 +15,43 @@ public class Veterinario {
     private String nombre;
     private String email;
     private String password;
+    private int cedula;
+    private String especialidad;
+    private String foto;
     @OneToMany(mappedBy = "veterinario")
     private List<Tratamiento> tratamientos;
 
+    
     public Veterinario(){
 
     }
-    public Veterinario(String nombre, String email, String password){
+    public Veterinario(String nombre, String email, String password, int cedula, String especialidad, String foto){
         this.nombre=nombre;
         this.email=email;
         this.password=password;
+        this.cedula=cedula;
+        this.especialidad = especialidad;
+        this.foto = foto;
     }
 
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public int getCedula() {
+        return cedula;
+    }
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
+    public String getEspecialidad() {
+        return especialidad;
+    }
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
 
     public Long getId() {
         return id;
@@ -46,17 +71,17 @@ public class Veterinario {
     public void setTratamientos(List<Tratamiento> tratamientos) {
         this.tratamientos = tratamientos;
     }
-    public String getMail() {
-        return email;
-    }
-    public void setMail(String email) {
-        this.email = email;
-    }
     public String getPassword() {
         return password;
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getFoto() {
+        return foto;
+    }
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     

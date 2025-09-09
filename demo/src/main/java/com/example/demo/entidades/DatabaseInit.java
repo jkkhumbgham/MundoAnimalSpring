@@ -29,56 +29,56 @@ public class DatabaseInit implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         
-        Usuario u1 = new Usuario( "Andres Garcia", "123456789", "juan@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u2= new Usuario( "Alvaro Morata", "987654321", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u3 = new Usuario( "Juan Castro", "555555555", "pablo@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u4 =new Usuario( "Omar Perez", "444444444", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u5 =new Usuario( "Luis Manuel Seijas", "333333333", "lucia@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u6 =new Usuario( "Pablo Hernandez", "222222222", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u7 =new Usuario( "Andres Colmenares", "111111111", "lucia@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u8 =new Usuario( "Esteban Lopez", "666666666", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u9 =new Usuario( "Simba", "999999999", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u10 =new Usuario( "Estefania Alba", "000000000", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u11 = new Usuario( "Margarita Castro", "888888888", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7" );
-        Usuario u12 = new Usuario("Maria Lopez", "987654321", "maria@example.com", "abcd1234", "https://randomuser.me/api/portraits/women/2.jpg" );
-        Usuario u13 = new Usuario("Carlos Martinez", "1122334455", "carlos@example.com", "pass123", "https://randomuser.me/api/portraits/men/3.jpg" );
-        Usuario u14 = new Usuario("Laura Hernandez", "2233445566", "laura@example.com", "laura123", "https://randomuser.me/api/portraits/women/4.jpg" );
-        Usuario u15 = new Usuario("Jorge Ramirez", "3344556677", "jorge@example.com", "jorgepass", "https://randomuser.me/api/portraits/men/5.jpg" );
-        Usuario u16 = new Usuario("Ana Torres", "4455667788", "ana@example.com", "ana2024", "https://randomuser.me/api/portraits/women/6.jpg" );
-        Usuario u17 = new Usuario("David Gutierrez", "5566778899", "david@example.com", "davidpass", "https://randomuser.me/api/portraits/men/7.jpg" );
-        Usuario u18 = new Usuario("Paola Jimenez", "6677889900", "paola@example.com", "paola2024", "https://randomuser.me/api/portraits/women/8.jpg" );
-        Usuario u19 = new Usuario("Felipe Castro", "7788990011", "felipe@example.com", "felipepass", "https://randomuser.me/api/portraits/men/9.jpg" );
-        Usuario u20 = new Usuario("Sofia Vargas", "8899001122", "sofia@example.com", "sofia2024", "https://randomuser.me/api/portraits/women/10.jpg" );
-        Usuario u21 = new Usuario("Andres Torres", "9900112233", "andrest@example.com", "andrespass", "https://randomuser.me/api/portraits/men/11.jpg" );
-        Usuario u22 = new Usuario("Valentina Moreno", "1011121314", "valentina@example.com", "valen123", "https://randomuser.me/api/portraits/women/12.jpg" );
-        Usuario u23 = new Usuario("Ricardo Peña", "1213141516", "ricardo@example.com", "ricardopass", "https://randomuser.me/api/portraits/men/13.jpg" );
-        Usuario u24 = new Usuario("Camila Rojas", "1415161718", "camila@example.com", "camila123", "https://randomuser.me/api/portraits/women/14.jpg" );
-        Usuario u25 = new Usuario("Mateo Diaz", "1617181920", "mateo@example.com", "mateopass", "https://randomuser.me/api/portraits/men/15.jpg" );
-        Usuario u26 = new Usuario("Isabella Ruiz", "1819202122", "isabella@example.com", "isa2024", "https://randomuser.me/api/portraits/women/16.jpg" );
-        Usuario u27 = new Usuario("Sebastian Reyes", "2021222324", "sebastian@example.com", "sebas123", "https://randomuser.me/api/portraits/men/17.jpg" );
-        Usuario u28 = new Usuario("Natalia Silva", "2223242526", "natalia@example.com", "natalia123", "https://randomuser.me/api/portraits/women/18.jpg" );
-        Usuario u29 = new Usuario("Juan Perez", "2425262728", "juanp@example.com", "juanpass", "https://randomuser.me/api/portraits/men/19.jpg" );
-        Usuario u30 = new Usuario("Gabriela Fernandez", "2627282930", "gabriela@example.com", "gaby2024", "https://randomuser.me/api/portraits/women/20.jpg" );
-        Usuario u31 = new Usuario("Oscar Molina", "2829303132", "oscar@example.com", "oscarpass", "https://randomuser.me/api/portraits/men/21.jpg" );
-        Usuario u32 = new Usuario("Daniela Castro", "3031323334", "daniela@example.com", "danipass", "https://randomuser.me/api/portraits/women/22.jpg" );
-        Usuario u33 = new Usuario("Santiago Vargas", "3233343536", "santiago@example.com", "santi123", "https://randomuser.me/api/portraits/men/23.jpg" );
-        Usuario u34 = new Usuario("Fernanda Pineda", "3435363738", "fernanda@example.com", "fer123", "https://randomuser.me/api/portraits/women/24.jpg" );
-        Usuario u35 = new Usuario("Alejandro Ortiz", "3637383940", "alejandro@example.com", "alejo123", "https://randomuser.me/api/portraits/men/25.jpg" );
-        Usuario u36 = new Usuario("Lucia Camargo", "3839404142", "lucia@example.com", "luciapass", "https://randomuser.me/api/portraits/women/26.jpg" );
-        Usuario u37 = new Usuario("Hugo Herrera", "4041424344", "hugo@example.com", "hugopass", "https://randomuser.me/api/portraits/men/27.jpg" );
-        Usuario u38 = new Usuario("Marta Gonzalez", "4243444546", "marta@example.com", "marta2024", "https://randomuser.me/api/portraits/women/28.jpg" );
-        Usuario u39 = new Usuario("Pedro Suarez", "4445464748", "pedro@example.com", "pedropass", "https://randomuser.me/api/portraits/men/29.jpg" );
-        Usuario u40 = new Usuario("Angela Romero", "4647484950", "angela@example.com", "angelapass", "https://randomuser.me/api/portraits/women/30.jpg" );
-        Usuario u41 = new Usuario("Luis Navarro", "4849505152", "luis@example.com", "luis123", "https://randomuser.me/api/portraits/men/31.jpg" );
-        Usuario u42 = new Usuario("Catalina Soto", "5051525354", "catalina@example.com", "cata2024", "https://randomuser.me/api/portraits/women/32.jpg" );
-        Usuario u43 = new Usuario("Manuel Vargas", "5253545556", "manuel@example.com", "manuelpass", "https://randomuser.me/api/portraits/men/33.jpg" );
-        Usuario u44 = new Usuario("Patricia Mejia", "5455565758", "patricia@example.com", "patypassword", "https://randomuser.me/api/portraits/women/34.jpg" );
-        Usuario u45 = new Usuario("Rafael Diaz", "5657585960", "rafael@example.com", "rafa2024", "https://randomuser.me/api/portraits/men/35.jpg" );
-        Usuario u46 = new Usuario("Sandra Cabrera", "5859606162", "sandra@example.com", "sandrapass", "https://randomuser.me/api/portraits/women/36.jpg" );
-        Usuario u47 = new Usuario("Mauricio Vega", "6061626364", "mauricio@example.com", "mauro123", "https://randomuser.me/api/portraits/men/37.jpg");
-        Usuario u48 = new Usuario("Veronica Salazar", "6263646566", "veronica@example.com", "vero2024", "https://randomuser.me/api/portraits/women/38.jpg");
-        Usuario u49 = new Usuario("Diego Cardenas", "6465666768", "diego@example.com", "diegopass", "https://randomuser.me/api/portraits/men/39.jpg");
-        Usuario u50 = new Usuario("Paula Mendoza", "6667686970", "paula@example.com", "paulapass", "https://randomuser.me/api/portraits/women/40.jpg");
+        Usuario u1 = new Usuario( "Andres Garcia", "123456789", "juan@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7", 1 );
+        Usuario u2= new Usuario( "Alvaro Morata", "987654321", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",2 );
+        Usuario u3 = new Usuario( "Juan Castro", "555555555", "pablo@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",3 );
+        Usuario u4 =new Usuario( "Omar Perez", "444444444", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",4 );
+        Usuario u5 =new Usuario( "Luis Manuel Seijas", "333333333", "lucia@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",5 );
+        Usuario u6 =new Usuario( "Pablo Hernandez", "222222222", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",6 );
+        Usuario u7 =new Usuario( "Andres Colmenares", "111111111", "lucia@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",7 );
+        Usuario u8 =new Usuario( "Esteban Lopez", "666666666", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",8 );
+        Usuario u9 =new Usuario( "Simba", "999999999", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",9 );
+        Usuario u10 =new Usuario( "Estefania Alba", "000000000", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",10 );
+        Usuario u11 = new Usuario( "Margarita Castro", "888888888", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",11 );
+        Usuario u12 = new Usuario("Maria Lopez", "987654321", "maria@example.com", "abcd1234", "https://randomuser.me/api/portraits/women/2.jpg",12 );
+        Usuario u13 = new Usuario("Carlos Martinez", "1122334455", "carlos@example.com", "pass123", "https://randomuser.me/api/portraits/men/3.jpg",13 );
+        Usuario u14 = new Usuario("Laura Hernandez", "2233445566", "laura@example.com", "laura123", "https://randomuser.me/api/portraits/women/4.jpg",14 );
+        Usuario u15 = new Usuario("Jorge Ramirez", "3344556677", "jorge@example.com", "jorgepass", "https://randomuser.me/api/portraits/men/5.jpg",15 );
+        Usuario u16 = new Usuario("Ana Torres", "4455667788", "ana@example.com", "ana2024", "https://randomuser.me/api/portraits/women/6.jpg",16 );
+        Usuario u17 = new Usuario("David Gutierrez", "5566778899", "david@example.com", "davidpass", "https://randomuser.me/api/portraits/men/7.jpg",17 );
+        Usuario u18 = new Usuario("Paola Jimenez", "6677889900", "paola@example.com", "paola2024", "https://randomuser.me/api/portraits/women/8.jpg",18 );
+        Usuario u19 = new Usuario("Felipe Castro", "7788990011", "felipe@example.com", "felipepass", "https://randomuser.me/api/portraits/men/9.jpg",19 );
+        Usuario u20 = new Usuario("Sofia Vargas", "8899001122", "sofia@example.com", "sofia2024", "https://randomuser.me/api/portraits/women/10.jpg",20 );
+        Usuario u21 = new Usuario("Andres Torres", "9900112233", "andrest@example.com", "andrespass", "https://randomuser.me/api/portraits/men/11.jpg",21 );
+        Usuario u22 = new Usuario("Valentina Moreno", "1011121314", "valentina@example.com", "valen123", "https://randomuser.me/api/portraits/women/12.jpg",22 );
+        Usuario u23 = new Usuario("Ricardo Peña", "1213141516", "ricardo@example.com", "ricardopass", "https://randomuser.me/api/portraits/men/13.jpg",23 );
+        Usuario u24 = new Usuario("Camila Rojas", "1415161718", "camila@example.com", "camila123", "https://randomuser.me/api/portraits/women/14.jpg",24 );
+        Usuario u25 = new Usuario("Mateo Diaz", "1617181920", "mateo@example.com", "mateopass", "https://randomuser.me/api/portraits/men/15.jpg",25 );
+        Usuario u26 = new Usuario("Isabella Ruiz", "1819202122", "isabella@example.com", "isa2024", "https://randomuser.me/api/portraits/women/16.jpg",26 );
+        Usuario u27 = new Usuario("Sebastian Reyes", "2021222324", "sebastian@example.com", "sebas123", "https://randomuser.me/api/portraits/men/17.jpg",27 );
+        Usuario u28 = new Usuario("Natalia Silva", "2223242526", "natalia@example.com", "natalia123", "https://randomuser.me/api/portraits/women/18.jpg",28 );
+        Usuario u29 = new Usuario("Juan Perez", "2425262728", "juanp@example.com", "juanpass", "https://randomuser.me/api/portraits/men/19.jpg",29 );
+        Usuario u30 = new Usuario("Gabriela Fernandez", "2627282930", "gabriela@example.com", "gaby2024", "https://randomuser.me/api/portraits/women/20.jpg",30 );
+        Usuario u31 = new Usuario("Oscar Molina", "2829303132", "oscar@example.com", "oscarpass", "https://randomuser.me/api/portraits/men/21.jpg",31 );
+        Usuario u32 = new Usuario("Daniela Castro", "3031323334", "daniela@example.com", "danipass", "https://randomuser.me/api/portraits/women/22.jpg",32 );
+        Usuario u33 = new Usuario("Santiago Vargas", "3233343536", "santiago@example.com", "santi123", "https://randomuser.me/api/portraits/men/23.jpg",33 );
+        Usuario u34 = new Usuario("Fernanda Pineda", "3435363738", "fernanda@example.com", "fer123", "https://randomuser.me/api/portraits/women/24.jpg",34 );
+        Usuario u35 = new Usuario("Alejandro Ortiz", "3637383940", "alejandro@example.com", "alejo123", "https://randomuser.me/api/portraits/men/25.jpg",35 );
+        Usuario u36 = new Usuario("Lucia Camargo", "3839404142", "lucia@example.com", "luciapass", "https://randomuser.me/api/portraits/women/26.jpg",36 );
+        Usuario u37 = new Usuario("Hugo Herrera", "4041424344", "hugo@example.com", "hugopass", "https://randomuser.me/api/portraits/men/27.jpg",37 );
+        Usuario u38 = new Usuario("Marta Gonzalez", "4243444546", "marta@example.com", "marta2024", "https://randomuser.me/api/portraits/women/28.jpg",38 );
+        Usuario u39 = new Usuario("Pedro Suarez", "4445464748", "pedro@example.com", "pedropass", "https://randomuser.me/api/portraits/men/29.jpg",39 );
+        Usuario u40 = new Usuario("Angela Romero", "4647484950", "angela@example.com", "angelapass", "https://randomuser.me/api/portraits/women/30.jpg",40 );
+        Usuario u41 = new Usuario("Luis Navarro", "4849505152", "luis@example.com", "luis123", "https://randomuser.me/api/portraits/men/31.jpg",41 );
+        Usuario u42 = new Usuario("Catalina Soto", "5051525354", "catalina@example.com", "cata2024", "https://randomuser.me/api/portraits/women/32.jpg",42 );
+        Usuario u43 = new Usuario("Manuel Vargas", "5253545556", "manuel@example.com", "manuelpass", "https://randomuser.me/api/portraits/men/33.jpg",43 );
+        Usuario u44 = new Usuario("Patricia Mejia", "5455565758", "patricia@example.com", "patypassword", "https://randomuser.me/api/portraits/women/34.jpg",44 );
+        Usuario u45 = new Usuario("Rafael Diaz", "5657585960", "rafael@example.com", "rafa2024", "https://randomuser.me/api/portraits/men/35.jpg",45 );
+        Usuario u46 = new Usuario("Sandra Cabrera", "5859606162", "sandra@example.com", "sandrapass", "https://randomuser.me/api/portraits/women/36.jpg",46 );
+        Usuario u47 = new Usuario("Mauricio Vega", "6061626364", "mauricio@example.com", "mauro123", "https://randomuser.me/api/portraits/men/37.jpg",47);
+        Usuario u48 = new Usuario("Veronica Salazar", "6263646566", "veronica@example.com", "vero2024", "https://randomuser.me/api/portraits/women/38.jpg",48);
+        Usuario u49 = new Usuario("Diego Cardenas", "6465666768", "diego@example.com", "diegopass", "https://randomuser.me/api/portraits/men/39.jpg",49);
+        Usuario u50 = new Usuario("Paula Mendoza", "6667686970", "paula@example.com", "paulapass", "https://randomuser.me/api/portraits/women/40.jpg",50);
                 
 
         usuarioRepository.save(u1);
@@ -255,7 +255,7 @@ public class DatabaseInit implements ApplicationRunner {
 
         }
         
-        veterinarioRepository.save(new Veterinario("Alberto","veterinario@gmail.com","1234"));
+        veterinarioRepository.save(new Veterinario("Alberto","veterinario@gmail.com","1234",1,"Ortopedia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
     
     
     }
