@@ -1,4 +1,4 @@
-/* ===== NAVBAR ===== */
+
 .navbar.personalizado {
     background-color: #fff !important;
     padding: 12px 40px;
@@ -6,7 +6,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* Marca (logo + texto) */
 .navbar-brand {
     display: flex;
     align-items: center;
@@ -19,7 +18,7 @@
     border-radius: 50%;
 }
 
-/* Menú central */
+
 .navbar-nav {
     gap: 25px;
 }
@@ -34,7 +33,6 @@
     color: #F72585 !important;
 }
 
-/* Botón llamar (se complementa con Botones.css) */
 .btn-llamar {
     display: flex;
     align-items: center;

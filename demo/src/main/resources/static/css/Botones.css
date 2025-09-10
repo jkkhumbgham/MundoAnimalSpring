@@ -172,7 +172,6 @@
     transform: translateY(-1px);
 }
 
-/* --- Estilos para el botón de Iniciar Sesión --- */
 .btn-login {
     background: linear-gradient(90deg, #4f46e5, #3b82f6);
     border: none;
