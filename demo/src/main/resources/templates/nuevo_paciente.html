@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva Mascota</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/css/Styles.css}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/NavBar.css}">
+<link rel="stylesheet" th:href="@{/css/Botones.css}">
+<link rel="stylesheet" th:href="@{/css/Formularios.css}"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light personalizado">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="/images/Logo.jpg" width="30" height="30" class="d-inline-block align-top mr-2 logo-principal" alt="">
-            <div class="d-flex flex-column lh-1">
-                <span class="font-weight-bold">Mundo Animal</span>
-                <small>Clínica Veterinaria</small>
+     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light personalizado">
+         <a class="navbar-brand d-flex align-items-center" href="#">
+             <img src="/images/Logo.jpg" width="30" height="30" class="d-inline-block align-top mr-2 logo-principal" alt="">
+             <div class="d-flex flex-column lh-1">
+                 <span class="font-weight-bold">Mundo Animal</span>
+                 <small>Clínica Veterinaria</small>
             </div>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+         </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+             <span class="navbar-toggler-icon"></span>
+         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item active"><a class="nav-link" href="#inicio">Inicio</a></li>
@@ -34,91 +37,96 @@
 
 <main class="mover principal d-flex flex-column align-items-center p-4">
     <div class="container formulario">
-        <div class="card p-4">
+        <div class="card p-4 card-body-scrollable">
             <h4 class="text-center mb-4">Información de la Mascota</h4>
 
-            <form th:object="${mascota}" th:action="${agregar} ? ( @{/mascotas}) :(${usuarioId != null} ? @{/usuarios/{usuarioId}/mascotas/editar(usuarioId=${usuarioId})} : @{/mascotas/editar})" method="post" class="form d-flex flex-column">
-                <!-- ID Oculto -->
+            <form th:object="${mascota}" th:action="${agregar} ? (@{/mascotas}) : (${usuarioId != null} ? @{/usuarios/{usuarioId}/mascotas/editar(usuarioId=${usuarioId})} : @{/mascotas/editar})" method="post" class="form d-flex flex-column">
                 <input th:field="*{id}" type="hidden"/>
-
-                <!-- Dueño Oculto -->
                 <input th:field="*{dueño}" type="hidden" th:value="${mascota.dueño}"/>
                 <input type="hidden" th:field="*{fechaNacimiento}" th:if="${agregar==false}">
-                <div class="grupo" th:if="${agregar}">
-                    <label for="fecha">Fecha de Nacimiento</label>
-                    <input type="date" th:field="*{fechaNacimiento}" id="fecha" name="fecha" placeholder="Pon la fecha de nacimiento de tu perrito" class="completo">
-                </div>
-                
-                <div class="grupo" th:if="${agregar}">
-                    <label for="chip">ID de Microchip</label>
-                    <input type="text" th:field="*{microchipID}" id="chip" name="chip" placeholder="Pon el ID del microchip" class="completo">
-                </div>
-                <div class="grupo">
-                    <label for="ultima">Fecha de la ultima visita</label>
-                    <input type="date" th:field="*{ultimavisita}" id="ultima" name="ultima" placeholder="Fecha de la ultima visita" class="completo">
-                </div>
-                <div class="grupo" th:if="${agregar}">
-                    <label for="observaciones">Observaciones</label>
-                    <input type="text" th:field="*{observaciones}" id="observaciones" name="observaciones" placeholder="Pon las observaciones pertinentes" class="completo">
-                </div>
-
-                <div class="grupo">
-                    <label for="vacunas">Vacunas:</label>
-                    <input type="text" th:field="*{vacunasTexto}" id="vacunas" name="vacunas" placeholder="Ej: Rabia, Moquillo, Parvovirus" class="completo"/>
-                </div>
-
-                <div class="grupo">
-                    <label for="alergias">Alergias:</label>
-                    <input type="text" th:field="*{alergiasTexto}" id="alergias" name="alergias" placeholder="Ej: Polvo, Polen, Chocolate" class="completo"/>
-                </div>
-
-                
                 <input type="hidden" th:field="*{estadoOriginal}">
+
+                <div class="row">
+                    <div class="col-md-6 grupo">
+                        <label for="nombre">Nombre</label>
+                        <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre de la mascota" required class="completo">
+                    </div>
+                    <div class="col-md-6 grupo">
+                        <label for="especie">Especie</label>
+                        <input th:field="*{especie}" type="text" id="especie" name="especie" placeholder="Ej: Perro, Gato" required class="completo">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 grupo">
+                        <label for="raza">Raza</label>
+                        <input th:field="*{raza}" type="text" id="raza" name="raza" placeholder="Raza de la mascota" class="completo">
+                    </div>
+                    <div class="col-md-6 grupo">
+                        <label for="peso">Peso (kg)</label>
+                        <input th:field="*{peso}" type="number" step="0.1" id="peso" name="peso" placeholder="Peso de la mascota" class="completo">
+                    </div>
+                </div>
                 
-
-                <div class="grupo">
-                    <label for="nombre">Nombre</label>
-                    <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre de la mascota" required class="completo">
+                <div class="row">
+                    <div class="col-md-6 grupo">
+                        <label for="sexo">Sexo</label>
+                        <select th:field="*{sexo}" id="sexo" name="sexo" class="completo">
+                            <option value="" disabled>Seleccione</option>
+                            <option value="Macho">Macho</option>
+                            <option value="Hembra">Hembra</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 grupo">
+                        <label for="estado">Estado</label>
+                        <select th:field="*{estado}" id="estado" name="estado" class="completo">
+                            <option value="Saludable">Saludable</option>
+                            <option value="En tratamiento">En tratamiento</option>
+                            <option value="Recuperandose">Recuperándose</option>
+                            <option value="Control rutinario">Control rutinario</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="grupo">
-                    <label for="especie">Especie</label>
-                    <input th:field="*{especie}" type="text" id="especie" name="especie" placeholder="Ej: Perro, Gato" required class="completo">
+                <div class="row" th:if="${agregar}">
+                    <div class="col-md-6 grupo">
+                        <label for="fecha">Fecha de Nacimiento</label>
+                        <input type="date" th:field="*{fechaNacimiento}" id="fecha" name="fecha" placeholder="Pon la fecha de nacimiento de tu perrito" class="completo">
+                    </div>
+                    <div class="col-md-6 grupo">
+                        <label for="chip">ID de Microchip</label>
+                        <input type="text" th:field="*{microchipID}" id="chip" name="chip" placeholder="Pon el ID del microchip" class="completo">
+                    </div>
                 </div>
 
-                <div class="grupo">
-                    <label for="raza">Raza</label>
-                    <input th:field="*{raza}" type="text" id="raza" name="raza" placeholder="Raza de la mascota" class="completo">
+                <div class="row">
+                    <div class="col-md-6 grupo">
+                        <label for="vacunas">Vacunas:</label>
+                        <input type="text" th:field="*{vacunasTexto}" id="vacunas" name="vacunas" placeholder="Ej: Rabia, Moquillo, Parvovirus" class="completo"/>
+                    </div>
+                    <div class="col-md-6 grupo">
+                        <label for="alergias">Alergias:</label>
+                        <input type="text" th:field="*{alergiasTexto}" id="alergias" name="alergias" placeholder="Ej: Polvo, Polen, Chocolate" class="completo"/>
+                    </div>
+                </div>
+                
+                <div class="row">
+                     <div class="col-md-6 grupo">
+                        <label for="ultima">Fecha de la última visita</label>
+                        <input type="date" th:field="*{ultimavisita}" id="ultima" name="ultima" placeholder="Fecha de la ultima visita" class="completo">
+                    </div>
+                    <div class="col-md-6 grupo">
+                        <label for="foto">Foto (URL)</label>
+                        <input th:field="*{foto}" type="text" id="foto" name="foto" placeholder="https://ejemplo.com/foto.jpg" class="completo">
+                    </div>
                 </div>
 
-                <div class="grupo">
-                    <label for="estado">Estado</label>
-                    <select th:field="*{estado}" id="estado" name="estado" class="completo">
-                        <option value="Saludable">Saludable</option>
-                        <option value="En tratamiento">En tratamiento</option>
-                        <option value="Recuperandose">Recuperándose</option>
-                        <option value="Control rutinario">Control rutinario</option>
-                    </select>
-                </div>
-
-                <div class="grupo">
-                    <label for="sexo">Sexo</label>
-                    <select th:field="*{sexo}" id="sexo" name="sexo" class="completo">
-                        <option value="" disabled>Seleccione</option>
-                        <option value="Macho">Macho</option>
-                        <option value="Hembra">Hembra</option>
-                    </select>
-                </div>
-
-                <div class="grupo">
-                    <label for="peso">Peso (kg)</label>
-                    <input th:field="*{peso}" type="number" step="0.1" id="peso" name="peso" placeholder="Peso de la mascota" class="completo">
-                </div>
-
-                <div class="grupo">
-                    <label for="foto">Foto (URL)</label>
-                    <input th:field="*{foto}" type="text" id="foto" name="foto" placeholder="https://ejemplo.com/foto.jpg" class="completo">
-                </div>
+                <div class="row">
+                    <div class="col-12 grupo">
+                         <label for="observaciones">Observaciones</label>
+                         <input type="text" th:field="*{observaciones}" id="observaciones" name="observaciones" placeholder="Pon las observaciones pertinentes" class="completo">
+                     </div>
+                 </div>
 
                 <button type="submit" class="submit-btn d-flex align-items-center justify-content-center mt-3">
                     Guardar Mascota
@@ -129,83 +137,7 @@
 </main>
 
 <footer class="d-flex align-items-center justify-content-center">
-            <div class="completo contenido d-flex justify-content-center">
-                <div class="d-flex align-items-center justify-content-center">
-                    <div class="seccion info-principal d-flex flex-column align-items-start">
-                    <div class="logo d-flex align-items-center justify-content-center">
-                        <img src="/images/Logo.jpg" alt="Logo">
-                        <div class="logo-text">
-                            <h3>Mundo Animal</h3>
-                            <p>Clínica Veterinaria</p>
-                        </div>
-                    </div>
-                    <p class="descripcion">
-                        Dedicados al cuidado y bienestar de tu mascota con más de 15 años de experiencia. Brindamos servicios veterinarios de calidad con tecnología moderna y mucho amor.
-                    </p>
-                    <div class="social">
-                        <a href="#" class="social-link facebook">
-                            <img src="/images/facebook.png" alt="logo facebook">
-                        </a>
-                        <a href="#" class="social-link instagram">
-                            <img src="/images/instagram.png" alt="logo instagram">
-                        </a>
-                        <a href="#" class="social-link twitter">
-                            <img src="/images/twitter.png" alt="logo x">
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="seccion d-flex flex-column">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Servicios</a></li>
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Precios</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div class="seccion">
-                    <h3>Contacto</h3>
-                    <div class="info-contacto">
-                        <div class="item d-flex align-items-center">
-                            <img class="icono" src="/images/ubicacion.png" alt="logo ubicacion">
-                            <div>
-                                Av. Principal 123<br>
-                                Centro, Ciudad 12345
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img class="icono" src="/images/telefono-azul.png" alt="logo telefono">
-                            <a href="">+1 (555) 123-4567</a>
-                        </div>
-                        <div class="item">
-                            <img class="icono" src="/images/correo-verde.png" alt="logo correo">
-                            <a href="mailto:info@mundoanimal.com">info@mundoanimal.com</a>
-                        </div>
-                        
-                        <h3 class="horarios">Horarios de Atención</h3>
-                        <p class="horas">Lunes - Viernes: 8:00 - 18:00</p>
-                        <p class="horas">Sábados: 9:00 - 15:00</p>
-                        <p class="horas">Domingos: Solo emergencias</p>
-                    </div>
-                </div>
-                </div>
-                <div class="d-flex completo flex-column align-items-center justify-content-center">
-                    <div class="emergencia d-flex align-items-center">
-                    <p><strong>Servicio de Emergencias 24/7</strong><br>Para urgencias fuera del horario normal, contamos con servicio de emergencias.</p>
-                    <a href="#" class="btn-emergencia-footer">Llamar Emergencias</a>
-                    </div>
-                </div>
-                <hr>
-                <div class="footer-bottom">
-                    © 2025 Mundo Animal. Todos los derechos reservados.
-                </div>
-            </div>
     </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>

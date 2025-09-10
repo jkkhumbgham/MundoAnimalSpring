@@ -6,11 +6,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/Styles.css}">
+
+<link rel="stylesheet" th:href="@{/css/NavBar.css}">
+<link rel="stylesheet" th:href="@{/css/Botones.css}">
+<link rel="stylesheet" th:href="@{/css/Formularios.css}">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
         <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light personalizado">
+        <nav class="navbar fixed-top navbar-expand-lg personalizado">
         <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="/images/Logo.jpg" width="30" height="30" class="d-inline-block align-top mr-2 logo-principal" alt="">
             <div class="d-flex flex-column lh-1">
@@ -240,62 +245,73 @@
                 <h1>¿Listo para cuidar a <span class="resaltar">tu mascota</span>?</h1>
                 <p> Ponte en contacto con nosotros para agendar una cita o resolver cualquier duda. Estamos aquí para ayudarte y a tu mascota.</p>
             </div>
-            <div class="d-flex row">
-                <div class="formulario col-lg-6">
-                    <div class="card mitad" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Envíanos un mensaje</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Completa el formulario y nos pondremos en contacto contigo lo antes posible.</h6>
-                            <form class="d-flex flex-column">
-                                <div class="d-flex align-items-center form">
-                                    <div class="d-flex flex-column grupo">
-                                        <label for="nombre">Tu nombre</label>
-                                        <input type="text" name="nombre" id="nombre" placeholder="Juan Perez">
-                                    </div>
-                                    <div class="d-flex flex-column grupo">
-                                        <label for="correo">Email</label>
-                                        <input type="email" name="correo" id="correo" placeholder="juan@gmail.com">
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center form">
-                                    <div class="d-flex flex-column grupo">
-                                        <label for="telefono">Telefono</label>
-                                        <input type="text" name="telefono" id="telefono" placeholder="+1 (555) 123-456">
-                                    </div>
-                                    <div class="d-flex flex-column grupo">
-                                        <label for="mascota">Nombre de tu mascota</label>
-                                        <input type="text" name="mascota" id="mascota" placeholder="Max">
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="d-flex flex-column grupo completo">
-                                        <label for="comentarios">Mensaje</label>
-                                        <input type="text" name="comentarios" id="comentarios" placeholder="Cuentanos como podemos ayudar a tu mascota...">
-                                    </div>
-                                </div>
-                                <a type="submit" class="submit-btn d-flex align-items-center justify-content-center">Enviar Mensaje</a>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class=" d-flex flex-column align-items-center col-lg-6 info">
-                        <div class="card mitad" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">¿Emergencia?</h5>
-                                <p class="card-text">Si tu mascota necesita atención médica urgente, llámanos inmediatamente al número de emergencias.</p>
-                                <a class="btn btn-emergencia d-flex align-items-center">
-                                <img src="/images/Telefono.png" width="30" height="30" alt="Logo Telefono"> Llamar Emergencias
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card map mitad" style="width: 18rem;">
-                            <div class="card-body">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d63627.73778317076!2d-74.11742503691725!3d4.641537505235615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8e3f9a3359dc0763%3A0x297dbd43b824f560!2sGalerias%20Plaza%2C%20Carrera%2027%2C%20Bogot%C3%A1!3m2!1d4.6415387!2d-74.0762249!4m5!1s0x8e3f9a3359dc0763%3A0x297dbd43b824f560!2sGalerias%20Plaza%2C%20Carrera%2027%2C%20Bogot%C3%A1!3m2!1d4.6415387!2d-74.0762249!5e0!3m2!1ses-419!2sco!4v1755127027325!5m2!1ses-419!2sco" width="460" height="180" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+<div class="d-flex row w-100">
+  <!-- Formulario -->
+  <div class="formulario col-lg-6">
+    <div class="card mitad">
+      <div class="card-body">
+        <h5 class="card-title">Envíanos un mensaje</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          Completa el formulario y nos pondremos en contacto contigo lo antes posible.
+        </h6>
+        <form class="d-flex flex-column">
+          <div class="row">
+            <div class="col-md-6 grupo">
+              <label for="nombre">Tu nombre</label>
+              <input type="text" name="nombre" id="nombre" placeholder="Juan Perez">
             </div>
+            <div class="col-md-6 grupo">
+              <label for="correo">Email</label>
+              <input type="email" name="correo" id="correo" placeholder="juan@gmail.com">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 grupo">
+              <label for="telefono">Teléfono</label>
+              <input type="text" name="telefono" id="telefono" placeholder="+57 300 123 4567">
+            </div>
+            <div class="col-md-6 grupo">
+              <label for="mascota">Nombre de tu mascota</label>
+              <input type="text" name="mascota" id="mascota" placeholder="Max">
+            </div>
+          </div>
+          <div class="grupo completo">
+            <label for="comentarios">Mensaje</label>
+            <textarea name="comentarios" id="comentarios" rows="3" placeholder="Cuéntanos cómo podemos ayudar a tu mascota..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Enviar Mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Emergencia + Mapa -->
+  <div class="col-lg-6 info d-flex flex-column gap-3">
+    <div class="card mitad">
+      <div class="card-body">
+        <h5 class="card-title">¿Emergencia?</h5>
+        <p class="card-text">
+          Si tu mascota necesita atención médica urgente, llámanos inmediatamente al número de emergencias.
+        </p>
+        <a class="btn btn-emergencia d-flex align-items-center">
+          <img src="/images/Telefono.png" width="30" height="30" alt="Logo Telefono"> 
+          Llamar Emergencias
+        </a>
+      </div>
+    </div>
+    <div class="card mitad">
+      <div class="card-body">
+        <h5 class="card-title">Ubicación</h5>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?...etc"
+            width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
         </section>
     </main>
     <footer class="d-flex align-items-center justify-content-center">

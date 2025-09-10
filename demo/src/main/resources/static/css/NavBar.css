@@ -1,0 +1,43 @@
+/* ===== NAVBAR ===== */
+.navbar.personalizado {
+    background-color: #fff !important;
+    padding: 12px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    font-family: "Poppins", sans-serif;
+}
+
+/* Marca (logo + texto) */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #111827 !important;
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+}
+
+/* Menú central */
+.navbar-nav {
+    gap: 25px;
+}
+
+.navbar-nav .nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #F72585 !important;
+}
+
+/* Botón llamar (se complementa con Botones.css) */
+.btn-llamar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}

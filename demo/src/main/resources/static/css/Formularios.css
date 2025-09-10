@@ -1,0 +1,100 @@
+.formulario .card,
+.info .card {
+    background: #ffffff;
+    padding: 25px; 
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: none;
+    width: 100%; 
+    height: auto;
+}
+
+.grupo {
+    margin-bottom: 15px; 
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px; 
+    font-family: inherit;
+}
+
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
+.formulario input,
+.formulario textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    border-color: #4f46e5; 
+    box-shadow: 0 0 6px rgba(79, 70, 229, 0.4);
+}
+
+
+/* --- Tarjeta de login y registro --- */
+.login-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 420px;
+    margin: auto;
+}
+
+/* --- Estilos para los campos de entrada dentro del login-card --- */
+.login-card .form-control {
+    border-radius: 12px;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #ddd;
+    background: #f9fafb;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.login-card .form-control:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 6px rgba(79, 70, 229, 0.4);
+}
+
+/* --- Estilos para el icono dentro del campo de entrada --- */
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+/* --- Estilos para el botón de Iniciar Sesión --- */
+.btn-login {
+    background: linear-gradient(90deg, #4f46e5, #3b82f6);
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: linear-gradient(90deg, #4338ca, #2563eb);
+    transform: translateY(-1px);
+}
+
+.position-relative .form-control {
+    padding-left: 40px; 
+}

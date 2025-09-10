@@ -1,0 +1,187 @@
+/* Estilos para botones de llamada */
+.btn-llamar {
+    background: linear-gradient(90deg, #ff4e50, #F72585);
+    color: white !important;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: none;
+    height: 40px;
+}
+
+.btn-llamar:hover {
+    opacity: 0.9;
+    color: white;
+}
+
+.btn-llamar img {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+}
+
+/* Estilos para botones de acción */
+.agendar {
+    background: linear-gradient(90deg, #ff4e50, #F72585);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.conoce {
+    border: 2px solid #0ea5e9;
+    color: #0ea5e9;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.icono-btn {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.botones a.btn.conoce:hover {
+    color: #000 !important;
+}
+
+.botones a.btn.agendar:hover {
+    color: white;
+    filter: brightness(0.85);
+}
+
+.contactar {
+    background: linear-gradient(90deg, #ff4e50, #F72585);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+.precios {
+    border: 2px solid #0ea5e9;
+    color: #0ea5e9;
+    padding: 10px 20px;
+    border-radius: 25px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.botones a.btn.precios:hover {
+    color: #000 !important;
+}
+
+.botones a.btn.contactar:hover {
+    color: white;
+    filter: brightness(0.85);
+}
+
+/* Estilos para botones de emergencia */
+.btn-emergencia {
+    background: red;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: none;
+    height: 40px;
+}
+
+.btn-emergencia:hover {
+    opacity: 0.9;
+    color: white;
+}
+
+.btn-emergencia img {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+}
+
+.emergencia .btn-emergencia-footer {
+    background: white;
+    color: #d60000;
+    border: none;
+    margin-left: 5px;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Otros estilos de botones */
+.btn-inicio {
+    color: rgb(250, 60, 60) !important;
+    border: solid 1px rgb(248, 60, 60);
+    margin-right: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 16px;
+    height: 40px;
+}
+
+.btn-inicio img {
+    margin-right: 10px;
+}
+
+.btn-inicio:hover {
+    filter: brightness(0.85);
+}
+
+.btn-login {
+    background: linear-gradient(90deg, #ff005c, #ff4da6) !important;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+}
+/* Estilos para el botón de enviar */
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(to right, #0ea5e9, #48cae4);
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    gap: 8px;
+}
+
+.submit-btn:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-login:hover {
+    background: linear-gradient(90deg, #4338ca, #2563eb);
+    transform: translateY(-1px);
+}
+
+/* --- Estilos para el botón de Iniciar Sesión --- */
+.btn-login {
+    background: linear-gradient(90deg, #4f46e5, #3b82f6);
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+

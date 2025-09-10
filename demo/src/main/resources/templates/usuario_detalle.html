@@ -6,6 +6,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/Styles.css}">
+
+<link rel="stylesheet" th:href="@{/css/NavBar.css}">
+<link rel="stylesheet" th:href="@{/css/Botones.css}">
+<link rel="stylesheet" th:href="@{/css/Formularios.css}">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -45,33 +50,23 @@
         </div>
     </nav>
     </header>
-    <main class="mover principal d-flex flex-column align-items-center p-4">
+    
+<main class="mover principal d-flex flex-column align-items-center p-4">
     <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;">
         <div class="card-body">
-            <div class="cabeza d-flex align-items-center justify-content-between mb-4">
-                <div class="d-flex flex-column align-items-center justify-content-center">
-                    <h4 class="mb-4">
-                        <span class="fw-bold">Tus</span>
-                        <span class="resaltar">Mascotas</span>
-                    </h4>
-                </div>
 
-                <!--
-                <a href="#">
-                    <button class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center"
-                    th:onclick="|window.location.href='/mascotas/agregar'|">
-                        <img src="/images/mas.png" alt="Icono mas">
-                    </button>
-                </a>
-                -->
-                <a th:href="@{/usuarios/{Usuarioid}/mascotas/agregar(Usuarioid=${usuario.id})}">
-                    <button class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center" th:if="${rol=='veterinario'}">
-                        <img src="/images/mas.png" alt="Icono mas">
-                    </button>
-                </a>
-
-            </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="titulo-listado-mascotas">
+                <span class="fw-bold">Tus</span>
+                <span class="resaltar-titulo">Mascotas</span>
+            </h2>
+            <a th:href="@{/usuarios/{Usuarioid}/mascotas/agregar(Usuarioid=${usuario.id})}">
+                <button class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center" th:if="${rol=='veterinario'}">
+                    <img src="/images/mas.png" alt="Icono mas">
+                </button>
+            </a>
         </div>
+            
             <table class="table align-middle table-hover text-center">
                 <thead class="table-light">
                     <tr>
@@ -85,7 +80,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="mascota : ${usuario.mascotas}"  
+                    <tr th:each="mascota : ${usuario.mascotas}" 
                         style="cursor: pointer;">
                         
                         <td class="align-middle">
@@ -113,8 +108,8 @@
                                   th:if="${mascota.estado == 'Control rutinario'}"
                                   th:text="${mascota.estado}"></span>
                             <span class="badge rounded-pill bg-danger text-dark"
-                                th:if="${mascota.estado == 'inactivo'}"
-                                th:text="${mascota.estado}"></span>
+                                  th:if="${mascota.estado == 'inactivo'}"
+                                  th:text="${mascota.estado}"></span>
                         </td>
 
                         <td class="align-middle">
@@ -123,7 +118,6 @@
                                 th:onclick="|window.location.href='/mascotas/${mascota.id}'|">
                                     <img src="/images/ojo.png" alt="Icono Ojo">
                                 </button>
-                                <!-- Botón Editar -->
                                 <button class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
                                 th:if="${usuarioId != null and rol == 'veterinario'}"
                                 th:onclick="|window.location.href='/usuarios/${usuarioId}/mascotas/editar/${mascota.id}'|">
@@ -136,7 +130,6 @@
                                     <img src="/images/editar.png" alt="Icono Editar">
                                 </button>
 
-                                <!-- Botón Borrar -->
                                 <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
                                 th:if="${usuarioId != null and rol == 'veterinario'}"
                                 th:onclick="|window.location.href='/usuarios/${usuarioId}/mascotas/delete/${mascota.id}'|">
