@@ -6,12 +6,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/Styles.css}">
-
-<link rel="stylesheet" th:href="@{/css/NavBar.css}">
-<link rel="stylesheet" th:href="@{/css/Botones.css}">
-<link rel="stylesheet" th:href="@{/css/Formularios.css}">
-
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -53,7 +47,14 @@
     </header>
     <main class="mover principal">
      <div class="container my-4">
-  <div class="profile-card">
+    
+    <div class="mb-3">
+        <a href="/usuarios" class="btn btn-secondary">
+            ← Volver a la lista de dueños
+        </a>
+
+    </div>
+    <div class="profile-card">
     <div class="row align-items-center">
       <div class="col-md-2 text-center">
         <img th:src="${mascota.foto}" alt="Luna" class="avatar">
