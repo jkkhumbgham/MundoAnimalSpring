@@ -51,8 +51,19 @@ public class UsuarioController {
         return "redirect:/usuarios";
     }
     @GetMapping("/agregar")
-    public String agregarUsuario(Model model) {
+    public String agregarUsuario(HttpServletRequest request, Model model) {
         Usuario usuario = new Usuario(null, "","", "", "", "", null);
+        String role = null;
+
+    if (request.getCookies() != null) {
+        for (Cookie cookie : request.getCookies()) {
+            if ("userRole".equals(cookie.getName())) {
+                role = cookie.getValue();
+                break;
+            }
+        }
+    }
+        model.addAttribute("rol", role);
         model.addAttribute("usuario", usuario);
         return "agregar_usuario";
     }
@@ -64,8 +75,19 @@ public class UsuarioController {
     }
 
     @GetMapping("/editar/{id}")
-    public String editarUsuario(@PathVariable Long id, Model model) {
+    public String editarUsuario(HttpServletRequest request, @PathVariable Long id, Model model) {
         Usuario usuario = servicioUsuario.getUsuarioById(id);
+        String role = null;
+
+    if (request.getCookies() != null) {
+        for (Cookie cookie : request.getCookies()) {
+            if ("userRole".equals(cookie.getName())) {
+                role = cookie.getValue();
+                break;
+            }
+        }
+    }
+        model.addAttribute("rol", role);
         model.addAttribute("usuario", usuario);
         return "agregar_usuario";
     }

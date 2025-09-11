@@ -14,45 +14,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-        <header>
-        <nav class="navbar fixed-top navbar-expand-lg personalizado">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="/images/Logo.jpg" width="30" height="30" class="d-inline-block align-top mr-2 logo-principal" alt="">
-            <div class="d-flex flex-column lh-1">
-                <span class="font-weight-bold">Mundo Animal</span>
-                <small class="">Clínica Veterinaria</small>
-            </div>
-        </a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#inicio">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#servicios">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#nosotros">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contacto">Contacto</a>
-                </li>
-            </ul>
-            <a class="btn btn-inicio d-flex align-items-center" th:href="@{/login}">
-                <img src="/images/ingresar.png" width="30" height="30" alt="Logo Iniciar Sesion"> Iniciar Sesion
-            </a>
-            <a class="btn btn-llamar d-flex align-items-center">
-                <img src="/images/Telefono.png" width="30" height="30" alt="Logo Telefono"> Llamar Ahora
-            </a>
-        </div>
-    </nav>
-    </header>
+       <div th:if="${rol=='veterinario'}">
+        <div th:replace="fragmentos :: header-vet" ></div>
+    </div>
+    <div th:if="${rol!='veterinario'}">
+        <div th:replace="fragmentos :: header-us" ></div>
+    </div>
     <main>
         <section class="principal">
             <div class="container">

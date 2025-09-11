@@ -29,10 +29,22 @@ public class MascotaController {
 
     // Mostrar una mascota por ID
     @GetMapping("/mascotas/{id}")
-    public String verDetalleMascota(@PathVariable Long id, Model model) {
+    public String verDetalleMascota(HttpServletRequest request,@PathVariable Long id, Model model) {
         Mascota mascota = servicioMascotas.getMascotaById(id);
+        String role = null;
+        if (request.getCookies() != null) {
+        for (Cookie cookie : request.getCookies()) {
+            if ("userRole".equals(cookie.getName())) {
+                role = cookie.getValue();
+                break;
+            }
+        }
+    }
+        model.addAttribute("rol", role);
         if (mascota != null) {
             model.addAttribute("mascota", mascota);
+
+    
             return "mascota-detalle";
         } else {
             return "redirect:/mascotas";
@@ -52,9 +64,8 @@ public class MascotaController {
             }
         }
     }
-
-        model.addAttribute("mascotas", servicioMascotas.getAllMascotas());
         model.addAttribute("rol", role);
+        model.addAttribute("mascotas", servicioMascotas.getAllMascotas());
         return "mascotas-tabla"; 
     
     }
@@ -74,10 +85,21 @@ public class MascotaController {
 
     // Formulario para agregar mascota
     @GetMapping("/usuarios/{usuarioId}/mascotas/agregar")
-    public String agregarMascota(@PathVariable("usuarioId") Long usuarioId, Model model) {
+    public String agregarMascota(HttpServletRequest request,@PathVariable("usuarioId") Long usuarioId, Model model) {
         Mascota mascota = new Mascota();
         Usuario dueño = servicioUsuarios.getUsuarioById(usuarioId);
         mascota.setDueño(dueño);
+        String role = null;
+
+    if (request.getCookies() != null) {
+        for (Cookie cookie : request.getCookies()) {
+            if ("userRole".equals(cookie.getName())) {
+                role = cookie.getValue();
+                break;
+            }
+        }
+    }
+        model.addAttribute("rol", role);
         model.addAttribute("mascota", mascota);
         model.addAttribute("agregar", true);
         return "nuevo_paciente";
@@ -111,12 +133,22 @@ public class MascotaController {
 
     // Formulario para editar mascota
     @GetMapping({"/mascotas/editar/{id}", "/usuarios/{usuarioId}/mascotas/editar/{id}"})
-    public String editarMascota(@PathVariable("id") Long id,
+    public String editarMascota(HttpServletRequest request,@PathVariable("id") Long id,
                                 @PathVariable(value = "usuarioId", required = false) Long usuarioId,
                                 Model model) {
         Mascota mascota = servicioMascotas.getMascotaById(id);
         mascota.setVacunasTexto(String.join(", ", mascota.getVacunas()));
         mascota.setAlergiasTexto(String.join(", ", mascota.getAlergias()));
+        String role = null;
+        if (request.getCookies() != null) {
+        for (Cookie cookie : request.getCookies()) {
+            if ("userRole".equals(cookie.getName())) {
+                role = cookie.getValue();
+                break;
+            }
+        }
+    }
+        model.addAttribute("rol", role);
         model.addAttribute("mascota", mascota);
         model.addAttribute("usuarioId", usuarioId);
         model.addAttribute("agregar", false);

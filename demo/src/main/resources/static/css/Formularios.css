@@ -1,7 +1,7 @@
 .formulario .card,
 .info .card {
     background: #ffffff;
-    padding: 25px; 
+    padding: 15px; 
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     border: none;
@@ -9,7 +9,8 @@
     height: auto;
 }
 
-.grupo {
+
+.grupo {    
     margin-bottom: 15px; 
 }
 
@@ -20,8 +21,16 @@ textarea {
 }
 
 .map-container {
+    /*
     border-radius: 12px;
     overflow: hidden;
+    */
+    border-radius: 20px;       
+    overflow: hidden;
+    max-width: 1000px;         
+    margin: 0 auto;     
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+   
 }
 
 
@@ -79,4 +88,18 @@ textarea {
 
 .position-relative .form-control {
     padding-left: 40px; 
+}
+
+
+.contactanos  {
+  padding-left: 120px;
+  padding-right: 120px;
+}
+.formulario .card,
+.info .card {
+  margin-bottom: 0;  
+}
+
+.info .card + .card {
+  margin-top: 15px;   
 }
