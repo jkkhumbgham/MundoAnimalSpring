@@ -1,0 +1,314 @@
+.principal {
+    margin-top: 50px;
+    background: linear-gradient(to right, #faefef, #f8e8ee);
+    padding: 60px 0;
+}
+
+.texto-principal h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+
+.texto-principal p {
+    color: #555555;
+    margin: 15px 0;
+}
+
+.placa {
+    background: #fff6e5;
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.imagen-principal {
+    position: relative;
+    text-align: center;
+}
+
+.imagen-principal img {
+    border-radius: 15px;
+    max-width: 100%;
+}
+
+.cuidado {
+    position: absolute;
+    bottom: -15px;
+    right: 20px;
+    background: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stats {
+    gap: 32px;
+    margin-top: 28px;
+    align-items: flex-start;
+}
+
+.stat h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    color: #111827;
+}
+
+.stat p {
+    margin: 4px 0 0;
+    color: #555555;
+    font-size: 13px;
+}
+.agendar {
+    background: linear-gradient(90deg, #ff4e50, #F72585);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.botones a.btn.agendar:hover {
+    color: white;
+    filter: brightness(0.85);
+}
+
+.conoce {
+    border: 2px solid #0ea5e9;
+    color: #0ea5e9;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.botones a.btn.conoce:hover {
+    color: #000 !important;
+}
+
+.icono-btn {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+.nuestros-servicios {
+    margin-top: 60px;
+    background: linear-gradient(to right, #faefef, #f8e8ee);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.servicio {
+    padding-top: 60px;
+}
+
+.card {
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    margin: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-text {
+    font-size: 14px;
+    margin-top: 20px;
+}
+.consultar {
+    margin-top: 56px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #faefef, #f8e8ee);
+    padding: 28px;
+    text-align: center;
+}
+
+.contactar {
+    background: linear-gradient(90deg, #ff4e50, #F72585);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+.botones a.btn.contactar:hover {
+    color: white;
+    filter: brightness(0.85);
+}
+
+.precios {
+    border: 2px solid #0ea5e9;
+    color: #0ea5e9;
+    padding: 10px 20px;
+    border-radius: 25px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.botones a.btn.precios:hover {
+    color: #000 !important;
+}
+.formulario .card,
+.info .card {
+    background: #ffffff;
+    padding: 15px; 
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: none;
+    width: 100%; 
+    height: auto;
+}
+
+
+.grupo {    
+    margin-bottom: 15px; 
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px; 
+    font-family: inherit;
+}
+
+.map-container {
+    /*
+    border-radius: 12px;
+    overflow: hidden;
+    */
+    border-radius: 20px;       
+    overflow: hidden;
+    max-width: 1000px;         
+    margin: 0 auto;     
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+   
+}
+
+
+.formulario input,
+.formulario textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    border-color: #4f46e5; 
+    box-shadow: 0 0 6px rgba(79, 70, 229, 0.4);
+}
+
+
+/* --- Tarjeta de login y registro --- */
+.login-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 420px;
+    margin: auto;
+}
+
+.login-card .form-control {
+    border-radius: 12px;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #ddd;
+    background: #f9fafb;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.login-card .form-control:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 6px rgba(79, 70, 229, 0.4);
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+
+.position-relative .form-control {
+    padding-left: 40px; 
+}
+
+
+.contactanos  {
+  padding-left: 120px;
+  padding-right: 120px;
+}
+.formulario .card,
+.info .card {
+  margin-bottom: 0;  
+}
+
+.info .card + .card {
+  margin-top: 15px;   
+}
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(to right, #0ea5e9, #48cae4);
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    gap: 8px;
+}
+
+.submit-btn:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.3);
+    transform: translateY(-2px);
+}
+.btn-emergencia {
+    background: red;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: none;
+    height: 40px;
+}
+
+.btn-emergencia:hover {
+    opacity: 0.9;
+    color: white;
+}
+
+.btn-emergencia img {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+}
+.info .card {
+    color: #FF0000;
+}

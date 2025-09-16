@@ -1,0 +1,184 @@
+footer {
+    background-color: #0d111b;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin-top: 40px;
+    padding: 40px 20px;
+}
+
+.contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contenido > .d-flex:first-child {
+    display: flex;
+    padding-left: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.contenido .seccion {
+    min-width: 250px;
+}
+
+.contenido .logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.contenido .logo-text h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.contenido .logo-text p {
+    font-size: 0.65rem;
+    color: #ccc;
+    margin-bottom: 2px;
+}
+
+.contenido .descripcion {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: #ccc;
+    max-width: 320px;
+    margin-bottom: 20px;
+}
+
+.contenido .social {
+    display: flex;
+    gap: 10px;
+}
+
+.contenido .social-link img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.contenido .social-link img:hover {
+    transform: scale(1.1);
+}
+
+.contenido h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contenido ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contenido ul li {
+    margin-bottom: 5px;
+}
+
+.contenido ul li a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 0.75rem;
+    transition: color 0.2s;
+}
+
+.contenido ul li a:hover {
+    color: #fff;
+}
+
+.contenido .info-contacto .item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+    color: #ccc;
+    font-size: 0.75rem;
+}
+
+.contenido .info-contacto .item a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.info-principal {
+    flex: 2;
+}
+
+.enlaces {
+    flex: 1;
+}
+
+.contenido .horarios {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.contenido .horas {
+    color: #ccc;
+    margin: 2px;
+    font-size: 0.75rem;
+}
+
+.icono {
+    height: 20px;
+    width: 20px;
+}
+
+/* Bloque de emergencia */
+.emergencia {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #d60000;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.emergencia strong {
+    font-size: 1rem;
+}
+
+.btn-emergencia-footer {
+    background: white;
+    color: #d60000;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn-emergencia-footer:hover {
+    background: #fff5f5;
+}
+
+/* Línea y copyright */
+hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 10px 0 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #ccc;
+    margin-top: 10px;
+}
