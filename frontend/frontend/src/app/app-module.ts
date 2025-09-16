@@ -9,6 +9,8 @@ import { HeaderVeterinario } from './headers/header-veterinario/header-veterinar
 import { PantallaEntrada } from './principal/pantalla-entrada/pantalla-entrada';
 import { Login } from './login/login/login';
 import { FormsModule } from '@angular/forms';
+import { MascotaTabla } from './mascotas/mascota-tabla/mascota-tabla.component';
+import { MascotaFormulario } from './mascotas/mascota-formulario/mascota-formulario.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     HeaderUsuario,
     HeaderVeterinario,
     PantallaEntrada,
-    Login
+    Login,
+    MascotaTabla,
+    MascotaFormulario
   ],
   imports: [
     BrowserModule,
