@@ -213,7 +213,9 @@
   text-align: center;
   padding: 20px;
 }
-
+.contactanos .card-body{
+    text-align: start;
+}
 .iconos {
   width: 60px;
   height: 60px;
@@ -225,7 +227,11 @@
   background: #f8f8f8;
 }
 
-.iconos img {
+.servicios .iconos img {
+  max-width: 28px;
+  max-height: 28px;
+}
+.datos .iconos img {
   max-width: 28px;
   max-height: 28px;
 }
@@ -399,16 +405,12 @@
 
 /* ====== CARD ====== */
 .datos .card {
-  width: 10px; /* un poco más ancha para evitar texto en dos líneas */
-  height: 200px;
+  width: 210px !important;
   border-radius: 20px;
   border: none;
   background: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 5px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -445,5 +447,227 @@
   font-size: 0.95rem;
   color: #444;
   margin: 0;
+}
+
+.especialista {
+    background: linear-gradient(to right, #fefefe, #fdeef4);
+}
+.especialistas .iconos {
+    border-radius: 80px;
+}
+
+.especialista {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.especialista .card {
+    width: 250px !important;
+    height: 250px !important;
+    margin-top: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: transparent;
+}
+.especialista .card .card-body{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.especialistas .iconos img {
+    height: 100px;
+    width: 100px ;
+    margin-bottom: 45px;
+    border-radius: 400px;
+}
+
+.especialista .acomodo {
+    margin-top: 20px;
+}
+.cabeza-contacto p {
+    color: #6c757d;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+.cabeza-contacto{
+    margin-bottom: 15px;
+}
+/* ====== CABEZA DE CONTACTO ====== */
+.cabeza-contacto p {
+  color: #6c757d;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cabeza-contacto {
+  margin-bottom: 25px;
+}
+
+/* ====== PLACA DE SECCIÓN ====== */
+.contacto-placa {
+  margin: 0 auto 20px auto;
+  background: linear-gradient(to right, #dde5fa, #eeeffd);
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+}
+
+.contacto-placa img {
+  height: 17px;
+  margin-right: 6px;
+}
+
+/* ====== TARJETAS ====== */
+.contactanos  {
+  padding-left: 120px;
+  padding-right: 120px;
+}
+.formulario .card,
+.info .card {
+  margin-bottom: 0;  
+}
+
+.info .card + .card {
+  margin-top: 15px;   
+}
+.formulario .card,
+.info .card {
+    background: #ffffff;
+    padding: 15px; 
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: none;
+    width: 100%; 
+    height: auto;
+}
+
+
+.grupo {    
+    margin-bottom: 15px; 
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px; 
+    font-family: inherit;
+}
+
+.map-container {
+    /*
+    border-radius: 12px;
+    overflow: hidden;
+    */
+    border-radius: 20px;       
+    overflow: hidden;
+    max-width: 1000px;         
+    margin: 0 auto;     
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+   
+}
+
+
+.formulario input,
+.formulario textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    border-color: #4f46e5; 
+    box-shadow: 0 0 6px rgba(79, 70, 229, 0.4);
+}
+
+
+/* ====== BOTÓN DE ENVIAR ====== */
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(to right, #0ea5e9, #48cae4);
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ====== TARJETA DE EMERGENCIA ====== */
+.info .card {
+  color: #FF0000;
+  text-align: center;
+}
+
+.btn-emergencia {
+  background: red;
+  color: white !important;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 10px 16px;
+  border: none;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-emergencia:hover {
+  opacity: 0.9;
+  color: white;
+}
+
+/* ====== MAPA ====== */
+.map-container {
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+.contacto p {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.contacto img {
+    height: 17px;
+    margin-right: 6px;
+}
+
+.cabeza-contacto p {
+    color: #6c757d;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contacto {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #dde5fa, #eeeffd);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+}
+.inicio{
+    text-align: left;
 }
 
