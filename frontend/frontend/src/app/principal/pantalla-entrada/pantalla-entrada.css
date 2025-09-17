@@ -1,162 +1,279 @@
+/* ====== CONTENEDOR PRINCIPAL ====== */
 .principal {
-    margin-top: 50px;
-    background: linear-gradient(to right, #faefef, #f8e8ee);
-    padding: 60px 0;
+  margin-top: 50px;
+  background: linear-gradient(to right, #faefef, #f8e8ee);
+  padding: 60px 0;
 }
 
+/* ====== TEXTO DEL HERO ====== */
 .texto-principal h1 {
-    font-weight: 800;
-    font-size: 2.5rem;
+  font-weight: 800;
+  font-size: 2.5rem;
 }
 
 .texto-principal p {
-    color: #555555;
-    margin: 15px 0;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.5;
 }
 
 .placa {
-    background: #fff6e5;
-    color: #000;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    display: inline-block;
-    margin-bottom: 15px;
+  background: #fff6e5;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 15px;
 }
 
-.imagen-principal {
-    position: relative;
-    text-align: center;
+.resaltar {
+  color: #F72585;
 }
 
-.imagen-principal img {
-    border-radius: 15px;
-    max-width: 100%;
+/* ====== BOTONES ====== */
+.botones {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-.cuidado {
-    position: absolute;
-    bottom: -15px;
-    right: 20px;
-    background: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.botones .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-.stats {
-    gap: 32px;
-    margin-top: 28px;
-    align-items: flex-start;
-}
-
-.stat h3 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 800;
-    color: #111827;
-}
-
-.stat p {
-    margin: 4px 0 0;
-    color: #555555;
-    font-size: 13px;
-}
+/* Botón agendar */
 .agendar {
-    background: linear-gradient(90deg, #ff4e50, #F72585);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  background: linear-gradient(90deg, #ff4e50, #F72585);
+  color: white;
+  padding: 10px 20px;
 }
 
 .botones a.btn.agendar:hover {
-    color: white;
-    filter: brightness(0.85);
+  color: white;
+  filter: brightness(0.85);
 }
 
+/* Botón conoce */
 .conoce {
-    border: 2px solid #0ea5e9;
-    color: #0ea5e9;
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin-left: 10px;
-    text-decoration: none;
+  border: 2px solid #0ea5e9;
+  color: #0ea5e9;
+  padding: 10px 20px;
 }
 
 .botones a.btn.conoce:hover {
-    color: #000 !important;
+  color: #000;
+  background: #e6f7ff;
 }
 
+/* Iconos en botones */
 .icono-btn {
-    width: 20px;
-    height: 20px;
-    margin-right: 6px;
-    vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
 }
+
+/* ====== IMAGEN HERO ====== */
+.imagen-principal {
+  position: relative;
+  text-align: center;
+}
+
+.imagen-principal img {
+  display: block;
+  max-width: 100%;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+
+.cuidado {
+  position: absolute;
+  bottom: -15px;
+  right: 20px;
+  background: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cuidado p {
+  margin-bottom: 0;
+}
+
+.cuidado img {
+  height: 17px;
+  margin-right: 6px;
+}
+
+/* ====== ESTADÍSTICAS ====== */
+.stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.stat h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.stat p {
+  margin: 4px 0 0;
+  color: #555555;
+  font-size: 13px;
+}
+/* ====== SECCIÓN SERVICIOS ====== */
+.servicios {
+  width: 100%;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.servicios .cabezal {
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+/* ====== PLACA (TÍTULO PEQUEÑO) ====== */
 .nuestros-servicios {
-    margin-top: 60px;
-    background: linear-gradient(to right, #faefef, #f8e8ee);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    color: #333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fde8f1;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #F72585;
+  margin-bottom: 15px;
 }
 
-.servicio {
-    padding-top: 60px;
+.nuestros-servicios img {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
 }
 
+/* ====== TÍTULO PRINCIPAL Y DESCRIPCIÓN ====== */
+.servicios h1 {
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.servicios p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* ====== GRID DE CARDS ====== */
+.servicios .row {
+  justify-content: center;
+  gap: 25px 0;
+}
+
+/* ====== ESTILO DE CADA CARD ====== */
 .card {
-    width: auto;
-    height: auto;
-    border-radius: 20px;
-    margin: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 20px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 auto;
 }
 
 .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  text-align: center;
+  padding: 20px;
+}
+
+.iconos {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+}
+
+.iconos img {
+  max-width: 28px;
+  max-height: 28px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 .card-text {
-    font-size: 14px;
-    margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
 }
 .consultar {
     margin-top: 56px;
     border-radius: 20px;
     background: linear-gradient(to right, #faefef, #f8e8ee);
     padding: 28px;
-    text-align: center;
 }
 
+.consultar h3 {
+    margin-top: 20px;
+}
+
+.consultar p {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.consultar .botones {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .contactar {
     background: linear-gradient(90deg, #ff4e50, #F72585);
     color: white;
     padding: 10px 20px;
-    border-radius: 25px;
+    border-radius: 25px !important;
     text-decoration: none;
-}
-
-.botones a.btn.contactar:hover {
-    color: white;
-    filter: brightness(0.85);
 }
 
 .precios {
     border: 2px solid #0ea5e9;
     color: #0ea5e9;
     padding: 10px 20px;
-    border-radius: 25px;
+    border-radius: 40px !important;
     margin-left: 10px;
     text-decoration: none;
 }
@@ -164,151 +281,169 @@
 .botones a.btn.precios:hover {
     color: #000 !important;
 }
-.formulario .card,
-.info .card {
-    background: #ffffff;
-    padding: 15px; 
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    border: none;
-    width: 100%; 
-    height: auto;
-}
 
-
-.grupo {    
-    margin-bottom: 15px; 
-}
-
-textarea {
-    resize: vertical;
-    min-height: 80px; 
-    font-family: inherit;
-}
-
-.map-container {
-    /*
-    border-radius: 12px;
-    overflow: hidden;
-    */
-    border-radius: 20px;       
-    overflow: hidden;
-    max-width: 1000px;         
-    margin: 0 auto;     
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-   
-}
-
-
-.formulario input,
-.formulario textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    font-size: 15px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.formulario input:focus,
-.formulario textarea:focus {
-    border-color: #4f46e5; 
-    box-shadow: 0 0 6px rgba(79, 70, 229, 0.4);
-}
-
-
-/* --- Tarjeta de login y registro --- */
-.login-card {
-    background: #ffffff;
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    width: 100%;
-    max-width: 420px;
-    margin: auto;
-}
-
-.login-card .form-control {
-    border-radius: 12px;
-    padding: 12px 15px 12px 40px;
-    border: 1px solid #ddd;
-    background: #f9fafb;
-    font-size: 15px;
-    transition: all 0.3s ease;
-}
-
-.login-card .form-control:focus {
-    border-color: #4f46e5;
-    box-shadow: 0 0 6px rgba(79, 70, 229, 0.4);
-}
-
-.input-icon {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    color: #999;
-}
-
-
-.position-relative .form-control {
-    padding-left: 40px; 
-}
-
-
-.contactanos  {
-  padding-left: 120px;
-  padding-right: 120px;
-}
-.formulario .card,
-.info .card {
-  margin-bottom: 0;  
-}
-
-.info .card + .card {
-  margin-top: 15px;   
-}
-.submit-btn {
-    width: 100%;
-    background: linear-gradient(to right, #0ea5e9, #48cae4);
-    border: none;
-    padding: 15px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
+.botones a.btn.contactar:hover {
     color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
-    gap: 8px;
+    filter: brightness(0.85);
+}
+.sobre-nosotros {
+    margin-top: 50px;
+    padding-bottom: 20px;
+    background: linear-gradient(to right, #fefefe, #fdeef4);
 }
 
-.submit-btn:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.3);
-    transform: translateY(-2px);
-}
-.btn-emergencia {
-    background: red;
-    color: white !important;
-    font-weight: bold;
-    border-radius: 8px;
-    padding: 8px 16px;
-    border: none;
-    height: 40px;
+.sobre-nosotros .mision,
+.cabeza-nosotros {
+    background: linear-gradient(to right, #ddddf0, #f5f5f8);
 }
 
-.btn-emergencia:hover {
-    opacity: 0.9;
-    color: white;
+.sobre-nosotros .datos,
+.especialista {
+    background: linear-gradient(to right, #fefefe, #fdeef4);
 }
 
-.btn-emergencia img {
-    width: 18px;
-    height: 18px;
+.nosotros p {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.nosotros img {
+    height: 17px;
     margin-right: 6px;
 }
-.info .card {
-    color: #FF0000;
+
+.cabeza-nosotros p {
+    color: #6c757d;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
 }
+
+.nosotros {
+    margin-top: 60px;
+    background: linear-gradient(to right, #dde5fa, #eeeffd);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.mision {
+    padding-top: 28px;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.mision-texto {
+    padding-right: 20px;
+}
+
+.imagen img {
+    width: 510px;
+    height: 380px;
+    border-radius: 20px;
+}
+
+.mision-texto ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mision-texto ul li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 10px;
+}
+
+.mision-texto ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-size: 20px;
+}
+
+.mision-texto ul li:nth-child(1)::before {
+    color: #F72585;
+}
+
+.mision-texto ul li:nth-child(2)::before {
+    color: #3A86FF;
+}
+
+.mision-texto ul li:nth-child(3)::before {
+    color: #FFBE0B;
+}
+
+.mision-texto ul li:nth-child(4)::before {
+    color: #4CC9F0;
+}
+
+.mision .imagen {
+    height: 410px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #fadddd, #fdeef4);
+}
+/* ====== SECCIÓN DATOS ====== */
+.datos {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background: linear-gradient(to right, #fff7f9, #fdf2f8);
+  text-align: center;
+}
+
+.datos .row {
+  justify-content: center;
+  gap: 20px 0;
+}
+
+/* ====== CARD ====== */
+.datos .card {
+  width: 10px; /* un poco más ancha para evitar texto en dos líneas */
+  height: 200px;
+  border-radius: 20px;
+  border: none;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.datos .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ====== ICONO CON FONDO ====== */
+.datos .card .icono {
+  width: 50px;
+  height: 50px;
+  background: #f8f8f8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.datos .card .icono img {
+  width: 25px;
+  height: 25px;
+}
+
+/* ====== TEXTO ====== */
+.datos .card h5 {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.datos .card p {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0;
+}
+
