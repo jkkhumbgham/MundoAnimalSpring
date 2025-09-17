@@ -1,1 +1,30 @@
 <p>mascota-tabla works!</p>
+<h1>Clínica Veterinaria Mundo Animal</h1>
+<h2>Lista de Mascotas</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Especie</th>
+      <th>Raza</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mascota of mascotas">
+      <td>{{ mascota.id }}</td>
+      <td>{{ mascota.nombre }}</td>
+      <td>{{ mascota.especie }}</td>
+      <td>{{ mascota.raza }}</td>
+      <td>
+        <button class="btn btn-warning btn-sm" [routerLink]="['/mascotas', mascota.id]">Editar</button>
+        <button class="btn btn-danger btn-sm" (click)="onDelete(mascota.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" [routerLink]="['/mascotas/new']">Agregar Mascota</button>
+
+<app-mascota-tabla></app-mascota-tabla>
