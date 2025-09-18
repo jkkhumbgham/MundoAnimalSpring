@@ -1,0 +1,152 @@
+<main class=" principal">
+  <div class="container my-4">
+
+    <div class="mb-3">
+      <!-- Espacio superior opcional -->
+    </div>
+
+    <div class="profile-card">
+      <div class="row align-items-center">
+        <div class="col-md-2 text-center">
+          <img [src]="mascota.foto" 
+               [alt]="'Imagen de ' + mascota.nombre" 
+               class="avatar">
+        </div>
+        <div class="col-md-8">
+          <h3 class="mb-1">{{ mascota.nombre }}</h3>
+          <p class="mb-1 text-muted">
+            Raza: {{ mascota.raza }} • {{ edadMascota() }} años
+          </p>
+          <p class="mb-0">
+            <strong>Propietario:</strong> {{ mascota.dueno?.nombre }}
+          </p>
+        </div>
+        <div class="col-md-2 text-md-end">
+          <span class="badge-health">{{ mascota.estado }}</span>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row text-center">
+        <div class="col">
+          <p class="mb-1 text-muted">Especie</p>
+          <h6>{{ mascota.especie }}</h6>
+        </div>
+        <div class="col">
+          <p class="mb-1 text-muted">Peso</p>
+          <h6>{{ mascota.peso }} kg</h6>
+        </div>
+        <div class="col">
+          <p class="mb-1 text-muted">Género</p>
+          <h6>{{ mascota.sexo }}</h6>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav Tabs -->
+    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">
+          Información
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="historial-tab" data-bs-toggle="tab" data-bs-target="#historial" type="button" role="tab">
+          Historial Médico
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contacto-tab" data-bs-toggle="tab" data-bs-target="#contacto" type="button" role="tab">
+          Contacto
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="citas-tab" data-bs-toggle="tab" data-bs-target="#citas" type="button" role="tab">
+          Citas
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- Información -->
+      <div class="tab-pane fade show active" id="info" role="tabpanel">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="profile-card">
+              <h5>Información Básica</h5>
+              <p>Nombre: {{ mascota.nombre }}</p>
+              <p>Raza: {{ mascota.raza }}</p>
+              <p>Peso: {{ mascota.peso }} kg</p>
+              <p>Fecha de Nacimiento: {{ mascota.fechaNacimiento | date:'dd/MM/yyyy' }}</p>
+              <p>Microchip: {{ mascota.microchipID }}</p>
+              <p>Estado de Salud: {{ mascota.estado }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="profile-card">
+              <h5>Información Médica</h5>
+              <p><strong>Vacunas:</strong>
+                <!-- Recorremos lista de vacunas -->
+                <span *ngFor="let vacuna of mascota.vacunas" class="badge bg-light text-dark">
+                  {{ vacuna }}
+                </span>
+              </p>
+              <p><strong>Alergias:</strong>
+                <span *ngFor="let alergia of mascota.alergias" class="badge bg-light text-dark">
+                  {{ alergia }}
+                </span>
+              </p>
+              <p><strong>Medicamentos Actuales:</strong> 
+                <!--
+                <span *ngFor="let medicamento of mascota.medicamentos" class="badge bg-light text-dark">
+                  {{ medicamento }}
+                </span>-->
+              </p>
+              <p><strong>Observaciones:</strong></p>
+              <p>{{ mascota.observaciones }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Historial -->
+      <div class="tab-pane fade" id="historial" role="tabpanel">
+        <div class="profile-card">
+          <h5>Historial Médico</h5>
+          <ul>
+            <li>consulta 1</li>
+            <li>consulta 2</li>
+            <li>consulta 3</li>
+            <!--<li *ngFor="let consulta of mascota.consultas">{{ consulta }}</li>-->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contacto -->
+      <div class="tab-pane fade" id="contacto" role="tabpanel">
+        <div class="profile-card">
+          <h5>Información del Propietario</h5>
+          <p><strong>Nombre:</strong> <!--{{ mascota.dueno?.nombre }}--></p>
+          <p><strong>Teléfono:</strong><!-- {{ mascota.dueno?.telefono }}--></p>
+          <p><strong>Email:</strong><!-- {{ mascota.dueno?.email }}--></p>
+        </div>
+      </div>
+
+      <!-- Citas -->
+      <div class="tab-pane fade" id="citas" role="tabpanel">
+        <div class="profile-card">
+          <h5>Citas Programadas</h5>
+          <ul>
+            <li>Cita 1</li>
+            <li>Cita 2</li>
+            <li>Cita 3</li>
+            <!--<li *ngFor="let cita of mascota.citas">{{ cita }}</li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>

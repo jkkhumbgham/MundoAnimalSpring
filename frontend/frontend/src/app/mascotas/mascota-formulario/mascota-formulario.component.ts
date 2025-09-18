@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { MascotasService } from '../mascotas.service';
-import { Mascota } from '../mascota';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MascotasService } from '../../service/mascota/mascota-service';
+import { Mascota } from '../../model/mascota/mascota';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mascota-formulario',
   standalone: false,
   templateUrl: './mascota-formulario.component.html',
-  styleUrl: './mascota-formulario.component.css'
+  styleUrl: './mascota-formulario.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 
 export class MascotaFormularioComponent implements OnInit { 
-  mascota: Mascota = {};
+  mascota: Mascota = new Mascota;
 
   constructor (private mascotasService: MascotasService,
                private route: ActivatedRoute,
@@ -44,4 +45,6 @@ export class MascotaFormularioComponent implements OnInit {
       });
     }
   }
+  
+
 }

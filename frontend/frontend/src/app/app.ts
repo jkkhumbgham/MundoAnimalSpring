@@ -8,5 +8,6 @@ import { Component, signal } from '@angular/core';
 })
 export class App {
   protected readonly title = signal('frontend');
-  userType="veterinario"
+    rol: string = '';
+    ngOnInit(): void {this.rol = localStorage.getItem('rol') ?? '';}
 }

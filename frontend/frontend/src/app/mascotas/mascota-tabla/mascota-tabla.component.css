@@ -1,0 +1,33 @@
+.mover {
+    padding-top: 170px!important;
+}
+.principal {
+    margin-top: 50px;
+    background: linear-gradient(to right, #faefef, #f8e8ee);
+    padding: 60px 0;
+}
+.no-hover:hover {
+    transform: none;
+}
+.resaltar {
+    color: #F72585;
+}
+
+.resaltado {
+    color: #0ea5e9;
+}
+.btn-tabla {
+    height: 30px;
+    width: 44px;
+}
+
+.btn-tabla img {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+}
+.especial{
+    margin-right: 7px ;
+}

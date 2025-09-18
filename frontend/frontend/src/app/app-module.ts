@@ -11,6 +11,7 @@ import { Login } from './login/login/login';
 import { FormsModule } from '@angular/forms';
 import { MascotaTablaComponent } from './mascotas/mascota-tabla/mascota-tabla.component';
 import { MascotaFormularioComponent } from './mascotas/mascota-formulario/mascota-formulario.component';
+import { MascotaDetalle } from './mascotas/mascota-detalle/mascota-detalle/mascota-detalle';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MascotaFormularioComponent } from './mascotas/mascota-formulario/mascot
     PantallaEntrada,
     Login,
     MascotaTablaComponent,
-    MascotaFormularioComponent
+    MascotaFormularioComponent,
+    MascotaDetalle
   ],
   imports: [
     BrowserModule,

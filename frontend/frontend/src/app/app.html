@@ -1,1 +1,8 @@
-<app-pantalla-entrada></app-pantalla-entrada>
+<ng-container *ngIf="rol === 'veterinario'">
+  <app-header-veterinario></app-header-veterinario>
+</ng-container>
+
+<ng-container *ngIf="rol !== 'veterinario'">
+  <app-header-usuario></app-header-usuario>
+</ng-container>
+<router-outlet></router-outlet>

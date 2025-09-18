@@ -1,30 +1,105 @@
-<p>mascota-tabla works!</p>
-<h1>Clínica Veterinaria Mundo Animal</h1>
-<h2>Lista de Mascotas</h2>
+<main class=" principal d-flex flex-column align-items-center p-4">
+  
+  <!-- Mensaje para dueños -->
+  <div class="mover" *ngIf="rol === 'dueno'">
+    <h6>
+      Parece que estás en el lugar equivocado, necesitas permisos para ver esta página
+    </h6>
+  </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Especie</th>
-      <th>Raza</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let mascota of mascotas">
-      <td>{{ mascota.id }}</td>
-      <td>{{ mascota.nombre }}</td>
-      <td>{{ mascota.especie }}</td>
-      <td>{{ mascota.raza }}</td>
-      <td>
-        <button class="btn btn-warning btn-sm" [routerLink]="['/mascotas', mascota.id]">Editar</button>
-        <button class="btn btn-danger btn-sm" (click)="onDelete(mascota.id)">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<button class="btn btn-primary" [routerLink]="['/mascotas/new']">Agregar Mascota</button>
+  <!-- Card principal para veterinario *ngIf="rol === 'veterinario'" -->
+  <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;" >
+    <div class="card-body">
+      <div class="cabeza d-flex align-items-center justify-content-between mb-4">
+        <div>
+          <h4 class="mb-0">
+            <span class="fw-bold">Base de Datos de</span>
+            <span class="resaltar">Pacientes</span>
+          </h4>
+          <h6>
+            mostrando 5 de {{ mascotas.length }} pacientes mostrados
+          </h6>
+        </div>
+      </div>
 
-<app-mascota-tabla></app-mascota-tabla>
+      <table class="table align-middle table-hover text-center">
+        <thead class="table-light">
+          <tr>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Especie</th>
+            <th>Raza</th>
+            <th>Peso</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mascota of mascotas" style="cursor: pointer;">
+            
+            <!-- Foto -->
+            <td class="align-middle">
+              <img 
+                [src]="mascota.foto"
+                [alt]="'Imagen de ' + mascota.nombre"
+                class="rounded-circle"
+                width="50"
+                height="50"
+              />
+            </td>
+
+            <!-- Datos de la mascota -->
+            <td class="align-middle">{{ mascota.nombre }}</td>
+            <td class="align-middle">{{ mascota.especie }}</td>
+            <td class="align-middle">{{ mascota.raza }}</td>
+            <td class="align-middle">{{ mascota.peso }} kg</td>
+
+            <!-- Estado -->
+            <td class="align-middle">
+              <span class="badge rounded-pill bg-success" *ngIf="mascota.estado === 'Saludable'">
+                {{ mascota.estado }}
+              </span>
+              <span class="badge rounded-pill bg-warning text-dark" *ngIf="mascota.estado === 'En tratamiento'">
+                {{ mascota.estado }}
+              </span>
+              <span class="badge rounded-pill bg-info text-dark" *ngIf="mascota.estado === 'Recuperándose'">
+                {{ mascota.estado }}
+              </span>
+              <span class="badge rounded-pill bg-primary" *ngIf="mascota.estado === 'Control rutinario'">
+                {{ mascota.estado }}
+              </span>
+              <span class="badge rounded-pill bg-danger text-dark" *ngIf="mascota.estado === 'inactivo'">
+                {{ mascota.estado }}
+              </span>
+            </td>
+
+            <!-- Botones -->
+            <td class="align-middle">
+              <div class="d-flex contenedor-botones">
+                <button class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
+                        [routerLink]="['/mascota', mascota.id]">
+                  <img src="assets/images/ojo.png" alt="Icono Ojo">
+                </button>
+                <button class="btn-tabla especial btn btn-sm btn-outline-warning d-flex align-items-center justify-content-center"
+                        [routerLink]="['/mascotas/editar', mascota.id]">
+                  <img src="assets/images/editar.png" alt="Icono Editar">
+                </button>
+                <button class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                        (click)="onDelete(mascota.id)">
+                  <img src="assets/images/borrar.png" alt="Icono Borrar">
+                </button>
+              </div>
+            </td>
+
+          </tr>   
+        </tbody>
+      </table>
+
+      <button class="btn btn-primary" [routerLink]="['/mascotas/new']">Agregar Mascota</button>
+
+    </div>
+  </div>
+
+</main>
+
+<app-footer-todo></app-footer-todo>
