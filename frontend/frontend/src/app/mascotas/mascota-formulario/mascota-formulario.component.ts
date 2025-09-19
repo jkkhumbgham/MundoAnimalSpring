@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class MascotaFormularioComponent implements OnInit { 
-  mascota: Mascota = new Mascota;
+  mascota: Mascota = Mascota.crearVacia();
 
   constructor (private mascotasService: MascotasService,
                private route: ActivatedRoute,

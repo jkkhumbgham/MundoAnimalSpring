@@ -62,7 +62,7 @@
                         <div *ngFor="let vacuna of mascota?.vacunas; let i = index" class="d-flex mb-2">
                         <input type="text"
                                 [(ngModel)]="mascota.vacunas[i]"
-                                name="'vacuna' + i"  
+                                name="vacuna{{i}}"  
                                 class="form-control me-2"
                                 placeholder="Ej: Rabia" />
                         <button type="button" class="btn btn-danger btn-sm" (click)="eliminarVacuna(i)">X</button>
@@ -77,7 +77,7 @@
                         <div *ngFor="let alergia of mascota?.alergias; let i = index" class="d-flex mb-2">
                         <input type="text"
                                 [(ngModel)]="mascota.alergias[i]"
-                                name="alergia{{ i }}"
+                                name="alergia{{i}}"
                                 class="form-control me-2" />
                         <button type="button" class="btn btn-danger btn-sm" (click)="eliminarAlergia(i)">X</button>
                         </div>

@@ -1115,7 +1115,7 @@ export class MascotasService {
 
    softDeleteMascota(mascota: Mascota): Observable<Mascota> {
     if (mascota.estado!.toLowerCase() === 'inactivo') {
-      mascota.estado = mascota.estadoO !== undefined ? String(mascota.estadoO) : undefined;
+      mascota.estado = mascota.estadoO !== "" ? String(mascota.estadoO) : "";
     } else {
       mascota.estadoO = mascota.estado;
       mascota.estado = 'inactivo';
