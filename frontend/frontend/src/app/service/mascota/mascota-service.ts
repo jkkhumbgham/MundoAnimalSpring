@@ -1113,6 +1113,16 @@ export class MascotasService {
     return of(undefined);
   }
 
+   softDeleteMascota(mascota: Mascota): Observable<Mascota> {
+    if (mascota.estado!.toLowerCase() === 'inactivo') {
+      mascota.estado = mascota.estadoO !== undefined ? String(mascota.estadoO) : undefined;
+    } else {
+      mascota.estadoO = mascota.estado;
+      mascota.estado = 'inactivo';
+    }
+    return this.updateMascota(mascota);
+  }
+
   updateMascota(mascota: Mascota): Observable<Mascota> {
     const index = this.mockMascotas.findIndex(m => m.id === mascota.id);
     if (index !== -1) {
@@ -1125,9 +1135,22 @@ export class MascotasService {
     this.mascotaAgregadaSource.next();
   }
 
-  getEdad(f: Date):number{
-        const hoy = new Date();
-        let edad = hoy.getFullYear() - f.getFullYear();
-        return edad;
-    }
+  getEdad(fechaNacimiento: Date | string): number {
+  if (!fechaNacimiento) return 0;
+
+  const f = (fechaNacimiento instanceof Date)
+    ? fechaNacimiento
+    : new Date(fechaNacimiento);
+
+  const hoy = new Date();
+  let edad = hoy.getFullYear() - f.getFullYear();
+  const mes = hoy.getMonth() - f.getMonth();
+
+  if (mes < 0 || (mes === 0 && hoy.getDate() < f.getDate())) {
+    edad--;
+  }
+
+  return edad;
+}
+
 }

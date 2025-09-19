@@ -23,6 +23,7 @@ export class MascotaDetalle implements OnInit {
       this.mascotasService.getMascotaById(+id).subscribe(mascota => {
         if (mascota) {
           this.mascota = mascota;
+          console.log('Mascota cargada en detalle:', mascota); // <---- DEBUG
         } else {
           this.router.navigate(['/mascotas']);
         }

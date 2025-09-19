@@ -40,7 +40,7 @@
                         <select [(ngModel)]="mascota.estado" id="estado" name="estado" class="completo">
                             <option value="Saludable">Saludable</option>
                             <option value="En tratamiento">En tratamiento</option>
-                            <option value="Recuperandose">Recuperándose</option>
+                            <option value="Recuperándose">Recuperándose</option>
                             <option value="Control rutinario">Control rutinario</option>
                         </select>
                     </div>
@@ -56,16 +56,34 @@
                         <input type="text" [(ngModel)]="mascota.microchipID" id="chip" name="chip" placeholder="Pon el ID del microchip" class="completo">
                     </div>
                 </div>
+                    <div class="row">
+                    <div class="col-md-12 grupo">
+                        <label>Vacunas</label>
+                        <div *ngFor="let vacuna of mascota?.vacunas; let i = index" class="d-flex mb-2">
+                        <input type="text"
+                                [(ngModel)]="mascota.vacunas[i]"
+                                name="'vacuna' + i"  
+                                class="form-control me-2"
+                                placeholder="Ej: Rabia" />
+                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminarVacuna(i)">X</button>
+                        </div>
+                        <button type="button" class="btn btn-success btn-sm mt-2" (click)="agregarVacuna()">Agregar vacuna</button>
+                    </div>
+                    </div>
 
-                <div class="row">
-                    <div class="col-md-6 grupo">
-                        <label for="vacunas">Vacunas:</label>
-                        <input type="text" [(ngModel)]="mascota.vacunas" id="vacunas" name="vacunas" placeholder="Ej: Rabia, Moquillo, Parvovirus" class="completo"/>
+                    <div class="row">
+                    <div class="col-md-12 grupo">
+                        <label>Alergias</label>
+                        <div *ngFor="let alergia of mascota?.alergias; let i = index" class="d-flex mb-2">
+                        <input type="text"
+                                [(ngModel)]="mascota.alergias[i]"
+                                name="alergia{{ i }}"
+                                class="form-control me-2" />
+                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminarAlergia(i)">X</button>
+                        </div>
+                        <button type="button" class="btn btn-success btn-sm mt-2" (click)="agregarAlergia()">Agregar alergia</button>
                     </div>
-                    <div class="col-md-6 grupo">
-                        <label for="alergias">Alergias:</label>
-                        <input type="text" [(ngModel)]="mascota.alergias" id="alergias" name="alergias" placeholder="Ej: Polvo, Polen, Chocolate" class="completo"/>
-                    </div>
+
                 </div>
                 
                 <div class="row">

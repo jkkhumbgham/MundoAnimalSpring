@@ -20,17 +20,25 @@ export class MascotaFormularioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.mascotasService.getMascotaById(+id).subscribe(mascota => {
-        if (mascota) {
-          this.mascota = mascota;
-        } else {
-          this.router.navigate(['/mascotas']);
+  const id = this.route.snapshot.paramMap.get('id');
+  if (id) {
+    this.mascotasService.getMascotaById(+id).subscribe(mascota => {
+      if (mascota) {
+        if (typeof mascota.fechaNacimiento === 'string') {
+          mascota.fechaNacimiento = new Date(mascota.fechaNacimiento);
         }
-      });
-    }
+        if (typeof mascota.ultimavisita === 'string') {
+          mascota.ultimavisita = new Date(mascota.ultimavisita);
+        }
+
+        this.mascota = mascota;
+      } else {
+        this.router.navigate(['/mascotas']);
+      }
+    });
   }
+}
+
 
   guardarMascota(): void {
     if (this.mascota.id) {
@@ -45,6 +53,21 @@ export class MascotaFormularioComponent implements OnInit {
       });
     }
   }
-  
+  agregarVacuna() {
+    this.mascota.vacunas!.push('');
+  }
+
+  eliminarVacuna(index: number) {
+    this.mascota.vacunas!.splice(index, 1);
+  }
+
+  agregarAlergia() {
+    this.mascota.alergias!.push('');
+  }
+
+  eliminarAlergia(index: number) {
+    this.mascota.alergias!.splice(index, 1);
+  }
+
 
 }

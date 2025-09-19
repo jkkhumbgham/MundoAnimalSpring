@@ -1,8 +1,8 @@
 export class Mascota {
     id?: number;
     dueno?: any;
-    vacunas?: string[];
-    alergias?: string[];
+    vacunas: string[] = [];
+    alergias: string[]=[];
     observaciones?: string;
     foto?: string;
     nombre?: string;
@@ -14,6 +14,6 @@ export class Mascota {
     fechaNacimiento?: Date;
     peso?: number;
     microchipID?: number;
-
+    estadoO?: String = "";
     
 }

@@ -32,7 +32,13 @@ export class MascotaTablaComponent implements OnInit {
         }
       );
   }
-
+  onSoftDelete(mascota: Mascota): void {
+    if(mascota !== undefined){
+  this.mascotasService.softDeleteMascota(mascota).subscribe(() => {
+        this.getAllMascotas();
+  });
+}
+}
   onDelete(id: number | undefined): void {
     if (id !== undefined) {
       this.mascotasService.deleteMascota(id).subscribe(() => {
