@@ -9,6 +9,10 @@
 .no-hover:hover {
     transform: none;
 }
+.no-hover{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 .resaltar {
     color: #F72585;
 }
