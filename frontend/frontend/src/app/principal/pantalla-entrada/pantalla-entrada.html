@@ -60,77 +60,26 @@
   
   <div class="row g-4 justify-content-center">
     <div class="col-lg-4 col-md-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <div class="iconos icon-pink d-flex align-items-center justify-content-center">
-            <img src="assets/images/estetoscopio (1).png" alt="Icono">
-          </div>
-          <h6 class="card-title mb-2">Consultas Generales</h6>
-          <p class="card-text">Exámenes completos y diagnósticos para mantener la salud de tu mascota al día.</p>
-        </div>
-      </div>
+      <app-service-cards img="assets/images/estetoscopio (1).png" titulo="Consultas Generales" texto="Exámenes completos y diagnósticos para mantener la salud de tu mascota al día."></app-service-cards>
+    </div>
+    <div class="col-lg-4 col-md-5">
+      <app-service-cards img="assets/images/bisturi.png" titulo="Cirugías" texto="Procedimientos quirúrgicos especializados con tecnología moderna y cuidado post-operatorio."></app-service-cards>
+    </div>
+    <div class="col-lg-4 col-md-5">
+      <app-service-cards img="assets/images/me-gusta.png" titulo="Emergencias 24/7" texto="Atención de urgencias las 24 horas para cuando tu mascota más lo necesite."></app-service-cards>
+    </div>
+    <div class="col-lg-4 col-md-5">
+      <app-service-cards img="assets/images/escudo-con-simbolo-de-hospital.png" titulo="Vacunación" texto="Programas completos de vacunación para proteger a tu mascota de enfermedades."></app-service-cards>
     </div>
 
     <div class="col-lg-4 col-md-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <div class="iconos icon-blue d-flex align-items-center justify-content-center">
-            <img src="assets/images/bisturi.png" alt="Icono">
-          </div>
-          <h6 class="card-title mb-2">Cirugías</h6>
-          <p class="card-text">Procedimientos quirúrgicos especializados con tecnología moderna y cuidado post-operatorio.</p>
-        </div>
-      </div>
+      <app-service-cards img="assets/images/grupo.png" titulo="Cuidado Especializado" texto="Tratamientos especializados para diferentes especies y condiciones médicas."></app-service-cards>
     </div>
-
     <div class="col-lg-4 col-md-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <div class="iconos icon-pink d-flex align-items-center justify-content-center">
-            <img src="assets/images/me-gusta.png" alt="Icono">
-          </div>
-          <h6 class="card-title mb-2">Emergencias 24/7</h6>
-          <p class="card-text">Atención de urgencias las 24 horas para cuando tu mascota más lo necesite.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-md-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <div class="iconos icon-green d-flex align-items-center justify-content-center">
-            <img src="assets/images/escudo-con-simbolo-de-hospital.png" alt="Icono">
-          </div>
-          <h6 class="card-title mb-2">Vacunación</h6>
-          <p class="card-text">Programas completos de vacunación para proteger a tu mascota de enfermedades.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-md-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <div class="iconos icon-purple d-flex align-items-center justify-content-center">
-            <img src="assets/images/grupo.png" alt="Icono">
-          </div>
-          <h6 class="card-title mb-2">Cuidado Especializado</h6>
-          <p class="card-text">Tratamientos especializados para diferentes especies y condiciones médicas.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-md-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <div class="iconos icon-blue d-flex align-items-center justify-content-center">
-            <img src="assets/images/reloj.png" alt="Icono">
-          </div>
-          <h6 class="card-title mb-2">Chequeos Preventivos</h6>
-          <p class="card-text">Controles regulares para prevenir problemas de salud antes de que aparezcan.</p>
-        </div>
-      </div>
+      <app-service-cards img="assets/images/reloj.png" titulo="Chequeos Preventivos" texto="Controles regulares para prevenir problemas de salud antes de que aparezcan."></app-service-cards>
     </div>
   </div>
+
 
   <!-- Sección de consulta -->
   <div class="consultar texto-principal d-flex flex-column align-items-center">
@@ -232,41 +181,21 @@
 <div class="d-flex row w-100">
   <!-- Formulario -->
   <div class="formulario col-lg-6 d-flex">
-    <div class="card mitad">
-      <div class="card-body">
-        <h5 class="card-title ">Envíanos un mensaje</h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-          Completa el formulario y nos pondremos en contacto contigo lo antes posible.
-        </h6>
-        <form class="d-flex flex-column">
-          <div class="row">
-            <div class="col-md-6 grupo">
-              <label for="nombre">Tu nombre</label>
-              <input type="text" name="nombre" id="nombre" placeholder="Juan Perez">
-            </div>
-            <div class="col-md-6 grupo">
-              <label for="correo">Email</label>
-              <input type="email" name="correo" id="correo" placeholder="juan@gmail.com">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 grupo">
-              <label for="telefono">Teléfono</label>
-              <input type="text" name="telefono" id="telefono" placeholder="+57 300 123 4567">
-            </div>
-            <div class="col-md-6 grupo">
-              <label for="mascota">Nombre de tu mascota</label>
-              <input type="text" name="mascota" id="mascota" placeholder="Max">
-            </div>
-          </div>
-          <div class="grupo completo">
-            <label for="comentarios">Mensaje</label>
-            <textarea name="comentarios" id="comentarios" rows="3" placeholder="Cuéntanos cómo podemos ayudar a tu mascota..."></textarea>
-          </div>
-          <button type="submit" class="submit-btn">Enviar Mensaje</button>
-        </form>
-      </div>
-    </div>
+    <app-forms-card 
+      titulo="Consulta con un Especialista"
+      texto="Rellena el formulario y uno de nuestros veterinarios se pondrá en contacto contigo lo antes posible."
+      primerLabel="Tu Nombre"
+      primerPlaceholder="Juan Pérez"
+      segundoLabel="Email"
+      segundoPlaceholder="juan@gmail.com"
+      tercerLabel="Teléfono"
+      tercerPlaceholder="+57 300 123 4567"
+      cuartoLabel="Nombre de tu mascota"
+      cuartoPlaceholder="Max"
+      quintoLabel="Mensaje"
+      quintoPlaceholder="Cuentanos como podemos ayudar a tu mascota"
+      botonTexto="Enviar Mensaje" 
+    ></app-forms-card>
   </div>
 
   <!-- Emergencia + Mapa -->

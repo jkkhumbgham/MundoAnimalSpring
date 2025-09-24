@@ -256,7 +256,15 @@ public class DatabaseInit implements ApplicationRunner {
         }
         
         veterinarioRepository.save(new Veterinario("Alberto","veterinario@gmail.com","1234",1,"Ortopedia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
-    
+        veterinarioRepository.save(new Veterinario("Beatriz","vet@gmail.com","1234",2,"Cardiologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
+        veterinarioRepository.save(new Veterinario("Carlos","vete@gmail.com","1234",3,"Dermatologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
+        veterinarioRepository.save(new Veterinario("Diana","veterinaria@gmail.com","1234",4,"Pediatria","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
+        veterinarioRepository.save(new Veterinario("Elena","vett@gmail.com","1234",5,"Traumatologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
+        veterinarioRepository.save(new Veterinario("Fernando","veter@gmail.com","1234",6,"Neurologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
+        veterinarioRepository.save(new Veterinario("Gabriela","veteri@gmail.com","1234",7,"Oftalmologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
+        veterinarioRepository.save(new Veterinario("Hector","veterin@gmail.com","1234",8,"Urologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
+        veterinarioRepository.save(new Veterinario("Isabel","veterina@gmail.com","1234",9,"Ginecologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
+        veterinarioRepository.save(new Veterinario("Javier","veterinar@gmail.com","1234",10,"Oncologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
     
     }
     

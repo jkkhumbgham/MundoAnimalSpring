@@ -1,0 +1,37 @@
+
+    <div class="card mitad">
+      <div class="card-body">
+        <h5 class="card-title ">{{titulo}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          {{texto}}
+        </h6>
+        <form class="d-flex flex-column">
+          <div class="row">
+            <div class="col-md-6 grupo">
+              <label for="nombre">{{primerLabel}}</label>
+              <input type="text" name="nombre" id="nombre" placeholder="{{primerPlaceholder}}">
+            </div>
+            <div class="col-md-6 grupo">
+              <label for="correo">{{segundoLabel}}</label>
+              <input type="email" name="correo" id="correo" placeholder="{{segundoPlaceholder}}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 grupo">
+              <label for="telefono">{{tercerLabel}}</label>
+              <input type="text" name="telefono" id="telefono" placeholder="{{tercerPlaceholder}}">
+            </div>
+            <div class="col-md-6 grupo">
+              <label for="mascota">{{cuartoLabel}}</label>
+              <input type="text" name="mascota" id="mascota" placeholder="{{cuartoPlaceholder}}">
+            </div>
+          </div>
+          <div class="grupo completo">
+            <label for="comentarios">{{quintoLabel}}</label>
+            <textarea name="comentarios" id="comentarios" rows="3" placeholder="{{quintoPlaceholder}}"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">{{botonTexto}}</button>
+        </form>
+      </div>
+    </div>
+

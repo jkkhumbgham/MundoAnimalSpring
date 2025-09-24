@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { MascotaTablaComponent } from './mascotas/mascota-tabla/mascota-tabla.component';
 import { MascotaFormularioComponent } from './mascotas/mascota-formulario/mascota-formulario.component';
 import { MascotaDetalle } from './mascotas/mascota-detalle/mascota-detalle/mascota-detalle';
+import { ServiceCards } from './utils/cards/service-cards/service-cards';
+import { FormsCard } from './utils/cards/forms-card/forms-card';
+import { InfoCards } from './utils/cards/info-cards/info-cards';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { MascotaDetalle } from './mascotas/mascota-detalle/mascota-detalle/masco
     Login,
     MascotaTablaComponent,
     MascotaFormularioComponent,
-    MascotaDetalle
+    MascotaDetalle,
+    ServiceCards,
+    FormsCard,
+    InfoCards
   ],
   imports: [
     BrowserModule,

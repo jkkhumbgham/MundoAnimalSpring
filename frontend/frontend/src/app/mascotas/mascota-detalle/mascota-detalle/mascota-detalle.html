@@ -73,40 +73,38 @@
       <div class="tab-pane fade show active" id="info" role="tabpanel">
         <div class="row">
           <div class="col-md-6">
-            <div class="profile-card">
-              <h5>Información Básica</h5>
-              <p>Nombre: {{ mascota.nombre }}</p>
-              <p>Raza: {{ mascota.raza }}</p>
-              <p>Peso: {{ mascota.peso }} kg</p>
-              <p>Fecha de Nacimiento: {{ mascota.fechaNacimiento | date:'dd/MM/yyyy' }}</p>
-              <p>Microchip: {{ mascota.microchipID }}</p>
-              <p>Estado de Salud: {{ mascota.estado }}</p>
-            </div>
+           <app-info-cards
+              titulo="Información Básica"
+              primerSubtitulo="Nombre: "
+              segundoSubtitulo="Raza: "
+              tercerSubtitulo="Peso: "
+              cuartoSubtitulo="Fecha de Nacimiento: "
+              quintoSubtitulo="Microchip: "
+              sextoSubtitulo="Estado de Salud: "
+              [primerTexto]=" mascota.nombre"
+              [segundoTexto]=" mascota.raza"
+              [tercerTexto]=" mascota.peso + ' kg'"
+              [cuartoTexto]="' '+(mascota.fechaNacimiento | date:'dd/MM/yyyy')"
+              [quintoTexto]=" ' '+ mascota.microchipID"
+              [sextoTexto]=" mascota.estado">
+            </app-info-cards>
+
           </div>
 
           <div class="col-md-6">
-            <div class="profile-card">
-              <h5>Información Médica</h5>
-              <p><strong>Vacunas:</strong>
-                <!-- Recorremos lista de vacunas -->
-                <span *ngFor="let vacuna of mascota.vacunas" class="badge bg-light text-dark">
-                  {{ vacuna }}
-                </span>
-              </p>
-              <p><strong>Alergias:</strong>
-                <span *ngFor="let alergia of mascota.alergias" class="badge bg-light text-dark">
-                  {{ alergia }}
-                </span>
-              </p>
-              <p><strong>Medicamentos Actuales:</strong> 
-                <!--
-                <span *ngFor="let medicamento of mascota.medicamentos" class="badge bg-light text-dark">
-                  {{ medicamento }}
-                </span>-->
-              </p>
-              <p><strong>Observaciones:</strong></p>
-              <p>{{ mascota.observaciones }}</p>
-            </div>
+            <app-info-cards
+              titulo="Información Medica"
+              primerSubtitulo="Vacunas: "
+              segundoSubtitulo="Alergias: "
+              tercerSubtitulo="Medicamentos: "
+              cuartoSubtitulo="Observaciones: "
+              [primeraLista]="mascota.vacunas"
+              [segundaLista]="mascota.alergias"
+              [tercerTexto]="'Medicamentos'"
+              [cuartoTexto]="mascota.observaciones"
+            >
+            </app-info-cards>
+            
           </div>
         </div>
       </div>

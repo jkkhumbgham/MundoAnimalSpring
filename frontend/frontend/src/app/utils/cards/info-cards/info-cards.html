@@ -1,0 +1,26 @@
+<div class="profile-card">
+  <h5>{{ titulo }}</h5>
+
+  <p *ngIf="primeraLista?.length">
+    <strong>{{primerSubtitulo}}</strong>
+    <span *ngFor="let item of primeraLista" class="badge bg-light text-dark">
+      {{ item }}
+    </span>
+  </p>
+
+  <p *ngIf="segundaLista?.length">
+    <strong>{{segundoSubtitulo}}</strong>
+    <span *ngFor="let item of segundaLista" class="badge bg-light text-dark">
+      {{ item }}
+    </span>
+  </p>
+  <p *ngIf="primerTexto"><strong>{{ primerSubtitulo }}</strong> {{ primerTexto }}</p>
+  <p *ngIf="segundoTexto"><strong>{{ segundoSubtitulo }}</strong> {{ segundoTexto }}</p>
+  <p *ngIf="tercerTexto"><strong>{{ tercerSubtitulo }}</strong> {{ tercerTexto }}</p>
+  <p *ngIf="cuartoTexto"><strong>{{ cuartoSubtitulo }}</strong> {{ cuartoTexto }}</p>
+  <p *ngIf="quintoTexto"><strong>{{ quintoSubtitulo }}</strong> {{ quintoTexto }}</p>
+  <p *ngIf="sextoTexto"><strong>{{ sextoSubtitulo }}</strong> {{ sextoTexto }}</p>
+  
+</div>
+
+
