@@ -34,6 +34,11 @@ public class Tratamiento {
     )
     private List<Medicamento> medicamentos = new ArrayList<>();
 
+    public Tratamiento() {
+    }
+    public Tratamiento(String nombre) {
+        this.nombre = nombre;
+    }
     public List<Medicamento> getMedicamentos() {
         return medicamentos;
     }

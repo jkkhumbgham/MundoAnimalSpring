@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import com.example.demo.repositorio.RepositorioMascotas;
 import com.example.demo.repositorio.RepositorioUsuarios;
 import com.example.demo.repositorio.RepositorioVeterinarios;
+import com.example.demo.repositorio.RepositorioTratamiento;
+import com.example.demo.repositorio.RepositorioMedicamento;
 
 import jakarta.transaction.Transactional;
 @Controller
@@ -24,6 +26,12 @@ public class DatabaseInit implements ApplicationRunner {
 
     @Autowired
     RepositorioVeterinarios veterinarioRepository;
+
+    @Autowired
+    RepositorioTratamiento tratamientoRepository;
+
+    @Autowired
+    RepositorioMedicamento medicamentoRepository;
 
 
     @Override
@@ -266,6 +274,39 @@ public class DatabaseInit implements ApplicationRunner {
         veterinarioRepository.save(new Veterinario("Isabel","veterina@gmail.com","1234",9,"Ginecologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
         veterinarioRepository.save(new Veterinario("Javier","veterinar@gmail.com","1234",10,"Oncologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png"));
     
+        tratamientoRepository.save(new Tratamiento("Quimioterapia"));
+        tratamientoRepository.save(new Tratamiento("Fisioterapia"));
+        tratamientoRepository.save(new Tratamiento("Infeccion"));
+        tratamientoRepository.save(new Tratamiento("Vacunacion"));
+        tratamientoRepository.save(new Tratamiento("Desparasitacion"));
+        tratamientoRepository.save(new Tratamiento("Cuidado Oidos"));
+        tratamientoRepository.save(new Tratamiento("Cuidado dental"));
+        tratamientoRepository.save(new Tratamiento("Castracion"));
+        tratamientoRepository.save(new Tratamiento("Virus"));
+        tratamientoRepository.save(new Tratamiento("Cuidado Ojos"));
+
+        medicamentoRepository.save(new Medicamento("Doxorrubicina", 120000,70));
+        medicamentoRepository.save(new Medicamento("DM-Gel", 90000,60));
+        medicamentoRepository.save(new Medicamento("Amoxicilina", 150000,50));
+        medicamentoRepository.save(new Medicamento("Nytax", 84000,20));
+        medicamentoRepository.save(new Medicamento("Vacuna Antirabica", 60000,80));
+        medicamentoRepository.save(new Medicamento("Itraclonazol", 50000,200));
+        medicamentoRepository.save(new Medicamento("Clordent", 300000,30));
+        medicamentoRepository.save(new Medicamento("propofol", 250000,40));
+        medicamentoRepository.save(new Medicamento("Rimadyl", 100000,100));
+        medicamentoRepository.save(new Medicamento("Ciclosporina", 80000,150));
+
+        //Asociacion Veterinario Usuario
+        for(Long i=1L; i<=10; i++) {
+            Tratamiento tratamiento = tratamientoRepository.findById(i).get();
+            Veterinario veterinario = veterinarioRepository.findById(i).get();
+            Mascota mascota = mascotaRepository.findById(i).get();
+            Medicamento medicamento = medicamentoRepository.findById(i).get();
+            tratamiento.setMedicamentos(List.of(medicamento));
+            tratamiento.setMascota(mascota);
+            tratamiento.setVeterinario(veterinario);
+            tratamientoRepository.save(tratamiento);
+        }
     }
     
 }

@@ -18,6 +18,13 @@ public class Medicamento {
     private int unidades;
     @ManyToMany(mappedBy = "medicamentos")
     private List<Tratamiento> tratamientos = new ArrayList<>();
+
+    public Medicamento() {}
+    public Medicamento(String nombre, int precio, int unidades) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.unidades = unidades;
+    }
     
     public Long getId() {
         return id;
