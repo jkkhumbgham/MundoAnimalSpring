@@ -1,5 +1,6 @@
 package com.example.demo.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 //import java.util.concurrent.ThreadLocalRandom;
 
@@ -296,13 +297,13 @@ public class DatabaseInit implements ApplicationRunner {
         medicamentoRepository.save(new Medicamento("Rimadyl", 100000,100));
         medicamentoRepository.save(new Medicamento("Ciclosporina", 80000,150));
 
-        //Asociacion Veterinario Usuario
+        
         for(Long i=1L; i<=10; i++) {
             Tratamiento tratamiento = tratamientoRepository.findById(i).get();
             Veterinario veterinario = veterinarioRepository.findById(i).get();
             Mascota mascota = mascotaRepository.findById(i).get();
             Medicamento medicamento = medicamentoRepository.findById(i).get();
-            tratamiento.setMedicamentos(List.of(medicamento));
+            tratamiento.setMedicamentos(new ArrayList<>(List.of(medicamento)));
             tratamiento.setMascota(mascota);
             tratamiento.setVeterinario(veterinario);
             tratamientoRepository.save(tratamiento);
