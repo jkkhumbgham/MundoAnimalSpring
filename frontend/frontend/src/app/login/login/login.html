@@ -1,1 +1,132 @@
-<p>login works!</p>
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+
+  <div class="mb-3">
+    <h2 class="mt-3">Iniciar <span class="highlight">Sesión</span></h2>
+    <p class="text-muted">Accede a tu cuenta de Mundo Animal</p>
+  </div>
+
+  <div class="card" style="max-width: 420px;">
+    <div class="card-body">
+
+      <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button 
+            class="nav-link" 
+            [class.active]="activeTab === 'cliente'" 
+            (click)="setActiveTab('cliente')" 
+            type="button" 
+            role="tab"
+          >
+            Cliente
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button 
+            class="nav-link" 
+            [class.active]="activeTab === 'veterinario'" 
+            (click)="setActiveTab('veterinario')" 
+            type="button" 
+            role="tab"
+          >
+            Profesional
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="pills-tabContent">
+
+        <div class="tab-pane fade show" [class.active]="activeTab === 'cliente'" *ngIf="activeTab === 'cliente'" role="tabpanel">
+          <h5 class="mb-3">Bienvenido de vuelta</h5>
+          <p class="text-muted small">Ingresa tus credenciales para acceder a tu cuenta</p>
+
+          <form (ngSubmit)="login()">
+            <div class="mb-3">
+              <label for="email_cliente" class="form-label">Correo electrónico</label>
+              <div class="position-relative">
+                <i class="bi bi-envelope input-icon"></i>
+                <input
+                  type="email"
+                  id="email_cliente"
+                  class="form-control"
+                  [(ngModel)]="credenciales.email"
+                  name="email_cliente" 
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password_cliente" class="form-label">Contraseña</label>
+              <div class="position-relative">
+                <i class="bi bi-lock input-icon"></i>
+                <input
+                  type="password"
+                  id="password_cliente"
+                  class="form-control"
+                  [(ngModel)]="credenciales.password"
+                  name="password_cliente"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-login w-100">
+              <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+            </button>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" [class.active]="activeTab === 'veterinario'" *ngIf="activeTab === 'veterinario'" role="tabpanel">
+          <h5 class="mb-3">Bienvenido de vuelta</h5>
+          <p class="text-muted small">Ingresa tus credenciales para acceder a tu cuenta</p>
+
+          <form (ngSubmit)="login()">
+            <div class="mb-3">
+              <label for="email_pro" class="form-label">Correo electrónico</label>
+              <div class="position-relative">
+                <i class="bi bi-envelope input-icon"></i>
+                <input
+                  type="email"
+                  id="email_pro"
+                  class="form-control"
+                  [(ngModel)]="credenciales.email"
+                  name="email_profesional" 
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password_pro" class="form-label">Contraseña</label>
+              <div class="position-relative">
+                <i class="bi bi-lock input-icon"></i>
+                <input
+                  type="password"
+                  id="password_pro"
+                  class="form-control"
+                  [(ngModel)]="credenciales.password"
+                  name="password_profesional"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-login w-100">
+              <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div *ngIf="mensajeError" class="alert alert-danger mt-3" role="alert">
+        <i class="bi bi-exclamation-circle"></i>
+        {{ mensajeError }}
+      </div>
+
+      <p class="mt-3 mb-0 text-muted small">
+        ¿No tienes cuenta?
+        <span class="register-link">Regístrate aquí</span>
+      </p>
+    </div>
+  </div>
+</div>

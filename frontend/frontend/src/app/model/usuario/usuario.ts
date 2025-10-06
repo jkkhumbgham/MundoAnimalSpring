@@ -8,6 +8,7 @@ export class Usuario {
   email: string;
   contrasena: string;
   foto: string;
+  tipo: string;
   mascotas?: Mascota[];
 
   constructor(
@@ -17,6 +18,7 @@ export class Usuario {
     cedula: number,
     email: string,
     contrasena: string,
+    tipo: string,
     foto: string
   ) {
     this.id = id;
@@ -25,6 +27,7 @@ export class Usuario {
     this.cedula = cedula;
     this.email = email;
     this.contrasena = contrasena;
+    this.tipo = tipo;
     this.foto = foto;
   }
 }
