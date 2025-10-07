@@ -66,6 +66,12 @@
           Citas
         </button>
       </li>
+      <li class="nav-item" role="presentation">
+  <button class="nav-link" id="tratamientos-tab" data-bs-toggle="tab" data-bs-target="#tratamientos" type="button" role="tab">
+    Tratamientos
+  </button>
+</li>
+
     </ul>
 
     <div class="tab-content">
@@ -144,6 +150,79 @@
           </ul>
         </div>
       </div>
+      <!-- Tratamientos -->
+<div class="tab-pane fade" id="tratamientos" role="tabpanel" aria-labelledby="tratamientos-tab">
+  <div class="profile-card">
+    <h5 class="mb-3">Tratamientos</h5>
+
+    <!-- Formulario crear tratamiento -->
+    <form (ngSubmit)="crearTratamiento()" class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Nombre del tratamiento</label>
+        <input class="form-control" type="text" [(ngModel)]="nombreTrat" name="nombreTrat" required>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Medicamento</label>
+        <select class="form-select" [(ngModel)]="medicamentoId" name="medicamentoId" required>
+          <option [ngValue]="0" disabled>Seleccione…</option>
+          <option *ngFor="let m of medicamentos" [ngValue]="m.id">{{ m.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Veterinario</label>
+        <select class="form-select" [(ngModel)]="veterinarioId" name="veterinarioId" required>
+          <option [ngValue]="0" disabled>Seleccione…</option>
+          <option *ngFor="let v of veterinarios" [ngValue]="v.id">{{ v.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="col-12">
+        <div *ngIf="errorMsg" class="text-danger">{{ errorMsg }}</div>
+        <button type="submit" class="btn btn-primary" [disabled]="guardando">Guardar tratamiento</button>
+      </div>
+    </form>
+
+    <hr class="my-4">
+
+    <!-- Tabla de tratamientos -->
+    <div class="table-responsive" *ngIf="tratamientos.length; else sinTratamientos">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Veterinario</th>
+            <th>Medicamentos</th>
+            <th style="width: 1%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of tratamientos">
+            <td>{{ t.id }}</td>
+            <td>{{ t.nombre }}</td>
+            <td>{{ t.veterinario?.nombre || '-' }}</td>
+            <td>
+              <ng-container *ngIf="t.medicamentos?.length; else sinMed">
+                {{ t.medicamentos!.map(m => m.nombre).join(', ') }}
+              </ng-container>
+              <ng-template #sinMed>-</ng-template>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-outline-danger" (click)="eliminarTratamiento(t.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #sinTratamientos>
+      <p class="text-muted mb-0">No hay tratamientos aún.</p>
+    </ng-template>
+  </div>
+</div>
+
     </div>
 
   </div>
