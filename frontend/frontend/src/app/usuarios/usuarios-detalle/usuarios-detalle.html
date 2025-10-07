@@ -1,0 +1,96 @@
+<main class="mover principal d-flex flex-column align-items-center p-4">
+  <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;">
+    <div class="card-body">
+        <div class="row align-items-center">
+        <div class="col-md-2 text-center">
+          <img [src]="usuario.foto" 
+               [alt]="'Imagen de ' + usuario.nombre" 
+               class="avatar">
+        </div>
+        <div class="col-md-8">
+          <h3 class="mb-1">Hola {{ usuario.nombre }}!!!</h3>
+          <p class="mb-1 text-muted">
+            Telefono: {{ usuario.telefono }}
+          </p>
+          <p class="mb-1 text-muted">
+            Email: {{ usuario.email }}
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="d-flex align-items-center mb-4">
+        <h2 class="titulo-listado-mascotas">
+          <span class="fw-bold">Tus</span>
+          <span class="resaltar-titulo">Mascotas</span>
+        </h2>
+
+        <button
+          class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center"
+          *ngIf="rol === 'veterinario'"
+          [routerLink]="['/mascotas/new']">
+          <img src="/assets/images/mas.png" alt="Icono mas">
+        </button>
+      </div>
+
+      <table class="table align-middle table-hover text-center">
+        <thead class="table-light">
+          <tr>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Especie</th>
+            <th>Raza</th>
+            <th>Peso</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let mascota of mascotas" style="cursor: pointer;">
+
+            <td class="align-middle">
+              <img [src]="mascota.foto" alt="Imagen de {{mascota.nombre}}"
+                   class="rounded-circle" width="50" height="50" />
+            </td>
+
+            <td class="align-middle">{{ mascota.nombre }}</td>
+            <td class="align-middle">{{ mascota.especie }}</td>
+            <td class="align-middle">{{ mascota.raza }}</td>
+            <td class="align-middle">{{ mascota.peso }} kg</td>
+
+            <td class="align-middle">
+              <span class="badge rounded-pill bg-success" *ngIf="mascota.estado === 'Saludable'">{{ mascota.estado }}</span>
+              <span class="badge rounded-pill bg-warning text-dark" *ngIf="mascota.estado === 'En tratamiento'">{{ mascota.estado }}</span>
+              <span class="badge rounded-pill bg-info text-dark" *ngIf="mascota.estado === 'Recuperándose'">{{ mascota.estado }}</span>
+              <span class="badge rounded-pill bg-primary" *ngIf="mascota.estado === 'Control rutinario'">{{ mascota.estado }}</span>
+              <span class="badge rounded-pill bg-danger text-dark" *ngIf="mascota.estado === 'Inactivo'">{{ mascota.estado }}</span>
+            </td>
+
+            <td class="align-middle">
+              <div class="d-flex contenedor-botones align-items-center justify-content-center">
+
+                <button class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
+                        [routerLink]="['/mascota/find', mascota.id]">
+                  <img src="/assets/images/ojo.png" alt="Icono Ojo">
+                </button>
+
+                <button *ngIf="rol === 'veterinario'" class="btn-tabla btn btn-sm btn-outline-info me-2 d-flex align-items-center justify-content-center"
+                        [routerLink]="['/mascotas/editar', mascota.id]">
+                  <img src="/assets/images/editar.png" alt="Icono Editar">
+                </button>
+
+                <button *ngIf="rol === 'veterinario'" class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                        (click)="eliminar(mascota.id!)">
+                  <img src="/assets/images/borrar.png" alt="Icono Borrar">
+                </button>
+
+              </div>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</main>

@@ -2,6 +2,8 @@ package com.example.demo.entidades;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,6 +20,7 @@ public class Veterinario {
     private int cedula;
     private String especialidad;
     private String foto;
+    @JsonIgnore
     @OneToMany(mappedBy = "veterinario")
     private List<Tratamiento> tratamientos;
 

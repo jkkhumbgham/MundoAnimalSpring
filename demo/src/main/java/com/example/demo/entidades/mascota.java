@@ -6,6 +6,12 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -21,13 +27,17 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "mascotas")
+@JsonIgnoreProperties({"vacunasTexto", "alergiasTexto"})
 public class Mascota {
     @Id
     @GeneratedValue
+    @JsonProperty("id")
     private Long id;
 
     @ManyToOne
-    private Usuario dueño;
+    @JsonProperty("dueno")
+    @JsonAlias({"dueño"})
+    private Usuario dueno;
 
     @ElementCollection
     @CollectionTable(name = "mascota_vacunas", joinColumns = @JoinColumn(name = "mascota_id"))
@@ -39,20 +49,28 @@ public class Mascota {
     @Column(name = "alergia")
     private List<String> alergias = new ArrayList<>();
     
-    @OneToMany(mappedBy = "mascota",  cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
     private List<Tratamiento> tratamiento;
 
     private String observaciones;
+    @JsonProperty("foto")
     private String foto;
     private String nombre;
     private String especie;
     private String raza;
     private String sexo;
     private String estado;
+    @JsonProperty("ultimavisita")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date ultimavisita;
+
+    @JsonProperty("fechaNacimiento")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaNacimiento;
+    @JsonProperty("peso")
     private float peso;
-    private int microchipID;
+    private int microchipId;
     private String estadoOriginal;
     @Transient
     private String vacunasTexto;
@@ -69,7 +87,7 @@ public class Mascota {
                    String observaciones, String foto, String nombre, String especie, String raza, String sexo,
                    String estado, Date ultimavisita, Date fechaNacimiento, float peso, int microchipID) {
         this.id = id;
-        this.dueño = dueño;
+        this.dueno = dueño;
         this.vacunas = vacunas != null ? vacunas : new ArrayList<>();
         this.alergias = alergias != null ? alergias : new ArrayList<>();
         this.observaciones = observaciones;
@@ -82,7 +100,7 @@ public class Mascota {
         this.ultimavisita = ultimavisita;
         this.fechaNacimiento = fechaNacimiento;
         this.peso = peso;
-        this.microchipID = microchipID;
+        this.microchipId = microchipID;
     }
 
 
@@ -119,7 +137,7 @@ public class Mascota {
     this.ultimavisita = ultimavisita;
     this.fechaNacimiento = fechaNacimiento;
     this.peso = peso;
-    this.microchipID = microchipID;
+    this.microchipId = microchipID;
     this.estadoOriginal="Activo";
 }
 
@@ -147,12 +165,6 @@ public class Mascota {
         this.id = Id;
     }
 
-    public Usuario getDueño() {
-        return dueño;
-    }
-    public void setDueño(Usuario dueño) {
-        this.dueño = dueño;
-    }
 
     public List<String> getVacunas() {
         return vacunas;
@@ -241,10 +253,10 @@ public class Mascota {
     }
 
     public int getMicrochipID() {
-        return microchipID;
+        return microchipId;
     }
     public void setMicrochipID(int microchipID) {
-        this.microchipID = microchipID;
+        this.microchipId = microchipID;
     }
 
     public List<Tratamiento> getTratamiento() {
@@ -253,6 +265,14 @@ public class Mascota {
 
     public void setTratamiento(List<Tratamiento> tratamiento) {
         this.tratamiento = tratamiento;
+    }
+
+    public Usuario getDueno() {
+        return dueno;
+    }
+
+    public void setDueno(Usuario dueno) {
+        this.dueno = dueno;
     }
 
 }

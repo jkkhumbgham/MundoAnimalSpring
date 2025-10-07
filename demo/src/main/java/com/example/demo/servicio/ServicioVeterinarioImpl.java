@@ -1,6 +1,7 @@
 package com.example.demo.servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class ServicioVeterinarioImpl implements ServicioVeterinario {
     RepositorioVeterinarios repositorio;
 
     @Override
-    public Collection<Veterinario> getAllVeterinarios() {
+    public List<Veterinario> getAllVeterinarios() {
         return repositorio.findAll();
     }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Mascota } from '../../model/mascota/mascota';
 import { MascotasService } from '../../service/mascota/mascota-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mascota-tabla',
@@ -11,14 +12,13 @@ import { MascotasService } from '../../service/mascota/mascota-service';
 })
 export class MascotaTablaComponent implements OnInit {
   mascotas: Mascota[] = [];
-  constructor(private mascotasService: MascotasService) { }
+  constructor(private mascotasService: MascotasService, private route: ActivatedRoute) { }
   rol: string = '';
   ngOnInit(): void {
-    this.rol = localStorage.getItem('rol') ?? '';
-    this.getAllMascotas();
-    this.mascotasService.mascotaAgregada$.subscribe(() => {
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
       this.getAllMascotas();
-    });
+    })
   }
 
   getAllMascotas(): void {
@@ -34,16 +34,13 @@ export class MascotaTablaComponent implements OnInit {
   }
   onSoftDelete(mascota: Mascota): void {
     if(mascota !== undefined){
-  this.mascotasService.softDeleteMascota(mascota).subscribe(() => {
-        this.getAllMascotas();
-  });
+  this.mascotasService.softDeleteMascota(mascota);
 }
 }
   onDelete(id: number | undefined): void {
     if (id !== undefined) {
-      this.mascotasService.deleteMascota(id).subscribe(() => {
-        this.getAllMascotas();
-      });
+      this.mascotas.splice(id,1);
+      this.mascotasService.deleteMascota(id);
     }
   }
 }

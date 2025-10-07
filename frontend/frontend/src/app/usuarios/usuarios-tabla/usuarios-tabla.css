@@ -1,0 +1,86 @@
+/* ====== CONTENEDORES GENERALES ====== */
+.principal {
+    margin-top: 50px;
+    background: linear-gradient(to right, #faefef, #f8e8ee);
+    padding: 60px 0;
+}
+.mover {
+    padding-top: 170px !important;
+}
+.no-hover:hover {
+    transform: none;
+}
+.card {
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* ====== TABLAS Y BOTONES ====== */
+.table img {
+    height: 60px;
+    width: 60px;
+    border-radius: 20px;
+}
+.btn-tabla {
+    height: 30px;
+    width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-tabla img {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+.contenedor-botones {
+    display: flex;
+    column-gap: 4px;
+}
+
+/* ====== TEXTOS ====== */
+.fw-bold {
+    font-weight: bold;
+}
+.resaltar-titulo {
+    color: #F72585;
+    font-weight: bold;
+}
+.titulo-listado-mascotas {
+    font-size: 2.2rem;
+}
+
+.btn-llamar {
+    background: linear-gradient(90deg, #ff4e50, #F72585);
+    color: white !important;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: none;
+    height: 40px;
+}
+
+.btn-llamar:hover {
+    opacity: 0.9;
+    color: white;
+}
+
+.btn-llamar img {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+}
+.no-hover:hover {
+    transform: none;
+}
+.resaltar {
+    color: #F72585;
+}
+
+.resaltado {
+    color: #0ea5e9;
+}

@@ -2,6 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MascotasService } from '../../service/mascota/mascota-service';
 import { Mascota } from '../../model/mascota/mascota';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-mascota-formulario',
@@ -21,6 +24,7 @@ export class MascotaFormularioComponent implements OnInit {
 
   ngOnInit(): void {
   const id = this.route.snapshot.paramMap.get('id');
+  console.log(id);
   if (id) {
     this.mascotasService.getMascotaById(+id).subscribe(mascota => {
       if (mascota) {
@@ -42,15 +46,13 @@ export class MascotaFormularioComponent implements OnInit {
 
   guardarMascota(): void {
     if (this.mascota.id) {
-      this.mascotasService.updateMascota(this.mascota).subscribe(() => {
-        this.mascotasService.notificarMascotaAgregada();
-        this.router.navigate(['/mascotas']);
-      });
+      
+      this.mascotasService.updateMascota(this.mascota);
+
+      console.log('Mascota actualizada:', this.mascota);
     } else {
-      this.mascotasService.addMascota(this.mascota).subscribe(() => {
-      this.mascotasService.notificarMascotaAgregada();
-      this.router.navigate(['/mascotas']);
-      });
+      this.mascotasService.addMascota(this.mascota);
+      console.log('Mascota creada:', this.mascota);
     }
   }
   agregarVacuna() {

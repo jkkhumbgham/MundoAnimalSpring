@@ -258,7 +258,7 @@ public class DatabaseInit implements ApplicationRunner {
                 
             }
             Mascota mascota = mascotaRepository.findById(i).get();
-            mascota.setDueño(usuario);
+            mascota.setDueno(usuario);
             mascotaRepository.save(mascota);
             
 

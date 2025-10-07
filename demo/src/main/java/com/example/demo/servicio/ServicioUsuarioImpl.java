@@ -1,6 +1,7 @@
 package com.example.demo.servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
     RepositorioUsuarios repositorio;
 
     @Override
-    public Collection<Usuario> getAllUsuarios() {
+    public List<Usuario> getAllUsuarios() {
         return repositorio.findAll();
     }
 

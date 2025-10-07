@@ -1,12 +1,13 @@
 package com.example.demo.servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.example.demo.entidades.Usuario;
 
 public interface ServicioUsuario {
 
-    Collection<Usuario> getAllUsuarios();
+    List<Usuario> getAllUsuarios();
     Usuario getUsuarioById(Long id);
     void addUsuario(Usuario usuario);
     void removeUsuario(Long id);

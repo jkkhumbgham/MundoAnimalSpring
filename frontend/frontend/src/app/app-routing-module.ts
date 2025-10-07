@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Login } from './login/login/login';
+import { LoginComponent } from './login/login/login';
 import { MascotaTablaComponent } from './mascotas/mascota-tabla/mascota-tabla.component';
 import { MascotaFormularioComponent } from './mascotas/mascota-formulario/mascota-formulario.component';
 import { PantallaEntrada } from './principal/pantalla-entrada/pantalla-entrada';
 import { MascotaDetalle } from './mascotas/mascota-detalle/mascota-detalle/mascota-detalle';
+import { UsuariosTabla } from './usuarios/usuarios-tabla/usuarios-tabla';
+import { UsuariosDetalle } from './usuarios/usuarios-detalle/usuarios-detalle';
+import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-formulario';
 
 const routes: Routes = [
   { path: '', component: PantallaEntrada},
 
-  { path: 'login', component: Login },
+  { path: 'login', component: LoginComponent },
 
   { path: 'mascotas', component: MascotaTablaComponent },
 
@@ -19,7 +22,17 @@ const routes: Routes = [
 
   { path:'mascota/:id', component: MascotaDetalle},
 
-  { path: '**', redirectTo: 'pantalla-entrada' }
+  { path: 'usuarios', component: UsuariosTabla },
+
+  { path: 'usuarios/agregar', component: UsuariosFormulario },
+
+  { path: 'usuarios/editar/:id', component: UsuariosFormulario },
+
+  { path: 'usuarios/:id', component: UsuariosDetalle },
+
+  
+
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

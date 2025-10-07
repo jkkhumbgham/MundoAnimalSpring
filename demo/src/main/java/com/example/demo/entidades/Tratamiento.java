@@ -4,6 +4,7 @@ package com.example.demo.entidades;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,12 +21,15 @@ public class Tratamiento {
     private Long id;
     
     private String nombre;
+    @JsonIgnore
     @ManyToOne
     private Veterinario veterinario;
 
+    @JsonIgnore
     @ManyToOne
     private Mascota mascota;
-
+    
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "tratamiento_medicamento",

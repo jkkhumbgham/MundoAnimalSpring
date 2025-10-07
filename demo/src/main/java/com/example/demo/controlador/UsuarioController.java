@@ -1,16 +1,19 @@
 package com.example.demo.controlador;
 
 import java.util.Collection;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entidades.Usuario;
 
@@ -18,9 +21,13 @@ import com.example.demo.servicio.ServicioUsuario;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
-@Controller
+
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/usuarios")
 public class UsuarioController {
     @Autowired
@@ -29,27 +36,17 @@ public class UsuarioController {
 
 
     @GetMapping("")
-    public String listarUsuarios(HttpServletRequest request, Model model) {
-        String role = null;
-
-        if (request.getCookies() != null) {
-            for (Cookie cookie : request.getCookies()) {
-                if ("userRole".equals(cookie.getName())) {
-                    role = cookie.getValue();
-                    break;
-                }
-            }
-        }
-        Collection<Usuario> usuarios = servicioUsuario.getAllUsuarios();
-        model.addAttribute("usuarios", usuarios);
-        model.addAttribute("rol", role);
-        return "usuarios";
+    public List<Usuario> listarUsuarios(HttpServletRequest request, Model model) {
+        
+        
+        return servicioUsuario.getAllUsuarios();
     }
-    @GetMapping("/delete/{id}")
-    public String eliminarUsuario(@PathVariable Long id) {
+    @DeleteMapping("/delete/{id}")
+    public void eliminarUsuario(@PathVariable Long id) {
         servicioUsuario.removeUsuario(id);
-        return "redirect:/usuarios";
+        
     }
+    /* 
     @GetMapping("/agregar")
     public String agregarUsuario(HttpServletRequest request, Model model) {
         Usuario usuario = new Usuario(null, "","", "", "", "", null);
@@ -67,13 +64,18 @@ public class UsuarioController {
         model.addAttribute("usuario", usuario);
         return "agregar_usuario";
     }
-    @PostMapping("")
-    public String agregarfinal(@ModelAttribute("usuario") Usuario usuario) {
+    */
+    @PostMapping("/agregar")
+    public void agregarfinal(@RequestBody Usuario usuario) {
+        usuario.setId(null);
         servicioUsuario.addUsuario(usuario);
-
-        return "redirect:/usuarios";
     }
 
+    @PutMapping("/editar/{id}")
+    public void editarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+        servicioUsuario.updateUsuario(usuario);
+    }
+    /* 
     @GetMapping("/editar/{id}")
     public String editarUsuario(HttpServletRequest request, @PathVariable Long id, Model model) {
         Usuario usuario = servicioUsuario.getUsuarioById(id);
@@ -91,23 +93,13 @@ public class UsuarioController {
         model.addAttribute("usuario", usuario);
         return "agregar_usuario";
     }
-    @GetMapping("/{id}")
-    public String getUsuario(HttpServletRequest request, @PathVariable Long id, Model model) {
-        String role = null;
-
-        if (request.getCookies() != null) {
-            for (Cookie cookie : request.getCookies()) {
-                if ("userRole".equals(cookie.getName())) {
-                    role = cookie.getValue();
-                    break;
-                }
-            }
-        }
+        */
+    @GetMapping("/find/{id}")
+    public Usuario getUsuario(HttpServletRequest request, @PathVariable Long id) {
+    
         Usuario usuario = servicioUsuario.getUsuarioById(id);
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("usuarioId", id);
-        model.addAttribute("rol", role);
-        return "usuario_detalle";
+        usuario.getMascotas().size();
+        return usuario;
     }
     
     

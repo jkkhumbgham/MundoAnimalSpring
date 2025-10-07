@@ -2,11 +2,14 @@ import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../service/usuario/usuario-service';
 import { Usuario } from '../../model/usuario/usuario';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
-  styleUrls: ['./login.css']
+  styleUrls: ['./login.css'],
+  standalone: false
 })
 export class LoginComponent implements OnInit{
     credenciales = {

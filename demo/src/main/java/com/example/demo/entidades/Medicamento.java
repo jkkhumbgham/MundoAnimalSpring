@@ -3,6 +3,8 @@ package com.example.demo.entidades;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -16,6 +18,7 @@ public class Medicamento {
     private String nombre;
     private int precio;
     private int unidades;
+    @JsonIgnore
     @ManyToMany(mappedBy = "medicamentos")
     private List<Tratamiento> tratamientos = new ArrayList<>();
 

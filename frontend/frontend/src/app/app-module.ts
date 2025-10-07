@@ -7,7 +7,7 @@ import { FooterTodo } from './footers/footer-todo/footer-todo';
 import { HeaderUsuario } from './headers/header-usuario/header-usuario';
 import { HeaderVeterinario } from './headers/header-veterinario/header-veterinario';
 import { PantallaEntrada } from './principal/pantalla-entrada/pantalla-entrada';
-import { Login } from './login/login/login';
+import { LoginComponent } from './login/login/login';
 import { FormsModule } from '@angular/forms';
 import { MascotaTablaComponent } from './mascotas/mascota-tabla/mascota-tabla.component';
 import { MascotaFormularioComponent } from './mascotas/mascota-formulario/mascota-formulario.component';
@@ -15,6 +15,10 @@ import { MascotaDetalle } from './mascotas/mascota-detalle/mascota-detalle/masco
 import { ServiceCards } from './utils/cards/service-cards/service-cards';
 import { FormsCard } from './utils/cards/forms-card/forms-card';
 import { InfoCards } from './utils/cards/info-cards/info-cards';
+import { HttpClientModule } from '@angular/common/http';
+import { UsuariosTabla } from './usuarios/usuarios-tabla/usuarios-tabla';
+import { UsuariosDetalle } from './usuarios/usuarios-detalle/usuarios-detalle';
+import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-formulario';
 
 @NgModule({
   declarations: [
@@ -23,18 +27,22 @@ import { InfoCards } from './utils/cards/info-cards/info-cards';
     HeaderUsuario,
     HeaderVeterinario,
     PantallaEntrada,
-    Login,
+    LoginComponent,
     MascotaTablaComponent,
     MascotaFormularioComponent,
     MascotaDetalle,
     ServiceCards,
     FormsCard,
-    InfoCards
+    InfoCards,
+    UsuariosTabla,
+    UsuariosDetalle,
+    UsuariosFormulario
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

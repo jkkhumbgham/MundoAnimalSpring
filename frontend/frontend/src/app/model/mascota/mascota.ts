@@ -1,6 +1,10 @@
+import { Tratamiento } from "../tratamiento/tratamiento";
+import { Usuario } from "../usuario/usuario";
+
 export class Mascota {
     id?: number;
-    dueno?: any;
+    dueno?: Usuario;
+    tratamientos?: Tratamiento[];
     vacunas: string[];
     alergias: string[];
     observaciones: string;
@@ -14,7 +18,7 @@ export class Mascota {
     fechaNacimiento: Date;
     peso: number;
     microchipID?: number;
-    estadoO?: String;
+    estadoOriginal?: String;
 
   constructor(
     id: number, 
@@ -46,7 +50,7 @@ export class Mascota {
     this.fechaNacimiento = fechaNacimiento
     this.peso = peso
     this.microchipID = microchipID
-    this.estadoO = ""
+    this.estadoOriginal = ""
   }    
 
     

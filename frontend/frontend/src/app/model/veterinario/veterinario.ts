@@ -18,7 +18,7 @@ export class Veterinario {
     cedula: number,
     especialidad: string,
     foto: string,
-    tratamientos: Tratamiento[]
+    tratamientos?: Tratamiento[]
   ) {
     this.id = id;
     this.nombre = nombre;

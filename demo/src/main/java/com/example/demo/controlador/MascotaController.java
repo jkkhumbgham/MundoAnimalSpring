@@ -1,88 +1,72 @@
 package com.example.demo.controlador;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entidades.Mascota;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.servicio.ServicioMascotaImpl;
 import com.example.demo.servicio.ServicioUsuarioImpl;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
+
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class MascotaController {
 
     @Autowired
     private ServicioMascotaImpl servicioMascotas;
 
     @Autowired
-    private ServicioUsuarioImpl servicioUsuarios; // 👈 para buscar al dueño
+    private ServicioUsuarioImpl servicioUsuarios; 
 
     // Mostrar una mascota por ID
-    @GetMapping("/mascotas/{id}")
-    public String verDetalleMascota(HttpServletRequest request,@PathVariable Long id, Model model) {
-        Mascota mascota = servicioMascotas.getMascotaById(id);
-        String role = null;
-        if (request.getCookies() != null) {
-        for (Cookie cookie : request.getCookies()) {
-            if ("userRole".equals(cookie.getName())) {
-                role = cookie.getValue();
-                break;
-            }
-        }
-    }
-        model.addAttribute("rol", role);
-        if (mascota != null) {
-            model.addAttribute("mascota", mascota);
-
-    
-            return "mascota-detalle";
-        } else {
-            return "redirect:/mascotas";
-        }
+    @GetMapping("/mascotas/find/{id}")
+    public Mascota verDetalleMascota(HttpServletRequest request,@PathVariable Long id) {
+        
+        return servicioMascotas.getMascotaById(id);
     }
 
     // Mostrar todas las mascotas
     @GetMapping("/mascotas")
-    public String mostrarMascotasTabla(HttpServletRequest request, Model model) {
-         String role = null;
-
-    if (request.getCookies() != null) {
-        for (Cookie cookie : request.getCookies()) {
-            if ("userRole".equals(cookie.getName())) {
-                role = cookie.getValue();
-                break;
-            }
-        }
-    }
-        model.addAttribute("rol", role);
-        model.addAttribute("mascotas", servicioMascotas.getAllMascotas());
-        return "mascotas-tabla"; 
+    public List<Mascota> mostrarMascotasTabla(HttpServletRequest request) {
+         return servicioMascotas.getAllMascotas();
     
     }
 
 
     // Eliminar mascota
-    @GetMapping({"/mascotas/delete/{id}", "/usuarios/{usuarioId}/mascotas/delete/{id}"})
-    public String eliminarMascota(@PathVariable("id") Long id,
-                                  @PathVariable(value = "usuarioId", required = false) Long usuarioId) {
+    @DeleteMapping({"/mascotas/delete/{id}", "/usuarios/{usuarioId}/mascotas/delete/{id}"})
+    public void eliminarMascota(@PathVariable("id") Long id) {
         servicioMascotas.softdeleteById(id);
-        if (usuarioId != null) {
-            return "redirect:/usuarios/" + usuarioId;
-        } else {
-            return "redirect:/mascotas";
-        }
+        
     }
-
+    /*
     // Formulario para agregar mascota
     @GetMapping("/usuarios/{usuarioId}/mascotas/agregar")
     public String agregarMascota(HttpServletRequest request,@PathVariable("usuarioId") Long usuarioId, Model model) {
@@ -104,11 +88,12 @@ public class MascotaController {
         model.addAttribute("agregar", true);
         return "nuevo_paciente";
     }
+         */
 
     // Guardar mascota nueva
     @PostMapping("/mascotas")
-    public String guardarMascota(@ModelAttribute("mascota") Mascota mascota) {
-        if (mascota.getDueño() == null) {
+    public void guardarMascota(@RequestBody Mascota mascota) {
+        if (mascota.getDueno() == null) {
             throw new IllegalStateException("No se puede guardar la mascota sin dueño");
         }
          if (mascota.getVacunasTexto() != null && !mascota.getVacunasTexto().isBlank()) {
@@ -128,14 +113,13 @@ public class MascotaController {
         
     }
     servicioMascotas.addMascota(mascota);
-        return "redirect:/usuarios/" + mascota.getDueño().getId(); // ahora usamos objeto Usuario
+    
 }
-
+    /* 
     // Formulario para editar mascota
     @GetMapping({"/mascotas/editar/{id}", "/usuarios/{usuarioId}/mascotas/editar/{id}"})
     public String editarMascota(HttpServletRequest request,@PathVariable("id") Long id,
-                                @PathVariable(value = "usuarioId", required = false) Long usuarioId,
-                                Model model) {
+                                @PathVariable(value = "usuarioId", required = false) Long usuarioId, Model model) {
         Mascota mascota = servicioMascotas.getMascotaById(id);
         mascota.setVacunasTexto(String.join(", ", mascota.getVacunas()));
         mascota.setAlergiasTexto(String.join(", ", mascota.getAlergias()));
@@ -154,20 +138,30 @@ public class MascotaController {
         model.addAttribute("agregar", false);
         return "nuevo_paciente";
     }
+         */
 
         // Editar desde la lista de mascotas
-    @PostMapping("/mascotas/editar")
-    public String actualizarMascota(@ModelAttribute("mascota") Mascota mascota) {
+        
+    @PutMapping("/mascotas/editar")
+    public void actualizarMascota(@RequestBody Mascota mascota) {
+
+    
+    System.out.println("➡ Mascota mapeada: id=" + mascota.getId() + ", foto=" + mascota.getFoto() + ", peso=" + mascota.getPeso());
         servicioMascotas.updateMascota(mascota);
-        return "redirect:/mascotas";
     }
+   
+
 
     // Editar desde un usuario específico
-    @PostMapping("/usuarios/{usuarioId}/mascotas/editar")
-    public String actualizarMascotaUsuario(@PathVariable Long usuarioId,
-                                        @ModelAttribute("mascota") Mascota mascota) {
+    @PutMapping("/usuarios/{usuarioId}/mascotas/editar")
+    public void actualizarMascotaUsuario(@RequestBody Mascota mascota) {
         servicioMascotas.updateMascota(mascota);
-        return "redirect:/usuarios/" + usuarioId;
     }
+
+    @GetMapping("/mascotas/dueno/{duenoId}")
+    public List<Mascota> getMethodName(@PathVariable Long duenoId) {
+        return servicioMascotas.getByDueño_Id(duenoId);
+    }
+    
 
 }
