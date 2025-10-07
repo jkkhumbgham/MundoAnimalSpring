@@ -4,6 +4,7 @@ import { UsuarioService } from '../../service/usuario/usuario-service';
 import { Usuario } from '../../model/usuario/usuario';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LoginService } from '../../service/login/login-service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit{
   
   mensajeError: string = '';
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(private usuarioService: UsuarioService, private router: Router, private loginService: LoginService) {}
 
     ngOnInit(): void {
     this.mensajeError = '';
@@ -34,25 +35,29 @@ export class LoginComponent implements OnInit{
     this.credenciales.password = '';
   }
   login() {
-    const tipoUsuario = this.activeTab; 
     
-   this.usuarioService.login(this.credenciales.email, this.credenciales.password).subscribe({
-      next: (usuario) => {
-        console.log('Login exitoso como:', tipoUsuario, usuario);
-   
-        localStorage.setItem('tipoUsuario', tipoUsuario);
-        localStorage.setItem('usuario', JSON.stringify(usuario));
-        
-        if (tipoUsuario === 'veterinario') {
-             this.router.navigate(['/veterinario-dashboard']);
-        } else {
-             this.router.navigate(['/mascotas']);
+    this.loginService.login(this.credenciales.email, this.credenciales.password).subscribe({
+      next: (response) => {
+        if (response === 'cliente') {
+          this.usuarioService.getUsuarioByMail(this.credenciales.email).subscribe(data =>{
+            const usuario = data;
+          
+          localStorage.setItem('tipoUsuario', 'cliente');
+          this.router.navigate(['/usuarios',usuario?.id]);
+          });
+        } else if (response === 'veterinario') {
+          localStorage.setItem('tipoUsuario', 'veterinario');
+          this.router.navigate(['/usuarios']);
         }
+        
       },
       error: (err) => {
         this.mensajeError = 'Correo o contraseña incorrectos.';
         console.error('Error de autenticación:', err);
       }
-    });
+    }
+    );
+      
+      
   }
 }

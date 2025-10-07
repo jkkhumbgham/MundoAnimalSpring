@@ -42,11 +42,11 @@ export class UsuariosDetalle {
     });
   }
 
-  eliminar(id: number): void {
-    this.mascotasService.deleteMascota(id);
-      
-    
-      
-    
+  eliminar(mascota: Mascota): void {
+    this.mascotasService.softDeleteMascota(mascota);
+  }
+
+  agregarMascota(): void {
+    this.router.navigate(['/mascotas/new', this.usuario.id])
   }
 }

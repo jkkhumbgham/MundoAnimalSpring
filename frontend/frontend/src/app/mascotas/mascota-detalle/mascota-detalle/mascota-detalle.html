@@ -132,9 +132,9 @@
       <div class="tab-pane fade" id="contacto" role="tabpanel">
         <div class="profile-card">
           <h5>Información del Propietario</h5>
-          <p><strong>Nombre:</strong> <!--{{ mascota.dueno?.nombre }}--></p>
-          <p><strong>Teléfono:</strong><!-- {{ mascota.dueno?.telefono }}--></p>
-          <p><strong>Email:</strong><!-- {{ mascota.dueno?.email }}--></p>
+          <p><strong>Nombre:</strong> {{ mascota.dueno?.nombre }}</p>
+          <p><strong>Teléfono:</strong>{{ mascota.dueno?.telefono }}</p>
+          <p><strong>Email:</strong>{{ mascota.dueno?.email }}</p>
         </div>
       </div>
 
@@ -205,7 +205,7 @@
             <td>{{ t.veterinario?.nombre || '-' }}</td>
             <td>
               <ng-container *ngIf="t.medicamentos?.length; else sinMed">
-                {{ t.medicamentos!.map(m => m.nombre).join(', ') }}
+                <!--{{ t.medicamentos!.map(m => m.nombre).join(', ') }}-->
               </ng-container>
               <ng-template #sinMed>-</ng-template>
             </td>

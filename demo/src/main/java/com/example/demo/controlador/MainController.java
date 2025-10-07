@@ -37,39 +37,23 @@ public class MainController {
         }else if (serviciovet.getByEmail(email)!= null) {
              veterinario=serviciovet.getByEmail(email);
         }else{
-            model.addAttribute("error", "Ese correo no existe");
-            return "login";
+            
+            return "fallo";
         }
         
         
         if (usuario !=null && password.equals(usuario.getContraseña())) {
-            Cookie cookie = new Cookie("userRole", "dueno");
-            cookie.setHttpOnly(true);
-            cookie.setPath("/");
-            cookie.setMaxAge(60 * 60 * 24); // 1 día
-            response.addCookie(cookie);
-            
-            return "redirect:/usuarios/"+usuario.getId();
+            return "cliente";
         }else {
             if (veterinario != null && password.equals(veterinario.getPassword())) {
-                Cookie cookie = new Cookie("userRole", "veterinario");
-                cookie.setHttpOnly(true);
-                cookie.setPath("/");
-                cookie.setMaxAge(60 * 60 * 24); // 1 día
-                response.addCookie(cookie);
-
-                return "redirect:/usuarios";
+                return "veterinario";
             }else{
             model.addAttribute("error", "Usuario o contraseña incorrectos");
-            return "login";
+            return "fallo";
             }
         }
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
 
     
 }

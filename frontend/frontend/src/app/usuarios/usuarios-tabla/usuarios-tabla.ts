@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UsuariosTabla {
   usuarios: Usuario[] = [];
-  rol: string = 'veterinario'; // Esto lo debes obtener del login o auth
+  rol: string = localStorage.getItem('tipoUsuario') || 'veterinario';
 
   constructor(private usuarioService: UsuarioService, private router: Router) {}
 
@@ -28,7 +28,10 @@ export class UsuariosTabla {
   eliminar(id: number) {
     if (confirm('¿Seguro que deseas eliminar este usuario?')) {
       this.usuarios.splice(id-1,1);
-      this.usuarioService.deleteUsuario(id)
+      this.usuarioService.deleteUsuario(id).subscribe({
+        next: () => console.log("Hola"),
+        complete: ()=> this.cargarUsuarios()
+      })
     }
   }
 

@@ -23,6 +23,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -100,6 +102,11 @@ public class UsuarioController {
         Usuario usuario = servicioUsuario.getUsuarioById(id);
         usuario.getMascotas().size();
         return usuario;
+    }
+    
+    @PostMapping("/mail")
+    public Usuario getMethodName(@RequestBody String email) {
+        return servicioUsuario.getByEmail(email);
     }
     
     

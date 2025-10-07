@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UsuariosFormulario {
   usuario: Usuario = Usuario.crearVacio();
+  rol: string = localStorage.getItem('tipoUsuario') || 'veterinario';
   constructor(private usuarioService: UsuarioService,
               private router: Router,
             private route: ActivatedRoute) {}

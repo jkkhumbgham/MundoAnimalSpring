@@ -93,6 +93,7 @@ public class MascotaController {
     // Guardar mascota nueva
     @PostMapping("/mascotas")
     public void guardarMascota(@RequestBody Mascota mascota) {
+        mascota.setId(null);
         if (mascota.getDueno() == null) {
             throw new IllegalStateException("No se puede guardar la mascota sin dueño");
         }

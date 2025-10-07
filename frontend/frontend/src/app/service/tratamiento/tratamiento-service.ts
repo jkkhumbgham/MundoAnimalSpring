@@ -25,13 +25,13 @@ export class TratamientoService {
     return this.http.delete<void>(`${this.base}/tratamientos/${id}`);
   }
 
-  // ---- mapeo JSON -> instancias de clase ----
+ 
   private toTratamiento(o: any): Tratamiento {
     const t = new Tratamiento(o.id, o.nombre);
     if (Array.isArray(o.medicamentos)) {
       t.medicamentos = o.medicamentos.map((m: any) => new Medicamento(m.id, m.nombre, m.precio, m.unidades));
     }
-    t.veterinario = o.veterinario; // si tienes clase con ctor para Veterinario, la instancias aquí
+    t.veterinario = o.veterinario; 
     t.mascota = o.mascota;
     return t;
   }

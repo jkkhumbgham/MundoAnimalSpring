@@ -30,6 +30,7 @@ export class MascotaDetalle implements OnInit {
 
   guardando = false;
   errorMsg = '';
+  rol: string = localStorage.getItem('tipoUsuario') || 'veterinario';
 
   constructor(
     private mascotasService: MascotasService,
@@ -55,7 +56,7 @@ export class MascotaDetalle implements OnInit {
         }
         this.mascota = mascota;
         // cargar tablas auxiliares y tratamientos cuando ya tenemos la mascota
-        //this.cargarAuxiliares();
+        this.cargarAuxiliares();
         this.cargarTratamientos();
       });
     }
@@ -74,7 +75,7 @@ export class MascotaDetalle implements OnInit {
       error: e => console.error('Error al cargar tratamientos', e)
     });
   }
-/*
+
   cargarAuxiliares(): void {
     this.medSrv.listar().subscribe({
       next: d => this.medicamentos = d,
@@ -84,7 +85,7 @@ export class MascotaDetalle implements OnInit {
       next: d => this.veterinarios = d,
       error: e => console.error('Error cargando veterinarios', e)
     });
-  }*/
+  }
 
   crearTratamiento(): void {
     this.errorMsg = '';

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MascotaFormulario } from './mascota-formulario.component';
+import { MascotaFormularioComponent } from './mascota-formulario.component';
 
 describe('MascotaFormulario', () => {
-  let component: MascotaFormulario;
-  let fixture: ComponentFixture<MascotaFormulario>;
+  let component: MascotaFormularioComponent;
+  let fixture: ComponentFixture<MascotaFormularioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MascotaFormulario]
+      declarations: [MascotaFormularioComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MascotaFormulario);
+    fixture = TestBed.createComponent(MascotaFormularioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

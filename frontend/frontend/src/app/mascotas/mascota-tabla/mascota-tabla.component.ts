@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MascotaTablaComponent implements OnInit {
   mascotas: Mascota[] = [];
   constructor(private mascotasService: MascotasService, private route: ActivatedRoute) { }
-  rol: string = '';
+  rol: string = localStorage.getItem('tipoUsuario') || 'veterinario';
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));

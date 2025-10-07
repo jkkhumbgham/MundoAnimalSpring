@@ -16,11 +16,11 @@ const routes: Routes = [
 
   { path: 'mascotas', component: MascotaTablaComponent },
 
-  { path: 'mascotas/new', component: MascotaFormularioComponent },
+  { path: 'mascotas/new/:id', component: MascotaFormularioComponent },
 
   { path: 'mascotas/editar/:id', component: MascotaFormularioComponent },
 
-  { path:'mascota/:id', component: MascotaDetalle},
+  { path:'mascota/find/:id', component: MascotaDetalle},
 
   { path: 'usuarios', component: UsuariosTabla },
 

@@ -27,7 +27,7 @@
         <button
           class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center"
           *ngIf="rol === 'veterinario'"
-          [routerLink]="['/mascotas/new']">
+          (click)="agregarMascota()">
           <img src="/assets/images/mas.png" alt="Icono mas">
         </button>
       </div>
@@ -63,7 +63,7 @@
               <span class="badge rounded-pill bg-warning text-dark" *ngIf="mascota.estado === 'En tratamiento'">{{ mascota.estado }}</span>
               <span class="badge rounded-pill bg-info text-dark" *ngIf="mascota.estado === 'Recuperándose'">{{ mascota.estado }}</span>
               <span class="badge rounded-pill bg-primary" *ngIf="mascota.estado === 'Control rutinario'">{{ mascota.estado }}</span>
-              <span class="badge rounded-pill bg-danger text-dark" *ngIf="mascota.estado === 'Inactivo'">{{ mascota.estado }}</span>
+              <span class="badge rounded-pill bg-danger text-dark" *ngIf="mascota.estado === 'inactivo'">{{ mascota.estado }}</span>
             </td>
 
             <td class="align-middle">
@@ -80,7 +80,7 @@
                 </button>
 
                 <button *ngIf="rol === 'veterinario'" class="btn-tabla btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
-                        (click)="eliminar(mascota.id!)">
+                        (click)="eliminar(mascota)">
                   <img src="/assets/images/borrar.png" alt="Icono Borrar">
                 </button>
 

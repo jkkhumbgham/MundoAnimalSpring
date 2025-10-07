@@ -4,6 +4,8 @@ import { Mascota } from '../../model/mascota/mascota';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Usuario } from '../../model/usuario/usuario';
+import { UsuarioService } from '../../service/usuario/usuario-service';
 
 
 @Component({
@@ -16,17 +18,20 @@ import { FormsModule } from '@angular/forms';
 
 export class MascotaFormularioComponent implements OnInit { 
   mascota: Mascota = Mascota.crearVacia();
-
+  usuario: Usuario = Usuario.crearVacio();
+  rol: string = localStorage.getItem('tipoUsuario') || 'veterinario';
   constructor (private mascotasService: MascotasService,
                private route: ActivatedRoute,
-               private router: Router
+               private router: Router,
+               private usuarioService: UsuarioService
   ) { }
 
   ngOnInit(): void {
   const id = this.route.snapshot.paramMap.get('id');
   console.log(id);
-  if (id) {
-    this.mascotasService.getMascotaById(+id).subscribe(mascota => {
+  
+  if (this.router.url.includes('editar')) {
+    this.mascotasService.getMascotaById(+id!).subscribe(mascota => {
       if (mascota) {
         if (typeof mascota.fechaNacimiento === 'string') {
           mascota.fechaNacimiento = new Date(mascota.fechaNacimiento);
@@ -40,6 +45,11 @@ export class MascotaFormularioComponent implements OnInit {
         this.router.navigate(['/mascotas']);
       }
     });
+  }else if(this.router.url.includes('new')){
+    this.usuarioService.getUsuarioById(+id!).subscribe(data => {
+      this.mascota.dueno = data!;
+      console.log(this.mascota.dueno);
+    })
   }
 }
 
