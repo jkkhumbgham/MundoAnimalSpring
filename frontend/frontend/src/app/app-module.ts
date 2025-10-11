@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuariosTabla } from './usuarios/usuarios-tabla/usuarios-tabla';
 import { UsuariosDetalle } from './usuarios/usuarios-detalle/usuarios-detalle';
 import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-formulario';
+import { Tratamiento } from './ui/tratamiento/tratamiento';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-form
     InfoCards,
     UsuariosTabla,
     UsuariosDetalle,
-    UsuariosFormulario
+    UsuariosFormulario,
+    Tratamiento
   ],
   imports: [
     BrowserModule,
