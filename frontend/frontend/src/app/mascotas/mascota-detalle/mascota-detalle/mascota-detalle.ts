@@ -26,11 +26,12 @@ export class MascotaDetalle implements OnInit {
 
   nombreTrat = '';
   medicamentoId = 0;
-  veterinarioId = 0;
 
   guardando = false;
   errorMsg = '';
   rol: string = localStorage.getItem('tipoUsuario') || 'veterinario';
+  Vid: string = localStorage.getItem('id') || '';
+  vetId: number = Number(this.Vid);
 
   constructor(
     private mascotasService: MascotasService,
@@ -75,6 +76,12 @@ export class MascotaDetalle implements OnInit {
       error: e => console.error('Error al cargar tratamientos', e)
     });
   }
+  joinMedNombres(t: Tratamiento): string {
+  return t.medicamentos && t.medicamentos.length
+    ? t.medicamentos.map(m => m.nombre).join(', ')
+    : '-';
+}
+
 
   cargarAuxiliares(): void {
     this.medSrv.listar().subscribe({
@@ -89,20 +96,20 @@ export class MascotaDetalle implements OnInit {
 
   crearTratamiento(): void {
     this.errorMsg = '';
-    if (!this.nombreTrat || !this.medicamentoId || !this.veterinarioId) {
+    if (!this.nombreTrat || !this.medicamentoId || !this.vetId) {
       this.errorMsg = 'Completa nombre, medicamento y veterinario.';
       return;
     }
     if (!this.mascota.id) return;
 
     this.guardando = true;
-    this.tratSrv.crear(this.mascota.id, this.veterinarioId, this.medicamentoId, this.nombreTrat)
+    this.tratSrv.crear(this.mascota.id, this.vetId, this.medicamentoId, this.nombreTrat)
       .subscribe({
         next: _ => {
           this.guardando = false;
           this.nombreTrat = '';
           this.medicamentoId = 0;
-          this.veterinarioId = 0;
+          this.vetId = 0;
           this.cargarTratamientos();
         },
         error: e => {

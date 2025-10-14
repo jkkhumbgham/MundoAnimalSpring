@@ -21,7 +21,7 @@ public class Tratamiento {
     private Long id;
     
     private String nombre;
-    @JsonIgnore
+   
     @ManyToOne
     private Veterinario veterinario;
 
@@ -29,7 +29,7 @@ public class Tratamiento {
     @ManyToOne
     private Mascota mascota;
     
-    @JsonIgnore
+    
     @ManyToMany
     @JoinTable(
         name = "tratamiento_medicamento",

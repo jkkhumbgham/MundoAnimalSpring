@@ -156,6 +156,7 @@
     <h5 class="mb-3">Tratamientos</h5>
 
     <!-- Formulario crear tratamiento -->
+      <div *ngIf="rol === 'veterinario'">
     <form (ngSubmit)="crearTratamiento()" class="row g-3">
       <div class="col-md-4">
         <label class="form-label">Nombre del tratamiento</label>
@@ -171,22 +172,22 @@
       </div>
 
       <div class="col-md-4">
-        <label class="form-label">Veterinario</label>
-        <select class="form-select" [(ngModel)]="veterinarioId" name="veterinarioId" required>
-          <option [ngValue]="0" disabled>Seleccione…</option>
-          <option *ngFor="let v of veterinarios" [ngValue]="v.id">{{ v.nombre }}</option>
-        </select>
+      
+        <input type="hidden" name="veterinarioId" [(ngModel)]="vetId" required>
+        
       </div>
+
 
       <div class="col-12">
         <div *ngIf="errorMsg" class="text-danger">{{ errorMsg }}</div>
         <button type="submit" class="btn btn-primary" [disabled]="guardando">Guardar tratamiento</button>
       </div>
     </form>
-
+    </div>
     <hr class="my-4">
 
     <!-- Tabla de tratamientos -->
+    
     <div class="table-responsive" *ngIf="tratamientos.length; else sinTratamientos">
       <table class="table table-striped align-middle">
         <thead>
@@ -205,21 +206,23 @@
             <td>{{ t.veterinario?.nombre || '-' }}</td>
             <td>
               <ng-container *ngIf="t.medicamentos?.length; else sinMed">
-                <!--{{ t.medicamentos!.map(m => m.nombre).join(', ') }}-->
+                {{joinMedNombres(t) }}
               </ng-container>
               <ng-template #sinMed>-</ng-template>
             </td>
-            <td>
+            <td *ngIf="rol === 'veterinario'">
               <button class="btn btn-sm btn-outline-danger" (click)="eliminarTratamiento(t.id)">Eliminar</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+    
 
     <ng-template #sinTratamientos>
       <p class="text-muted mb-0">No hay tratamientos aún.</p>
     </ng-template>
+  
   </div>
 </div>
 

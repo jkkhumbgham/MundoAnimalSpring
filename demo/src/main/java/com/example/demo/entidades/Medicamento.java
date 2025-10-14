@@ -16,17 +16,21 @@ public class Medicamento {
     @GeneratedValue
     private Long id;
     private String nombre;
-    private int precio;
+    private int precio_venta;
     private int unidades;
+    private int precio_compra;
+    private int unidades_vendidas;
     @JsonIgnore
     @ManyToMany(mappedBy = "medicamentos")
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
     public Medicamento() {}
-    public Medicamento(String nombre, int precio, int unidades) {
+    public Medicamento(String nombre, int precio_venta, int unidades, int precio_compra, int unidades_vendidas) {
         this.nombre = nombre;
-        this.precio = precio;
+        this.precio_compra = precio_compra;
         this.unidades = unidades;
+        this.precio_venta = precio_venta;
+        this.unidades_vendidas = unidades_vendidas;
     }
     
     public Long getId() {
@@ -41,11 +45,23 @@ public class Medicamento {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public int getPrecio() {
-        return precio;
+    public int getPrecio_compra() {
+        return precio_compra;
     }
-    public void setPrecio(int precio) {
-        this.precio = precio;
+    public void setPrecio_compra(int precio) {
+        this.precio_compra = precio;
+    }
+    public int getPrecio_venta() {
+        return precio_venta;
+    }
+    public void setPrecio_venta(int precio) {
+        this.precio_venta = precio;
+    }
+    public int getUnidades_vendidas() {
+        return unidades_vendidas;
+    }
+    public void setUnidades_vendidas(int unidades) {
+        this.unidades_vendidas = unidades;
     }
     public int getUnidades() {
         return unidades;

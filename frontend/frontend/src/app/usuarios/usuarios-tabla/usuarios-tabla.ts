@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class UsuariosTabla {
   usuarios: Usuario[] = [];
   rol: string = localStorage.getItem('tipoUsuario') || 'veterinario';
+  id: string = localStorage.getItem('id') || '';
 
   constructor(private usuarioService: UsuarioService, private router: Router) {}
 

@@ -6,7 +6,7 @@ import { Medicamento } from '../../model/medicamento/medicamento';
 
 @Injectable({ providedIn: 'root' })
 export class TratamientoService {
-  private base = 'http://localhost:8080/api'; 
+  private base = 'http://localhost:8080'; 
 
   constructor(private http: HttpClient) {}
 
@@ -29,7 +29,7 @@ export class TratamientoService {
   private toTratamiento(o: any): Tratamiento {
     const t = new Tratamiento(o.id, o.nombre);
     if (Array.isArray(o.medicamentos)) {
-      t.medicamentos = o.medicamentos.map((m: any) => new Medicamento(m.id, m.nombre, m.precio, m.unidades));
+      t.medicamentos = o.medicamentos.map((m: any) => new Medicamento(m.id, m.nombre, m.precio_venta, m.unidades, m.precio_compra, m.unidades_vendidas));
     }
     t.veterinario = o.veterinario; 
     t.mascota = o.mascota;

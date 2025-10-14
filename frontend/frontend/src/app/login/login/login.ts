@@ -38,14 +38,18 @@ export class LoginComponent implements OnInit{
     
     this.loginService.login(this.credenciales.email, this.credenciales.password).subscribe({
       next: (response) => {
-        if (response === 'cliente') {
+        var respuestas=response.split(',');
+        var user = respuestas[0];
+        var id = respuestas[1];
+        if (user === 'cliente') {
           this.usuarioService.getUsuarioByMail(this.credenciales.email).subscribe(data =>{
             const usuario = data;
-          
+          localStorage.setItem('id', id);
           localStorage.setItem('tipoUsuario', 'cliente');
           this.router.navigate(['/usuarios',usuario?.id]);
           });
-        } else if (response === 'veterinario') {
+        } else if (user === 'veterinario') {
+          localStorage.setItem('id', id);
           localStorage.setItem('tipoUsuario', 'veterinario');
           this.router.navigate(['/usuarios']);
         }

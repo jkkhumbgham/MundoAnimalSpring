@@ -5,7 +5,7 @@ import { Observable, map } from 'rxjs';
 // Si tienes clase con constructor, importa tu modelo:
 import { Veterinario } from '../../model/veterinario/veterinario';
 
-const BASE = 'http://localhost:8080/api/veterinarios';
+const BASE = 'http://localhost:8080/veterinarios';
 
 @Injectable({ providedIn: 'root' })
 export class VeterinarioService {

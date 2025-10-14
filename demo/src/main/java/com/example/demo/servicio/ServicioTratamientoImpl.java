@@ -9,6 +9,8 @@ import com.example.demo.repositorio.RepositorioMedicamento;
 import com.example.demo.repositorio.RepositorioTratamiento;
 import com.example.demo.repositorio.RepositorioVeterinarios;
 
+import lombok.val;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,11 +46,18 @@ public class ServicioTratamientoImpl implements ServicioTratamiento {
         Veterinario vet = repoVeterinarios.findById(veterinarioId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Veterinario no encontrado"));
 
-        // Relaciones:
         t.setMascota(mascota);
         t.setVeterinario(vet);
-
-        // ManyToMany -> se agrega a la lista (no existe setMedicamento)
+        var unidades=med.getUnidades();
+        var vendidos=med.getUnidades_vendidas();
+         if(unidades == 0){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No hay unidades disponibles");
+         }else{
+            unidades=unidades-1; 
+            vendidos=vendidos+1;
+            med.setUnidades(unidades);
+            med.setUnidades_vendidas(vendidos);
+        }
         t.getMedicamentos().add(med);
 
         return repoTratamiento.save(t);

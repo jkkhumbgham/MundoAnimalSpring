@@ -20,6 +20,7 @@ export class MascotaFormularioComponent implements OnInit {
   mascota: Mascota = Mascota.crearVacia();
   usuario: Usuario = Usuario.crearVacio();
   rol: string = localStorage.getItem('tipoUsuario') || 'veterinario';
+  id: string = localStorage.getItem('id') || '';
   constructor (private mascotasService: MascotasService,
                private route: ActivatedRoute,
                private router: Router,

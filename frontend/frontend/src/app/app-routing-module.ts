@@ -8,7 +8,7 @@ import { MascotaDetalle } from './mascotas/mascota-detalle/mascota-detalle/masco
 import { UsuariosTabla } from './usuarios/usuarios-tabla/usuarios-tabla';
 import { UsuariosDetalle } from './usuarios/usuarios-detalle/usuarios-detalle';
 import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-formulario';
-import { TratamientoComponent } from './ui/tratamiento/tratamiento';
+import { Tratamiento } from './ui/tratamiento/tratamiento';
 
 
 const routes: Routes = [
@@ -32,7 +32,7 @@ const routes: Routes = [
 
   { path: 'usuarios/:id', component: UsuariosDetalle },
   
-  { path: 'tratamientos', component: TratamientoComponent },
+  { path: 'tratamientos', component: Tratamiento },
 
 
   
