@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-veterinario',
   standalone: false,
   templateUrl: './header-veterinario.html',
-  styleUrl: './header-veterinario.css'
+  styleUrls: ['./header-veterinario.css']
 })
-export class HeaderVeterinario {
+export class HeaderVeterinario implements OnInit {
+  rol: string = '';
+  loggedIn: boolean = false;
 
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.rol = localStorage.getItem('tipoUsuario') ?? '';
+    this.loggedIn = !!localStorage.getItem('id');
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.loggedIn = false;
+    this.router.navigate(['/login']);
+  }
 }

@@ -30,11 +30,20 @@
       </ul>
 
       <a class="btn btn-inicio d-flex align-items-center"
-         *ngIf="rol !== 'veterinario' && rol !== 'dueno'"
+         *ngIf="!loggedIn"
          routerLink="/login">
         <img src="assets/images/ingresar.png" width="30" height="30" alt="Logo Iniciar Sesión">
         Iniciar Sesión
       </a>
+
+      <!--
+      <button class="btn btn-salir d-flex align-items-center"
+              *ngIf="loggedIn"
+              (click)="logout()">
+        <img src="assets/images/salir.png" width="30" height="30" alt="Logo Cerrar Sesión">
+        Cerrar Sesión
+      </button>
+      -->
 
       <a class="btn btn-llamar d-flex align-items-center">
         <img src="assets/images/Telefono.png" width="30" height="30" alt="Logo Teléfono"> 
