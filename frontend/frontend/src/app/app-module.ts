@@ -8,7 +8,7 @@ import { HeaderUsuario } from './headers/header-usuario/header-usuario';
 import { HeaderVeterinario } from './headers/header-veterinario/header-veterinario';
 import { PantallaEntrada } from './principal/pantalla-entrada/pantalla-entrada';
 import { LoginComponent } from './login/login/login';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MascotaTablaComponent } from './mascotas/mascota-tabla/mascota-tabla.component';
 import { MascotaFormularioComponent } from './mascotas/mascota-formulario/mascota-formulario.component';
 import { MascotaDetalle } from './mascotas/mascota-detalle/mascota-detalle/mascota-detalle';
@@ -19,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuariosTabla } from './usuarios/usuarios-tabla/usuarios-tabla';
 import { UsuariosDetalle } from './usuarios/usuarios-detalle/usuarios-detalle';
 import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-formulario';
-import { TratamientoComponent } from './ui/tratamiento/tratamiento';
+import { VeterinariosTabla } from './veterinarios/veterinarios-tabla/veterinarios-tabla';
+import { VeterinariosDetalle } from './veterinarios/veterinarios-detalle/veterinarios-detalle';
+import { VeterinariosFormulario } from './veterinarios/veterinarios-formulario/veterinarios-formulario';
 
 @NgModule({
   declarations: [
@@ -38,13 +40,16 @@ import { TratamientoComponent } from './ui/tratamiento/tratamiento';
     UsuariosTabla,
     UsuariosDetalle,
     UsuariosFormulario,
-    TratamientoComponent
+    VeterinariosTabla,
+    VeterinariosDetalle,
+    VeterinariosFormulario
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

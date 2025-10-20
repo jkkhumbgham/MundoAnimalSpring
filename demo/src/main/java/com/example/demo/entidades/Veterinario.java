@@ -20,6 +20,20 @@ public class Veterinario {
     private int cedula;
     private String especialidad;
     private String foto;
+    private String estado;
+    private String estadoOriginal;
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    public String getEstadoOriginal() {
+        return estadoOriginal;
+    }
+    public void setEstadoOriginal(String estadoOriginal) {
+        this.estadoOriginal = estadoOriginal;
+    }
     @JsonIgnore
     @OneToMany(mappedBy = "veterinario")
     private List<Tratamiento> tratamientos;
@@ -28,13 +42,15 @@ public class Veterinario {
     public Veterinario(){
 
     }
-    public Veterinario(String nombre, String email, String password, int cedula, String especialidad, String foto){
+    public Veterinario(String nombre, String email, String password, int cedula, String especialidad, String foto, String estado) {
         this.nombre=nombre;
         this.email=email;
         this.password=password;
         this.cedula=cedula;
         this.especialidad = especialidad;
+        this.estado = estado;
         this.foto = foto;
+        this.estadoOriginal = estado;
     }
 
     public String getEmail() {

@@ -53,7 +53,6 @@
             localStorage.setItem('tipoUsuario', 'veterinario');
             this.router.navigate(['/usuarios']);
           }
-          
         },
         error: (err) => {
           this.mensajeError = 'Correo o contraseña incorrectos.';

@@ -10,6 +10,7 @@ public interface ServicioVeterinario {
     Veterinario getVeterinarioById(Long id);
     void addVeterinario(Veterinario veterinario);
     void removeVeterinario(Long id);
+    public void softdeleteById(Long id);
     void updateVeterinario(Veterinario veterinario);
     public Veterinario getByEmail(String email);
 }

@@ -1,0 +1,56 @@
+<main class=" principal d-flex flex-column align-items-center p-4">
+  <div class="container formulario">
+    <div class="card p-4">
+      <h4 class="text-center mb-4">Información del Usuario</h4>
+
+      <form (ngSubmit)="guardarUsuario()" class="form d-flex flex-column">
+
+        <input type="hidden" [(ngModel)]="usuario.id" name="id" />
+
+        <div class="grupo">
+          <label for="nombre">Nombre completo</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            [(ngModel)]="usuario.nombre"
+            placeholder="Tu nombre completo"
+            required
+            class="completo"
+          />
+        </div>
+
+        <div class="grupo">
+          <label for="email">Correo electrónico</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="usuario.email"
+            placeholder="tu@email.com"
+            required
+            class="completo"
+          />
+        </div>
+
+        <div class="grupo">
+          <label for="foto">Foto de perfil (URL)</label>
+          <input
+            type="text"
+            id="foto"
+            name="foto"
+            [(ngModel)]="usuario.foto"
+            placeholder="https://ejemplo.com/foto.jpg"
+            class="completo"
+          />
+        </div>
+
+        <button type="submit" class="submit-btn d-flex align-items-center justify-content-center">
+          Agregar Usuario
+        </button>
+
+      </form>
+    </div>
+  </div>
+</main>
+

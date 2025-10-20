@@ -8,6 +8,8 @@ export class Veterinario {
   cedula: number;
   especialidad: string;
   foto: string;
+  estado: string;
+  estadoOriginal?: string;
   tratamientos?: Tratamiento[];
 
   constructor(
@@ -18,7 +20,8 @@ export class Veterinario {
     cedula: number,
     especialidad: string,
     foto: string,
-    tratamientos?: Tratamiento[]
+    estado: string,
+    estadoOriginal: string
   ) {
     this.id = id;
     this.nombre = nombre;
@@ -27,6 +30,10 @@ export class Veterinario {
     this.cedula = cedula;
     this.especialidad = especialidad;
     this.foto = foto;
-    this.tratamientos = tratamientos;
+    this.estado = estado;
+    this.estadoOriginal = estadoOriginal;
+  }
+  static crearVacio(): Veterinario {
+    return new Veterinario(0, '', '', '', 0, '', '', '', '');
   }
 }

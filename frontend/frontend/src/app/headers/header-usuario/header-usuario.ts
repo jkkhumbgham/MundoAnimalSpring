@@ -8,8 +8,14 @@ import { Component } from '@angular/core';
 })
 export class HeaderUsuario {
   rol: string = '';
+  get loggedIn(): boolean {
+    console.log(localStorage.getItem('id'));
+    return !!localStorage.getItem('id');
+  }
 
   ngOnInit(): void {
+    localStorage.setItem('id','')
     this.rol = localStorage.getItem('rol') ?? '';
+    
   }
 }

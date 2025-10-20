@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Signal, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,7 @@ import { Component, signal } from '@angular/core';
 export class App {
   protected readonly title = signal('frontend');
     rol: string = '';
-    ngOnInit(): void {this.rol = localStorage.getItem('rol') ?? '';}
+    ngOnInit(): void {
+      this.rol = localStorage.getItem('tipoUsuario') ?? '';
+    }
 }

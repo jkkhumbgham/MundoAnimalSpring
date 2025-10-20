@@ -58,6 +58,9 @@ public class ServicioTratamientoImpl implements ServicioTratamiento {
             med.setUnidades(unidades);
             med.setUnidades_vendidas(vendidos);
         }
+        if (mascota.getEstado().equals("inactivo")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La mascota no esta activa");
+        }
         t.getMedicamentos().add(med);
 
         return repoTratamiento.save(t);

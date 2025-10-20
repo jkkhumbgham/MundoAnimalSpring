@@ -46,7 +46,11 @@ public class MainController {
             return "cliente," + usuario.getId();
         }else {
             if (veterinario != null && password.equals(veterinario.getPassword())) {
-                return "veterinario," + veterinario.getId();
+                if (veterinario.getEstado().equals("inactivo")) {
+                    return "fallo";
+                }else{
+                    return "veterinario," + veterinario.getId();
+                }
             }else{
             model.addAttribute("error", "Usuario o contraseña incorrectos");
             return "fallo";

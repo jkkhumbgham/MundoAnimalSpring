@@ -17,6 +17,7 @@ export class UsuariosTabla {
   constructor(private usuarioService: UsuarioService, private router: Router) {}
 
   ngOnInit(): void {
+    
     this.cargarUsuarios();
   }
 

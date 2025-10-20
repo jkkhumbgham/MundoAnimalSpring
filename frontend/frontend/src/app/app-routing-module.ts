@@ -8,7 +8,10 @@ import { MascotaDetalle } from './mascotas/mascota-detalle/mascota-detalle/masco
 import { UsuariosTabla } from './usuarios/usuarios-tabla/usuarios-tabla';
 import { UsuariosDetalle } from './usuarios/usuarios-detalle/usuarios-detalle';
 import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-formulario';
-import { Tratamiento } from './ui/tratamiento/tratamiento';
+import { VeterinariosDetalle } from './veterinarios/veterinarios-detalle/veterinarios-detalle';
+import { VeterinariosFormulario } from './veterinarios/veterinarios-formulario/veterinarios-formulario';
+import { VeterinariosTabla } from './veterinarios/veterinarios-tabla/veterinarios-tabla';
+
 
 
 const routes: Routes = [
@@ -31,10 +34,15 @@ const routes: Routes = [
   { path: 'usuarios/editar/:id', component: UsuariosFormulario },
 
   { path: 'usuarios/:id', component: UsuariosDetalle },
-  
-  { path: 'tratamientos', component: Tratamiento },
 
 
+  { path: 'veterinarios', component: VeterinariosTabla },
+
+  { path: 'veterinarios/agregar', component: VeterinariosFormulario },
+
+  { path: 'veterinarios/editar/:id', component: VeterinariosFormulario },
+
+  { path:'veterinarios/find/:id', component: VeterinariosDetalle},
   
 
   { path: '**', redirectTo: '', pathMatch: 'full' },
