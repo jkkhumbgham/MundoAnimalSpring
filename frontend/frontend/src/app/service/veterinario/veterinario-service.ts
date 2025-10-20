@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-
-// Si tienes clase con constructor, importa tu modelo:
 import { Veterinario } from '../../model/veterinario/veterinario';
 import { Router } from '@angular/router';
 
@@ -75,4 +73,10 @@ export class VeterinarioService {
       console.log("SOF",veterinario);
       this.updateVeterinario(veterinario);
     }
+
+
+    obtenerMascotasTratadas(idVeterinario: number): Observable<any[]> {
+      return this.http.get<any[]>(`http://localhost:8080/veterinarios/${idVeterinario}/mascotas-tratadas`);
+  }
+
 }

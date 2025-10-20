@@ -1,0 +1,78 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.tabla-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.tabla-card:hover {
+  transform: translateY(-3px);
+}
+
+.titulo {
+  text-align: center;
+  color: #4f46e5;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.tabla-container {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla thead {
+  background: #4f46e5;
+  color: white;
+  border-radius: 12px;
+}
+
+.tabla th,
+.tabla td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla tbody tr:hover {
+  background-color: #f5f6ff;
+  transition: background-color 0.3s ease;
+}
+
+.alerta-vacia {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.estado {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.estado.activo {
+  background-color: #d9fcd9;
+  color: #0a6d0a;
+}
+
+.estado.inactivo {
+  background-color: #fde8e8;
+  color: #b91c1c;
+}
