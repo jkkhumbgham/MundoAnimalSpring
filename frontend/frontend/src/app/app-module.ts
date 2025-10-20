@@ -22,6 +22,7 @@ import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-form
 import { VeterinariosTabla } from './veterinarios/veterinarios-tabla/veterinarios-tabla';
 import { VeterinariosDetalle } from './veterinarios/veterinarios-detalle/veterinarios-detalle';
 import { VeterinariosFormulario } from './veterinarios/veterinarios-formulario/veterinarios-formulario';
+import { VerMascotasTratadas } from './principal/veterinario/ver-mascotas-tratadas/ver-mascotas-tratadas';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { VeterinariosFormulario } from './veterinarios/veterinarios-formulario/v
     UsuariosFormulario,
     VeterinariosTabla,
     VeterinariosDetalle,
-    VeterinariosFormulario
+    VeterinariosFormulario,
+    VerMascotasTratadas
   ],
   imports: [
     BrowserModule,
