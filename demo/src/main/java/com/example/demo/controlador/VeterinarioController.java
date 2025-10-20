@@ -1,5 +1,7 @@
 package com.example.demo.controlador;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entidades.Usuario;
+import com.example.demo.entidades.Mascota;
 import com.example.demo.entidades.Veterinario;
-import java.util.List;
-
 import com.example.demo.servicio.ServicioVeterinario;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -56,4 +56,13 @@ public class VeterinarioController {
     public void softEliminarVeterinario(@PathVariable Long id) {
         servicio.softdeleteById(id);
     }
+
+
+
+    @GetMapping("/{id}/mascotas-tratadas")
+    public List<Mascota> getMascotasTratadas(@PathVariable Long id) {
+        return servicio.obtenerMascotasTratadasPorVeterinario(id);
+    }
+
+
 }

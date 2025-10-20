@@ -1,13 +1,15 @@
 package com.example.demo.servicio;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entidades.Mascota;
+import com.example.demo.entidades.Tratamiento;
 import com.example.demo.entidades.Veterinario;
+import com.example.demo.repositorio.RepositorioTratamiento;
 import com.example.demo.repositorio.RepositorioVeterinarios;
 
 @Service
@@ -15,6 +17,9 @@ public class ServicioVeterinarioImpl implements ServicioVeterinario {
     
     @Autowired
     RepositorioVeterinarios repositorio;
+
+    @Autowired
+    private RepositorioTratamiento RepositorioTratamiento;
 
     @Override
     public List<Veterinario> getAllVeterinarios() {
@@ -59,5 +64,15 @@ public class ServicioVeterinarioImpl implements ServicioVeterinario {
     @Override
     public Veterinario getByEmail(String email) {
         return repositorio.findByEmail(email);
+    }
+
+    
+    @Override
+    public List<Mascota> obtenerMascotasTratadasPorVeterinario(Long idVeterinario) {
+        List<Tratamiento> tratamientos = RepositorioTratamiento.findByVeterinarioId(idVeterinario);
+        return tratamientos.stream()
+                .map(Tratamiento::getMascota)
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

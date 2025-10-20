@@ -1,8 +1,8 @@
 package com.example.demo.servicio;
 
-import java.util.Collection;
 import java.util.List;
 
+import com.example.demo.entidades.Mascota;
 import com.example.demo.entidades.Veterinario;
 
 public interface ServicioVeterinario {
@@ -13,4 +13,6 @@ public interface ServicioVeterinario {
     public void softdeleteById(Long id);
     void updateVeterinario(Veterinario veterinario);
     public Veterinario getByEmail(String email);
+
+    List<Mascota> obtenerMascotasTratadasPorVeterinario(Long idVeterinario);
 }
