@@ -23,6 +23,7 @@ import { VeterinariosTabla } from './veterinarios/veterinarios-tabla/veterinario
 import { VeterinariosDetalle } from './veterinarios/veterinarios-detalle/veterinarios-detalle';
 import { VeterinariosFormulario } from './veterinarios/veterinarios-formulario/veterinarios-formulario';
 import { VerMascotasTratadas } from './principal/veterinario/ver-mascotas-tratadas/ver-mascotas-tratadas';
+import { Dashboard } from './admin/dashboard/dashboard';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { VerMascotasTratadas } from './principal/veterinario/ver-mascotas-tratad
     VeterinariosTabla,
     VeterinariosDetalle,
     VeterinariosFormulario,
-    VerMascotasTratadas
+    VerMascotasTratadas,
+    Dashboard
   ],
   imports: [
     BrowserModule,
@@ -58,4 +60,9 @@ import { VerMascotasTratadas } from './principal/veterinario/ver-mascotas-tratad
   ],
   bootstrap: [App]
 })
-export class AppModule { }
+export class AppModule {
+  ngOnInit() {
+    localStorage.clear();
+    console.log("LIMPIO");
+  }
+ }

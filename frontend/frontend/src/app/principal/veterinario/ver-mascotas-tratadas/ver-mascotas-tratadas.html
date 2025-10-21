@@ -1,6 +1,17 @@
-<div class="container mt-5">
+<div class="container mt-5 mover">
   <div class="card tabla-card">
     <h2 class="titulo">Mascotas tratadas</h2>
+    <div *ngIf="mascotas.length !== 0" class="row justify-content-center mb-3">
+        <div class="col-md-6">
+            <div class="input-group">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Buscar mascota por nombre"
+                [formControl]="searchControl">
+            </div>
+        </div>
+    </div>
 
     <div *ngIf="mascotas.length === 0" class="alerta-vacia">
       <p>Este veterinario aún no ha tratado mascotas </p>
@@ -18,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let m of mascotas">
+          <tr *ngFor="let m of mascotasFiltradas">
             <td>{{ m.id }}</td>
             <td>{{ m.nombre }}</td>
             <td>{{ m.especie }}</td>

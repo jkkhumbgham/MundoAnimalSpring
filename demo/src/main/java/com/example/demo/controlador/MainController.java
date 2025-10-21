@@ -43,7 +43,12 @@ public class MainController {
         
         
         if (usuario !=null && password.equals(usuario.getContraseña())) {
-            return "cliente," + usuario.getId();
+            if (usuario.getEmail().equals("admin@example.com")) {
+                return "admin," + usuario.getId();
+            }
+            else{
+                return "cliente," + usuario.getId();
+            }
         }else {
             if (veterinario != null && password.equals(veterinario.getPassword())) {
                 if (veterinario.getEstado().equals("inactivo")) {

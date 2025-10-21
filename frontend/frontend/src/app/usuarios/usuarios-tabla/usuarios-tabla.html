@@ -4,7 +4,7 @@
     <h6>Parece que estas en el lugar equivocado, necesitas permisos para ver esta pagina</h6>
   </div>
 
-  <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;" *ngIf="rol === 'veterinario'">
+  <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;" *ngIf="rol === 'veterinario' || rol === 'admin'">
     <div class="card-body">
 
       <div class="d-flex justify-content-between align-items-center mb-4">
@@ -36,8 +36,9 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let usuario of usuarios">
-
+        
+        <tr *ngFor="let usuario of usuarios" >
+        <ng-container *ngIf="usuario.email !== 'admin@example.com'">
           <td class="align-middle">
             <img [src]="usuario.foto" 
                  [alt]="'Imagen de ' + usuario.nombre" 
@@ -68,8 +69,9 @@
 
             </div>
           </td>
-
+        </ng-container>
         </tr>
+        
       </tbody>
     </table>
 

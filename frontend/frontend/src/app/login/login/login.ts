@@ -52,6 +52,10 @@
             localStorage.setItem('id', id);
             localStorage.setItem('tipoUsuario', 'veterinario');
             this.router.navigate(['/usuarios']);
+          } else if (user === 'admin') {
+            localStorage.setItem('id', id);
+            localStorage.setItem('tipoUsuario', 'admin');
+            this.router.navigate(['/veterinarios']);
           }
         },
         error: (err) => {

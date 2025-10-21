@@ -13,4 +13,5 @@ public interface ServicioMascotas {
     public void addMascota(Mascota mascota);
     public void updateMascota(Mascota mascota);
     public List<Mascota> getByDueño_Id(Long id);
+    public List<Mascota> obtenerMascotasTratadasPorVeterinario(Long idVeterinario);
 }

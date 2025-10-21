@@ -11,6 +11,7 @@ import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-form
 import { VeterinariosDetalle } from './veterinarios/veterinarios-detalle/veterinarios-detalle';
 import { VeterinariosFormulario } from './veterinarios/veterinarios-formulario/veterinarios-formulario';
 import { VeterinariosTabla } from './veterinarios/veterinarios-tabla/veterinarios-tabla';
+import { VerMascotasTratadas } from './principal/veterinario/ver-mascotas-tratadas/ver-mascotas-tratadas';
 
 
 
@@ -43,6 +44,8 @@ const routes: Routes = [
   { path: 'veterinarios/editar/:id', component: VeterinariosFormulario },
 
   { path:'veterinarios/find/:id', component: VeterinariosDetalle},
+
+  { path: 'veterinarios/mascotas/:id', component: VerMascotasTratadas },
   
 
   { path: '**', redirectTo: '', pathMatch: 'full' },

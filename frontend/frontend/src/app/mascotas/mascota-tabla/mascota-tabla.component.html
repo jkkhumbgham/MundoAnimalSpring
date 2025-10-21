@@ -8,7 +8,7 @@
   </div>
 
   <!-- Card principal para veterinario poner cuando este la cookie *ngIf="rol === 'veterinario'" -->
-  <div *ngIf="rol === 'veterinario'" class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;" >
+  <div *ngIf="rol === 'veterinario' || rol === 'admin'" class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;" >
     <div class="card-body">
       <div class="cabeza d-flex align-items-center justify-content-between mb-4">
         <div>

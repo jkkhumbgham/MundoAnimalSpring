@@ -75,4 +75,11 @@ public class ServicioTratamientoImpl implements ServicioTratamiento {
     public void eliminar(Long id) {
         repoTratamiento.deleteById(id);
     }
+
+    @Override
+    public Veterinario obtenerVeterinarioPorTratamiento(Long tratamientoId) {
+        Tratamiento tratamiento = repoTratamiento.findById(tratamientoId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tratamiento no encontrado"));
+        return tratamiento.getVeterinario();
+    }
 }

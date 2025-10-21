@@ -2,6 +2,9 @@
   max-width: 1000px;
   margin: auto;
 }
+.mover {
+    padding-top: 100px!important;
+}
 
 .tabla-card {
   background: #ffffff;

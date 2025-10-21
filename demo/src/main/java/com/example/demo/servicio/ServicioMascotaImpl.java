@@ -69,7 +69,7 @@ public class ServicioMascotaImpl implements ServicioMascotas {
 
     @Override
     public List<Mascota> obtenerMascotasTratadasPorVeterinario(Long idVeterinario) {
-        List<Tratamiento> tratamientos = RepositorioTratamiento.findByVeterinarioId(idVeterinario);
+        List<Tratamiento> tratamientos = RepositorioTratamiento.findAllByVeterinario_Id(idVeterinario);
         return tratamientos.stream()
                 .map(Tratamiento::getMascota)
                 .distinct()

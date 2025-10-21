@@ -88,8 +88,9 @@ public class DatabaseInit implements ApplicationRunner {
         Usuario u48 = new Usuario("Veronica Salazar", "6263646566", "veronica@example.com", "vero2024", "https://randomuser.me/api/portraits/women/38.jpg",48);
         Usuario u49 = new Usuario("Diego Cardenas", "6465666768", "diego@example.com", "diegopass", "https://randomuser.me/api/portraits/men/39.jpg",49);
         Usuario u50 = new Usuario("Paula Mendoza", "6667686970", "paula@example.com", "paulapass", "https://randomuser.me/api/portraits/women/40.jpg",50);
-                
+        Usuario u51 = new Usuario("Andres Moreno", "6869707072", "admin@example.com", "1234", "https://randomuser.me/api/portraits/men/41.jpg",51);     
 
+        
         usuarioRepository.save(u1);
         usuarioRepository.save(u2);
         usuarioRepository.save(u3);
@@ -140,6 +141,7 @@ public class DatabaseInit implements ApplicationRunner {
         usuarioRepository.save(u48);
         usuarioRepository.save(u49);
         usuarioRepository.save(u50);
+        usuarioRepository.save(u51);
 
         mascotaRepository.save(new Mascota(List.of("rabia", "leucemia"),List.of("ninguna conocida"),"Sana", "https://cdn.pixabay.com/photo/2018/09/14/07/57/yellow-lab-3676436_960_720.jpg","Fido", "Perro", "Labrador", "Macho", "Saludable",java.sql.Date.valueOf("2025-08-10"),java.sql.Date.valueOf("2020-01-01"), 30.5f, 123456));
         mascotaRepository.save( new Mascota( List.of("rabia","triple felina", "leucemia"),List.of("ninguna conocida"), "Sana","https://images.unsplash.com/photo-1592194996308-7b43878e84a6", "Whiskers", "Gato", "Siamés", "Hembra", "Saludable",java.sql.Date.valueOf("2025-08-1"),java.sql.Date.valueOf("2019-06-15"), 10.2f, 654321));

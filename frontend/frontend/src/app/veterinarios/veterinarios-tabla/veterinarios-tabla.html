@@ -3,8 +3,11 @@
   <div class="mover" *ngIf="rol === 'cliente'">
     <h6>Parece que estas en el lugar equivocado, necesitas permisos para ver esta pagina</h6>
   </div>
+  <div class="mover" *ngIf="rol === 'veterinario'">
+    <h6>Parece que estas en el lugar equivocado, necesitas permisos para ver esta pagina</h6>
+  </div>
   
-  <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;" *ngIf="rol === 'veterinario'">
+  <div class="no-hover card shadow-lg rounded-4 w-100" style="max-width: 1000px;" *ngIf="rol === 'admin'">
     <div class="card-body">
         <div class="row justify-content-center mb-3">
         <div class="col-md-6">
@@ -86,7 +89,7 @@
               </button>
 
               <button class="btn-tabla btn btn-sm btn-outline-info d-flex align-items-center justify-content-center"
-                      [routerLink]="['/veterinarios', usuario.id]">
+                      [routerLink]="['/veterinarios/mascotas', usuario.id]">
                 <img src="/assets/images/mas.png" alt="Icono mas">
               </button>
 
