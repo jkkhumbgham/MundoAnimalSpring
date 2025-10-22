@@ -12,8 +12,8 @@ import com.example.demo.entidades.Usuario;
 
 @Repository
 public interface RepositorioUsuarios extends JpaRepository<Usuario, Long> {
-
     
+    //metodo para buscar usuario por email
     Usuario findByEmail(String email);
 
 }

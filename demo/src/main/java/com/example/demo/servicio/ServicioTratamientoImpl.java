@@ -11,6 +11,7 @@ import com.example.demo.repositorio.RepositorioVeterinarios;
 
 import lombok.val;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,22 +22,20 @@ import java.util.List;
 @Service
 @Transactional
 public class ServicioTratamientoImpl implements ServicioTratamiento {
+    // declaracion repos necesarios
+    @Autowired
+    private RepositorioTratamiento repoTratamiento;
+    @Autowired
+    private RepositorioMascotas repoMascotas;
+    @Autowired
+    private RepositorioMedicamento repoMedicamento;
+    @Autowired
+    private RepositorioVeterinarios repoVeterinarios;
 
-    private final RepositorioTratamiento repoTratamiento;
-    private final RepositorioMascotas repoMascotas;
-    private final RepositorioMedicamento repoMedicamento;     
-    private final RepositorioVeterinarios repoVeterinarios;
-
-    public ServicioTratamientoImpl(RepositorioTratamiento repoTratamiento,
-                                   RepositorioMascotas repoMascotas,
-                                   RepositorioMedicamento repoMedicamento,   
-                                   RepositorioVeterinarios repoVeterinarios) {
-        this.repoTratamiento = repoTratamiento;
-        this.repoMascotas = repoMascotas;
-        this.repoMedicamento = repoMedicamento;               
-        this.repoVeterinarios = repoVeterinarios;
-    }
-
+  
+    
+//metodos
+//metodo para crear tratamiento
     @Override
     public Tratamiento crear(Tratamiento t, Long mascotaId, Long medicamentoId, Long veterinarioId) {
         Mascota mascota = repoMascotas.findById(mascotaId)
@@ -66,16 +65,18 @@ public class ServicioTratamientoImpl implements ServicioTratamiento {
         return repoTratamiento.save(t);
     }
 
+    //metodo para listar tratamientos por mascota
     @Override
     public List<Tratamiento> listarPorMascota(Long mascotaId) {
         return repoTratamiento.findByMascotaId(mascotaId);
     }
 
+    //metodo para eliminar tratamiento
     @Override
     public void eliminar(Long id) {
         repoTratamiento.deleteById(id);
     }
-
+    //metodo para obtener veterinario por tratamiento
     @Override
     public Veterinario obtenerVeterinarioPorTratamiento(Long tratamientoId) {
         Tratamiento tratamiento = repoTratamiento.findById(tratamientoId)

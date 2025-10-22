@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-usuario',
@@ -8,14 +9,16 @@ import { Component } from '@angular/core';
 })
 export class HeaderUsuario {
   rol: string = '';
-  get loggedIn(): boolean {
-    console.log(localStorage.getItem('id'));
-    return !!localStorage.getItem('id');
-  }
-
+  loggedIn: boolean = false;
+  constructor(private router: Router) {}
   ngOnInit(): void {
     localStorage.setItem('id','')
     this.rol = localStorage.getItem('rol') ?? '';
-    
+    this.loggedIn = !!localStorage.getItem('id');
+  }
+  logout(): void {
+    localStorage.clear();
+    this.loggedIn = false;
+    this.router.navigate(['/login']);
   }
 }

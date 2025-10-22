@@ -1,1 +1,78 @@
-<p>dashboard works!</p>
+<div class="dashboard mover layout-inline">
+
+  <div class="cards-3x2">
+    <div class="card">
+      <div class="card-title">Mascotas activas</div>
+      <div class="card-value">{{ resumen[0].mascotasActivas }}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tratamientos (totales)</div>
+      <div class="card-value">{{ resumen[0].tratamientosActivos }}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tipos vendidos</div>
+      <div class="card-value">{{ ventas.medicinasVendidas }}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Unidades vendidas</div>
+      <div class="card-value">{{ ventas.unidadesVendidas }}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Ingresos totales</div>
+      <div class="card-value">{{ ventas.ingresos }}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Ganancia</div>
+      <div class="card-value">{{ ventas.ganancia }}</div>
+    </div>
+  </div>
+
+  <!-- Top medicamentos vendidos -->
+  <div class="section section--compact">
+    <h3 class="section-title">Top medicamentos vendidos</h3>
+
+    <div *ngIf="ventas.ganancia !== 0; else noVentas" class="bars">
+      <div class="bar-row" *ngFor="let m of topMeds; let i = index">
+        <div class="bar-label">{{ i + 1 }}. {{ m.nombre }}</div>
+        <div class="bar-value">{{ m.total }}</div>
+      </div>
+    </div>
+
+    <ng-template #noVentas>
+      <div class="empty strong">No se ha vendido nada.</div>
+    </ng-template>
+  </div>
+
+  <div class="section section--compact">
+  <h3 class="section-title">Stock de medicamentos</h3>
+
+  <table class="table" *ngIf="stock?.length; else noStock">
+    <thead>
+      <tr><th>Medicamento</th><th>Stock</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of Pagina">
+        <td>{{ s.nombre }}</td>
+        <td>{{ s.stock }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Paginador -->
+  <div class="pager" *ngIf="(stock?.length || 0) > totalPaginas">
+    <button class="btn-icon" (click)="anterior()" [disabled]="pagina === 1" aria-label="Página anterior">←</button>
+    <span class="pager-label">Página {{ pagina }} / {{ Paginas }}</span>
+    <button class="btn-icon" (click)="siguiente()" [disabled]="pagina === totalPaginas" aria-label="Página siguiente">→</button>
+  </div>
+
+  <ng-template #noStock>
+    <div class="empty">Sin datos de stock.</div>
+  </ng-template>
+</div>
+
+</div>

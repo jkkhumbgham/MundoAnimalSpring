@@ -48,6 +48,7 @@ public class TratamientoRestController {
         return ResponseEntity.noContent().build();
     }
 
+    // Obtener veterinario por tratamiento
     @GetMapping("/tratamientos/veterinario/{id}")
     public Veterinario obtenerVeterinarioPorTratamiento(@PathVariable Long id) {
         return service.obtenerVeterinarioPorTratamiento(id);

@@ -28,6 +28,8 @@ public class MainController {
     @Autowired 
     ServicioVeterinario serviciovet;
 
+
+    //Metodo post de login para iniciar sesion devuelve tipo de usuario y su id
         @PostMapping("/login")
     public String doLogin(@RequestParam String email, @RequestParam String password, Model model,HttpServletResponse response) {
         Usuario usuario = null;
@@ -42,7 +44,7 @@ public class MainController {
         }
         
         
-        if (usuario !=null && password.equals(usuario.getContraseña())) {
+        if (usuario !=null && password.equals(usuario.getpassword())) {
             if (usuario.getEmail().equals("admin@example.com")) {
                 return "admin," + usuario.getId();
             }
@@ -52,12 +54,13 @@ public class MainController {
         }else {
             if (veterinario != null && password.equals(veterinario.getPassword())) {
                 if (veterinario.getEstado().equals("inactivo")) {
+                    model.addAttribute("error", "El veterinario se encuentra inactivo");
                     return "fallo";
                 }else{
                     return "veterinario," + veterinario.getId();
                 }
             }else{
-            model.addAttribute("error", "Usuario o contraseña incorrectos");
+            model.addAttribute("error", "Usuario o password incorrectos");
             return "fallo";
             }
         }

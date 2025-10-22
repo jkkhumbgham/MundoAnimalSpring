@@ -18,11 +18,12 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#inicio">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/usuarios}">Usuarios</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['/usuarios']">Usuarios</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/mascotas}">Mascotas</a>
+
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['/mascotas']">Mascotas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contacto">Contacto</a>
@@ -30,14 +31,14 @@
             </ul>
 
 
-            <!--
+            
             <button class="btn btn-salir d-flex align-items-center"
               *ngIf="loggedIn && rol === 'veterinario'"
               (click)="logout()">
               <img src="assets/images/salir.png" width="30" height="30" alt="Logo Cerrar Sesión">
               Cerrar Sesión
             </button>
-            -->
+            
 
             <a class="btn btn-llamar d-flex align-items-center">
                 <img src="assets/images/Telefono.png" width="30" height="30" alt="Logo Telefono"> Llamar Ahora

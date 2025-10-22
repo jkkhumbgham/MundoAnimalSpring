@@ -25,26 +25,31 @@ import jakarta.servlet.http.HttpServletRequest;
 public class VeterinarioController {
     @Autowired ServicioVeterinario servicio;
 
+    // Listar veterinarios
     @GetMapping("")
     public List<Veterinario> listarVeterinarios() {
         return servicio.getAllVeterinarios();
     }
-
+    // Eliminar veterinario
     @DeleteMapping("/delete/{id}")
     public void eliminarVeterinario(@PathVariable Long id) {
         servicio.removeVeterinario(id);
     }
+    // Agregar veterinario
     @PostMapping("/agregar")
     public void agregarVeterinario(@RequestBody Veterinario veterinario) {
         veterinario.setId(null);
         servicio.addVeterinario(veterinario);
     }
 
+    // Editar veterinario
+
     @PutMapping("/editar/{id}")
     public void editarVeterinario(@PathVariable Long id, @RequestBody Veterinario veterinario) {
         servicio.updateVeterinario(veterinario);
     }
 
+    // Obtener veterinario por id
     @GetMapping("/find/{id}")
     public Veterinario getVeterinario(HttpServletRequest request, @PathVariable Long id) {
 
@@ -52,13 +57,14 @@ public class VeterinarioController {
         return veterinario;
     }
 
+    // Soft eliminar veterinario desactivar un veterinario
     @DeleteMapping("/softdelete/{id}")
     public void softEliminarVeterinario(@PathVariable Long id) {
         servicio.softdeleteById(id);
     }
 
 
-
+    // Obtener mascotas tratadas por veterinario
     @GetMapping("/{id}/mascotas-tratadas")
     public List<Mascota> getMascotasTratadas(@PathVariable Long id) {
         return servicio.obtenerMascotasTratadasPorVeterinario(id);

@@ -15,12 +15,18 @@ import jakarta.transaction.Transactional;
 @Repository
 public interface RepositorioMascotas extends JpaRepository<Mascota, Long> {
     
+    //metodo para el soft delete
     @Modifying
     @Transactional
     @Query("UPDATE Mascota m SET m.estado =:estado WHERE m.id = :id")
     void updateEstadoById(@Param("id") Long id, @Param("estado") String estado);
 
+    //metodo para buscar mascotas por dueno
     List<Mascota> findByDueno_Id(Long usuarioId);
+
+    //metodo para buscar mascotas por estado
+    long countByEstadoIgnoreCase(String estado);
+
 
     
 }

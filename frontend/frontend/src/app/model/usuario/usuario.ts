@@ -6,7 +6,7 @@ export class Usuario {
   telefono: string;
   cedula: number;
   email: string;
-  contrasena: string;
+  password: string;
   foto: string;
   mascotas?: Mascota[];
 
@@ -16,7 +16,7 @@ export class Usuario {
     telefono: string,
     cedula: number,
     email: string,
-    contrasena: string,
+    password: string,
     foto: string
   ) {
     this.id = id;
@@ -24,7 +24,7 @@ export class Usuario {
     this.telefono = telefono;
     this.cedula = cedula;
     this.email = email;
-    this.contrasena = contrasena;
+    this.password = password;
     this.foto = foto;
   }
   static crearVacio(): Usuario {

@@ -109,7 +109,6 @@ export class MascotaDetalle implements OnInit {
           this.guardando = false;
           this.nombreTrat = '';
           this.medicamentoId = 0;
-          this.vetId = 0;
           this.cargarTratamientos();
         },
         error: e => {

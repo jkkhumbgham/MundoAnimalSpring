@@ -24,7 +24,7 @@ public class Usuario {
     private String telefono;
     private int cedula;
     private String email;
-    private String contraseña;
+    private String password;
     private String foto;
     @JsonIgnore
     @OneToMany(mappedBy = "dueno", cascade = CascadeType.ALL)
@@ -32,22 +32,22 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(Long id, String nombre, String telefono, String email, String contraseña, String foto, List<Mascota> mascotas) {
+    public Usuario(Long id, String nombre, String telefono, String email, String password, String foto, List<Mascota> mascotas) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
-        this.contraseña = contraseña;
+        this.password = password;
         this.foto = foto;
         this.mascotas = mascotas;
     }
 
-     public Usuario( String nombre, String telefono, String email, String contraseña, String foto, int cedula) {
+     public Usuario( String nombre, String telefono, String email, String password, String foto, int cedula) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.cedula = cedula;
         this.email = email;
-        this.contraseña = contraseña;
+        this.password = password;
         this.foto = foto;
     }
 
@@ -84,12 +84,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getpassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setpassword(String password) {
+        this.password = password;
     }
 
     public String getFoto() {

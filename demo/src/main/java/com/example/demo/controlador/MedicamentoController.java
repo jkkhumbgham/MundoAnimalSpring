@@ -22,18 +22,21 @@ public class MedicamentoController {
     @Autowired
     ServicioMedicamentoImpl servicio;
 
+    //obtener todos los medicamentos
     @GetMapping("")
     public List<Medicamento> getMedicamentos() {
         return servicio.getAllMedicamentos();
     }
 
+    //obtener medicamento por id
     @GetMapping("/{id}")
     public Medicamento getMedicamentoById(@PathVariable("id") Long id) {
         return servicio.getMedicamentoById(id);
     }
 
+    //obtener medicamentos por tratamiento
     @GetMapping("/tratamiento/{id}")
-    public List<Medicamento> getMethodName(@PathVariable("id") Long id) {
+    public List<Medicamento> getByTratamiento(@PathVariable("id") Long id) {
         return servicio.findByTratamientos_Id(id);
     }
     

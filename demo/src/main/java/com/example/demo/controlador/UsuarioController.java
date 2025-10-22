@@ -37,12 +37,14 @@ public class UsuarioController {
 
 
 
+    // Listar usuarios
     @GetMapping("")
     public List<Usuario> listarUsuarios(HttpServletRequest request, Model model) {
         
         
         return servicioUsuario.getAllUsuarios();
     }
+    // Eliminar usuario
     @DeleteMapping("/delete/{id}")
     public void eliminarUsuario(@PathVariable Long id) {
         servicioUsuario.removeUsuario(id);
@@ -67,12 +69,15 @@ public class UsuarioController {
         return "agregar_usuario";
     }
     */
+
+    // Agregar usuario
     @PostMapping("/agregar")
     public void agregarfinal(@RequestBody Usuario usuario) {
         usuario.setId(null);
         servicioUsuario.addUsuario(usuario);
     }
 
+    // Editar usuario
     @PutMapping("/editar/{id}")
     public void editarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
         servicioUsuario.updateUsuario(usuario);
@@ -96,6 +101,8 @@ public class UsuarioController {
         return "agregar_usuario";
     }
         */
+
+    // Obtener usuario por id
     @GetMapping("/find/{id}")
     public Usuario getUsuario(HttpServletRequest request, @PathVariable Long id) {
     
@@ -104,8 +111,9 @@ public class UsuarioController {
         return usuario;
     }
     
+    // Obtener usuario por email
     @PostMapping("/mail")
-    public Usuario getMethodName(@RequestBody String email) {
+    public Usuario getByEmail(@RequestBody String email) {
         return servicioUsuario.getByEmail(email);
     }
     

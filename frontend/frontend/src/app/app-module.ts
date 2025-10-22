@@ -23,6 +23,7 @@ import { VeterinariosTabla } from './veterinarios/veterinarios-tabla/veterinario
 import { VeterinariosDetalle } from './veterinarios/veterinarios-detalle/veterinarios-detalle';
 import { VeterinariosFormulario } from './veterinarios/veterinarios-formulario/veterinarios-formulario';
 import { VerMascotasTratadas } from './principal/veterinario/ver-mascotas-tratadas/ver-mascotas-tratadas';
+import { CommonModule } from '@angular/common';
 import { Dashboard } from './admin/dashboard/dashboard';
 
 @NgModule({
@@ -53,16 +54,12 @@ import { Dashboard } from './admin/dashboard/dashboard';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
   ],
   bootstrap: [App]
 })
-export class AppModule {
-  ngOnInit() {
-    localStorage.clear();
-    console.log("LIMPIO");
-  }
- }
+export class AppModule {}

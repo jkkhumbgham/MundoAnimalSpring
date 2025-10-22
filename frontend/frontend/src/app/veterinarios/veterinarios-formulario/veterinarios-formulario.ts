@@ -36,6 +36,7 @@ export class VeterinariosFormulario {
     if (this.usuario.id !== 0) {
       this.veterinarioService.updateVeterinario(this.usuario);
     } else {
+      this.usuario.estado = 'Activo';
       this.veterinarioService.addVeterinario(this.usuario);
     }
   }

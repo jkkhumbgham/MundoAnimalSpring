@@ -12,7 +12,9 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public interface RepositorioVeterinarios extends JpaRepository<Veterinario, Long> {
+    //metodo para buscar veterinario por email
 	Veterinario findByEmail(String email);
+    //metodo para el soft delete
 	@Modifying
     @Transactional
     @Query("UPDATE Veterinario v SET v.estado =:estado WHERE v.id = :id")

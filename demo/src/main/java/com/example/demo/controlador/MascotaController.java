@@ -141,9 +141,9 @@ public class MascotaController {
     }
          */
 
-        // Editar desde la lista de mascotas
-        
-    @PutMapping("/mascotas/editar")
+
+         // Editar desde la lista de mascotas
+     @PutMapping("/mascotas/editar")
     public void actualizarMascota(@RequestBody Mascota mascota) {
 
     
@@ -159,8 +159,9 @@ public class MascotaController {
         servicioMascotas.updateMascota(mascota);
     }
 
+    //Obtener mascotas por dueño
     @GetMapping("/mascotas/dueno/{duenoId}")
-    public List<Mascota> getMethodName(@PathVariable Long duenoId) {
+    public List<Mascota> getByDueno(@PathVariable Long duenoId) {
         return servicioMascotas.getByDueño_Id(duenoId);
     }
     
