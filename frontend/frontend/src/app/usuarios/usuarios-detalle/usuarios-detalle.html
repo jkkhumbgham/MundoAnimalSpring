@@ -28,7 +28,7 @@
           class="btn-tabla btn btn-sm btn-outline-success d-flex align-items-center justify-content-center"
           *ngIf="rol === 'veterinario' || rol === 'admin'"
           (click)="agregarMascota()">
-          <img src="/assets/images/mas.png" alt="Icono mas">
+          <img src="/assets/images/mas.png" alt="Icono mas" *ngIf="rol === 'veterinario' || rol === 'admin'">
         </button>
       </div>
 

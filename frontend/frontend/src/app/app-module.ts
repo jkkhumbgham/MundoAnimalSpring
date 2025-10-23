@@ -25,6 +25,7 @@ import { VeterinariosFormulario } from './veterinarios/veterinarios-formulario/v
 import { VerMascotasTratadas } from './principal/veterinario/ver-mascotas-tratadas/ver-mascotas-tratadas';
 import { CommonModule } from '@angular/common';
 import { Dashboard } from './admin/dashboard/dashboard';
+import { HeaderAdmin } from './headers/header-admin/header-admin';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { Dashboard } from './admin/dashboard/dashboard';
     VeterinariosDetalle,
     VeterinariosFormulario,
     VerMascotasTratadas,
-    Dashboard
+    Dashboard,
+    HeaderAdmin
   ],
   imports: [
     BrowserModule,

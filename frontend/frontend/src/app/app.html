@@ -2,7 +2,11 @@
   <app-header-veterinario></app-header-veterinario>
 </ng-container>
 
-<ng-container *ngIf="rol !== 'veterinario'">
+<ng-container *ngIf="rol === 'admin'">
+  <app-header-admin></app-header-admin>
+</ng-container>
+
+<ng-container *ngIf="rol !== 'admin' && rol !== 'veterinario'">
   <app-header-usuario></app-header-usuario>
 </ng-container>
 <router-outlet></router-outlet>
