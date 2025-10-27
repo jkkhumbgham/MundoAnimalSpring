@@ -1,15 +1,6 @@
 package com.example.demo.servicio;
 
-import com.example.demo.entidades.Mascota;
-import com.example.demo.entidades.Medicamento;
-import com.example.demo.entidades.Tratamiento;
-import com.example.demo.entidades.Veterinario;
-import com.example.demo.repositorio.RepositorioMascotas;
-import com.example.demo.repositorio.RepositorioMedicamento;   
-import com.example.demo.repositorio.RepositorioTratamiento;
-import com.example.demo.repositorio.RepositorioVeterinarios;
-
-import lombok.val;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import com.example.demo.entidades.Mascota;
+import com.example.demo.entidades.Medicamento;
+import com.example.demo.entidades.Tratamiento;
+import com.example.demo.entidades.Veterinario;
+import com.example.demo.repositorio.RepositorioMascotas;
+import com.example.demo.repositorio.RepositorioMedicamento;
+import com.example.demo.repositorio.RepositorioTratamiento;
+import com.example.demo.repositorio.RepositorioVeterinarios;
 
 @Service
 @Transactional
@@ -32,6 +30,8 @@ public class ServicioTratamientoImpl implements ServicioTratamiento {
     @Autowired
     private RepositorioVeterinarios repoVeterinarios;
 
+
+    
   
     
 //metodos
@@ -61,6 +61,12 @@ public class ServicioTratamientoImpl implements ServicioTratamiento {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La mascota no esta activa");
         }
         t.getMedicamentos().add(med);
+
+
+        System.out.println("Mascota encontrada: " + mascota.getNombre());
+        System.out.println("Medicamento encontrado: " + med.getNombre());
+        System.out.println("Veterinario encontrado: " + vet.getNombre());
+        System.out.println("Tratamiento antes de guardar: " + t);
 
         return repoTratamiento.save(t);
     }

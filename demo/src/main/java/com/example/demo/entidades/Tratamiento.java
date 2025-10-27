@@ -43,6 +43,7 @@ public class Tratamiento {
     }
     public Tratamiento(String nombre) {
         this.nombre = nombre;
+        this.medicamentos = new ArrayList<>();
     }
     public List<Medicamento> getMedicamentos() {
         return medicamentos;
