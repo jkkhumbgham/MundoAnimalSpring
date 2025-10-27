@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 export class HeaderVeterinario implements OnInit {
   rol: string = '';
   loggedIn: boolean = false;
+  id: string = '';
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.rol = localStorage.getItem('tipoUsuario') ?? '';
+    this.id = localStorage.getItem('id') ?? '';
     this.loggedIn = !!localStorage.getItem('id');
   }
 

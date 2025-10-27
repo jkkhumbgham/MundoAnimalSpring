@@ -25,7 +25,8 @@ public interface RepositorioMascotas extends JpaRepository<Mascota, Long> {
     List<Mascota> findByDueno_Id(Long usuarioId);
 
     //metodo para buscar mascotas por estado
-    long countByEstadoIgnoreCase(String estado);
+    @Query("SELECT COUNT(m) FROM Mascota m WHERE LOWER(m.estado) IN ('saludable', 'en tratamiento', 'recuperándose', 'control rutinario')")
+    long countActiveMascotas();
 
 
     

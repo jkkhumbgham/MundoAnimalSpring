@@ -69,4 +69,10 @@ public class Medicamento {
     public void setUnidades(int unidades) {
         this.unidades = unidades;
     }
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
+    }
 }
