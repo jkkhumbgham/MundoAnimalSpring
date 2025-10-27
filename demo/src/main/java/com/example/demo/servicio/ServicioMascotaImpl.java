@@ -89,4 +89,12 @@ public class ServicioMascotaImpl implements ServicioMascotas {
                 .collect(Collectors.toList());
     }
 
+    public void updateEstadoById(Long id, String estado) {
+        Mascota mascota = repositorio.findById(id).orElse(null);
+        if (mascota != null) {
+            mascota.setEstado(estado);
+            repositorio.save(mascota);
+        }
+    }
+
 }
