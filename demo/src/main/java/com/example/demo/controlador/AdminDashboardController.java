@@ -29,7 +29,6 @@ public class AdminDashboardController {
   @GetMapping("/resumen")
   public Map<String, Object> resumen() {
   long mascotasActivas = 0;
-  // Use the repository method that counts by estado (case-insensitive)
   mascotasActivas = mascotas.countByEstadoIgnoreCase("activo");
 
     long tratamientosTotales = tratamientos.count(); 

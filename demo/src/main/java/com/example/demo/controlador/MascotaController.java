@@ -161,7 +161,7 @@ public ResponseEntity<com.example.demo.entidades.Mascota> patchEstado(
     if (m == null) {
         return ResponseEntity.notFound().build();
     }
-    // Use the service method that updates estado by id (matches tests)
+  
     servicioMascotas.updateEstadoById(id, estado);
     m.setEstado(estado);
     return ResponseEntity.ok(m);

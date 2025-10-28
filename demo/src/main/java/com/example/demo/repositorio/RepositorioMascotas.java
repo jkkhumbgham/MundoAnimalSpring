@@ -20,10 +20,11 @@ public interface RepositorioMascotas extends JpaRepository<Mascota, Long> {
     long countByEstadoIgnoreCase(String estado);
 
     // Actualiza el estado de una mascota por su ID
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Transactional
     @Query("UPDATE Mascota m SET m.estado = :estado WHERE m.id = :id")
     void updateEstadoById(@Param("id") Long id, @Param("estado") String estado);
+
 }
 
 
