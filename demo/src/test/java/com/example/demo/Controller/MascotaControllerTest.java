@@ -31,6 +31,9 @@ public class MascotaControllerTest {
 
     @MockBean
     private ServicioMascotaImpl servicioMascotas;
+    
+    @MockBean
+    private com.example.demo.servicio.ServicioUsuarioImpl servicioUsuarios;
 
     private Mascota mascota(String nombre, String especie, String estado, Long id, Long duenoId) {
         var m = new Mascota();
