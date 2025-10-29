@@ -14,7 +14,7 @@ public interface RepositorioMedicamento extends JpaRepository<Medicamento,Long> 
     List<Medicamento> findAll();
     //metodo para buscar medicamento por id
     //Medicamento findById(long id);
-    Optional<Medicamento> findById(long id);
+    Optional<Medicamento> findById(Long id);
 
     //metodo para buscar medicamentos por tratamiento
     List<Medicamento>  findByTratamientos_Id(Long tratamientoId);
