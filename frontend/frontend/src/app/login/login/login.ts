@@ -56,6 +56,8 @@
             localStorage.setItem('id', id);
             localStorage.setItem('tipoUsuario', 'admin');
             this.router.navigate(['/veterinarios']);
+          } else{
+            this.mensajeError = 'Correo o contraseña incorrectos.'
           }
         },
         error: (err) => {

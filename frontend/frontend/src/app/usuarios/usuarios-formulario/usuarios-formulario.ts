@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Usuario } from '../../model/usuario/usuario'; 
 import { UsuarioService } from '../../service/usuario/usuario-service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-usuarios-formulario',
