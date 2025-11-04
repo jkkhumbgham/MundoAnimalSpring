@@ -22,7 +22,7 @@
   </properties>
 
   <dependencies>
-    <!-- Spring Boot -->
+ 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -49,21 +49,18 @@
 		<scope>test</scope>
 	</dependency>
 
-    <!-- Base de datos en memoria -->
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>runtime</scope>
     </dependency>
 
-    <!-- OpenAPI (Swagger UI) -->
     <dependency>
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
       <version>2.1.0</version>
     </dependency>
 
-    <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
@@ -71,7 +68,6 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Pruebas con JUnit 5 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -84,7 +80,6 @@
       </exclusions>
     </dependency>
 
-    <!-- Selenium WebDriver -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
@@ -92,19 +87,18 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- WebDriverManager (descarga automática de drivers) -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
       <version>5.9.2</version>
       <scope>test</scope>
     </dependency>
-
+	
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Compilador -->
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -122,7 +116,6 @@
         </configuration>
       </plugin>
 
-      <!-- Plugin Spring Boot -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
