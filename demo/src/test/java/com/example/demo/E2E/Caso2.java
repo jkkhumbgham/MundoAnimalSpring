@@ -114,7 +114,7 @@ public class Caso2 {
     // TEST 2: Veterinario crea y guarda un nuevo tratamiento
     @Test
     @Order(2)
-    public void veterinarioCreaNuevoTratamiento() {
+    public void veterinarioCreaNuevoTratamiento() throws InterruptedException {
         
         // Asumimos que driver y wait están inicializados en @BeforeAll
         
@@ -129,16 +129,16 @@ public class Caso2 {
         System.out.println(" Clic en la pestaña 'Tratamientos' exitoso.");
 
         // --- 2. Llenar el campo "Nombre del tratamiento" ---
-        By selectorNombreTratamiento = By.name("nombreTrat"); 
+        By selectorNombreTratamiento = By.id("nombreTrat"); 
         WebElement inputNombreTratamiento = wait.until(
             ExpectedConditions.presenceOfElementLocated(selectorNombreTratamiento)
         );
-        
+        ((org.openqa.selenium.JavascriptExecutor)driver)
+    .executeScript("arguments[0].scrollIntoView({block:'center'});", inputNombreTratamiento);
+        Thread.sleep(5000);
         inputNombreTratamiento.clear(); 
         inputNombreTratamiento.sendKeys(nombreTratamiento); 
         
-        // CLAVE: Forzar el evento 'input' para Angular
-        ((JavascriptExecutor) driver).executeScript("arguments[0].dispatchEvent(new Event('input'));", inputNombreTratamiento);
 
         // --- 3. Seleccionar el medicamento "ACOLAN" ---
         By selectorDropdown = By.name("medicamentoId");
