@@ -1,5 +1,7 @@
 package com.example.demo.E2E;
 
+import static org.mockito.Mockito.timeout;
+
 import java.time.Duration;
 import java.util.List;
 
@@ -8,12 +10,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties.Web;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
@@ -21,8 +25,7 @@ import org.springframework.test.context.ActiveProfiles;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@ActiveProfiles("test")
+
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class Caso1 {
     private WebDriver driver;
@@ -35,6 +38,8 @@ public class Caso1 {
 
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-extensions");
+        options.addArguments("--disable-save-password-bubble");
+        options.addArguments("--disable-features=PasswordLeakDetection,PasswordManagerOnboarding,PasswordGeneration");
         //options.addArguments("--headless");
 
         this.driver = new ChromeDriver(options);
@@ -43,11 +48,11 @@ public class Caso1 {
     }
 
     @Test
-    public void UserRegisterAndLogin_Success() {
+    public void UserRegisterAndLogin_Success() throws InterruptedException {
         driver.get("http://localhost:4200/login");
 
         String errorXpath = "//html//body//app-root//app-login//div//div[2]//div//div[2]";
-        String emailXpath ="//*[@id=\\\"email_cliente\\\"]";
+        String emailXpath ="//*[@id=\"email_cliente\"]";
         String passwordXpath = "//*[@id=\"password_cliente\"]";
         String logingXpath = "//*[@id=\"pills-tabContent\"]//div//form//button";
         String newUserXpath ="//html//body//app-root//app-usuarios-tabla//main//div//div//div//a";
@@ -80,14 +85,97 @@ public class Caso1 {
         String errorContrasenaEsperado = "La contraseña es obligatoria.";
         String errorEsperado = "Correo o contraseña incorrectos.";
         
-        WebElement nombreMascotaVerificar = driver.findElement(By.xpath(nombreMascotaXpath));
+        
+       
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(emailXpath)));
+        WebElement email = driver.findElement(By.xpath(emailXpath));
+        WebElement password = driver.findElement(By.xpath(passwordXpath));
+        WebElement login = driver.findElement(By.xpath(logingXpath));
+       
+        email.sendKeys("veterinariopf@gmail.com");
+        password.sendKeys("1234");
+        login.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("error-message")));
+        WebElement error = driver.findElement(By.id("error-message"));
+        Assertions.assertThat(error.getText()).isEqualTo(errorEsperado);
+        email.clear();
+        password.clear();
+        email.sendKeys("veterinario@gmail.com");
+        password.sendKeys("1234");
+        login.click();
+        System.out.println("Login correcto");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(newUserXpath)));
+        Thread.sleep(2000);
+        WebElement btnUser = driver.findElement(By.id("nuevoDueño"));
+        // 0) asegúrate de que no haya overlays que intercepten
+wait.until(ExpectedConditions.invisibilityOfElementLocated(
+    By.cssSelector(".modal-backdrop, .cdk-overlay-backdrop, .loading, .spinner, .block-ui")
+));
+
+// 1) centra en viewport y haz click con Actions (mousedown+mouseup+click)
+((org.openqa.selenium.JavascriptExecutor)driver)
+    .executeScript("arguments[0].scrollIntoView({block:'center'});", btnUser);
+
+new org.openqa.selenium.interactions.Actions(driver)
+    .moveToElement(btnUser)
+    .pause(java.time.Duration.ofMillis(80))
+    .click()
+    .perform();
+
+System.out.println("[E2E] Click Actions en 'Nuevo Dueño'");
+
+// 2) espera la navegación por URL o el campo destino
+wait.until(org.openqa.selenium.support.ui.ExpectedConditions.or(
+    org.openqa.selenium.support.ui.ExpectedConditions.urlContains("/usuarios/agregar"),
+    org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='nombre']"))
+));
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(nameUserXpath)));
+        WebElement name = driver.findElement(By.xpath(nameUserXpath));
+        WebElement telefono = driver.findElement(By.xpath(telefonoUserXpath));
+        WebElement correo = driver.findElement(By.xpath(correoUserXpath));
+        WebElement contrasena = driver.findElement(By.xpath(contrasenaUserXpath));
+        WebElement foto = driver.findElement(By.xpath(fotoUserXpath));
+        WebElement register = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(registerXpath)));
+((org.openqa.selenium.JavascriptExecutor)driver)
+    .executeScript("arguments[0].scrollIntoView({block:'center'});", register);
+        contrasena.sendKeys("1");
+        contrasena.sendKeys(Keys.BACK_SPACE);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(errorContrasenaXpath)));
+        WebElement errorContrasena = driver.findElement(By.xpath(errorContrasenaXpath));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(nameUserXpath)));
+        name.sendKeys("Juan Perez");
+        telefono.sendKeys("3001234567");
+        correo.sendKeys("clienteprueba@gmail.com");
+        foto.sendKeys("img.jpg");
+        register.click();
+        Assertions.assertThat(errorContrasena.getText()).isEqualTo(errorContrasenaEsperado);
+        contrasena.sendKeys("1234");
+        register.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("btn-mas")));
+        List<WebElement> botones = driver.findElements(By.className("btn-mas"));
+        WebElement boton =botones.get(50);
+        ((org.openqa.selenium.JavascriptExecutor)driver)
+            .executeScript("arguments[0].scrollIntoView({block:'center'});", boton);
+
+        // 2) re-localiza y espera clickeable
+        By byBotones = By.className("btn-mas");
+        boton = driver.findElements(byBotones).get(50);
+        wait.until(ExpectedConditions.elementToBeClickable(boton));
+        Thread.sleep(2000);
+        boton.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(newMascotaXpath)));
+        WebElement newMascota = driver.findElement(By.xpath(newMascotaXpath));
+        Thread.sleep(3000);
+        newMascota.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(mascotaNameXpath)));
+        driver.navigate().refresh();
         WebElement logOut = driver.findElement(By.xpath(logOutXpath));
-        WebElement registerMascota = driver.findElement(By.xpath(newMascotaRegisterXpath));
+        WebElement registerMascota = driver.findElement(By.id("GUARDAR"));
         WebElement mascotaUltimaVisita = driver.findElement(By.xpath(mascotaUltimaVisitaXpath));
         WebElement mascotaFoto = driver.findElement(By.xpath(mascotaFotoXpath));
         WebElement mascotaObservaciones = driver.findElement(By.xpath(mascotaObservacionesXpath));
-        WebElement mascotaAlergia= driver.findElement(By.xpath(alergiasXpath));
-        WebElement mascotaVacuna= driver.findElement(By.xpath(vacunasXpath));
         WebElement btnAlergias = driver.findElement(By.xpath(alergiasBtnXpath));
         WebElement btnVacuna = driver.findElement(By.xpath(vacunaBtnXpath));
         WebElement mascotaMicrochip = driver.findElement(By.xpath(mascotaMicrchipXpath));
@@ -98,46 +186,6 @@ public class Caso1 {
         WebElement mascotaEstado = driver.findElement(By.xpath(mascotaEstadoXpath));
         WebElement mascotaEspecie = driver.findElement(By.xpath(mascotaEspecieXpath));
         WebElement mascotaName = driver.findElement(By.xpath(mascotaNameXpath));
-        WebElement error = driver.findElement(By.xpath(errorXpath));
-        WebElement email = driver.findElement(By.xpath(emailXpath));
-        WebElement password = driver.findElement(By.xpath(passwordXpath));
-        WebElement login = driver.findElement(By.xpath(logingXpath));
-        WebElement btnUser = driver.findElement(By.xpath(newUserXpath));
-        WebElement name = driver.findElement(By.xpath(nameUserXpath));
-        WebElement telefono = driver.findElement(By.xpath(telefonoUserXpath));
-        WebElement correo = driver.findElement(By.xpath(correoUserXpath));
-        WebElement contrasena = driver.findElement(By.xpath(contrasenaUserXpath));
-        WebElement foto = driver.findElement(By.xpath(fotoUserXpath));
-        WebElement register = driver.findElement(By.xpath(registerXpath));
-        WebElement errorContrasena = driver.findElement(By.xpath(errorContrasenaXpath));
-        List<WebElement> botones = driver.findElements(By.className("btn-mas"));
-        WebElement newMascota = driver.findElement(By.xpath(newMascotaXpath));
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(emailXpath)));
-        email.sendKeys("veterinariopf@gmail.com");
-        password.sendKeys("1234");
-        login.click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(errorXpath)));
-        Assertions.assertThat(error.getText()).equals(errorEsperado);
-        email.sendKeys("veterinario@gmail.com");
-        password.sendKeys("1234");
-        login.click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(newUserXpath)));
-        btnUser.click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(nameUserXpath)));
-        name.sendKeys("Juan Perez");
-        telefono.sendKeys("3001234567");
-        correo.sendKeys("clienteprueba@gmail.com");
-        foto.sendKeys("img.jpg");
-        register.click();
-        Assertions.assertThat(errorContrasena.getText()).equals(errorContrasenaEsperado);
-        contrasena.sendKeys("1234");
-        register.click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("btn-mas")));
-        botones.get(51).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(newMascotaXpath)));
-        newMascota.click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(mascotaNameXpath)));
         mascotaName.sendKeys("Mascota 1");
         mascotaEspecie.sendKeys("Perro");
         mascotaRaza.sendKeys("Labrador");
@@ -146,27 +194,42 @@ public class Caso1 {
         mascotaEstado.sendKeys("Saludable");
         mascotaFechanacimiento.sendKeys("2022-01-01");
         mascotaMicrochip.sendKeys("12349292");
+        Thread.sleep(1000);
         btnVacuna.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(vacunasXpath)));
+        WebElement mascotaVacuna= driver.findElement(By.xpath(vacunasXpath));
         mascotaVacuna.sendKeys("Rabia");
+        ((org.openqa.selenium.JavascriptExecutor)driver)
+    .executeScript("arguments[0].scrollIntoView({block:'center'});", btnAlergias);
+    Thread.sleep(1000);
         btnAlergias.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(alergiasXpath)));
+        WebElement mascotaAlergia= driver.findElement(By.xpath(alergiasXpath));
         mascotaAlergia.sendKeys("Penicilina");
         mascotaUltimaVisita.sendKeys("2022-01-01");
         mascotaFoto.sendKeys("img.jpg");
         mascotaObservaciones.sendKeys("Observaciones");
+        Thread.sleep(7000);
+        ((org.openqa.selenium.JavascriptExecutor)driver)
+    .executeScript("arguments[0].scrollIntoView({block:'center'});", registerMascota);
+    Thread.sleep(1000);
         registerMascota.click();
+        Thread.sleep(3000);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(logOutXpath)));
         logOut.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(emailXpath)));
-        email.sendKeys("clienteprueba@gmail.com");
-        password.sendKeys("1234");
-        register.click();
+        WebElement email2    = driver.findElement(By.xpath(emailXpath));
+        WebElement password2 = driver.findElement(By.xpath(passwordXpath));
+        WebElement loginBtn2 = driver.findElement(By.xpath(logingXpath));
+        email2.sendKeys("clienteprueba@gmail.com");
+        password2.sendKeys("1234");
+        loginBtn2.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(nombreMascotaXpath)));
-        Assertions.assertThat(nombreMascotaVerificar.getText()).equals("Mascota 1");
+        WebElement nombreMascotaVerificar = driver.findElement(By.xpath(nombreMascotaXpath));
+        Assertions.assertThat(nombreMascotaVerificar.getText()).isEqualTo("Mascota 1");
     }
     @AfterEach
     public void tearDown() {
-        driver.quit();
+        //driver.quit();
     }
 }

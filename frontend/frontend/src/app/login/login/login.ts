@@ -35,9 +35,10 @@
       this.credenciales.password = '';
     }
     login() {
-      
+      console.log("CLICKKK");
       this.loginService.login(this.credenciales.email, this.credenciales.password).subscribe({
         next: (response) => {
+          console.log(response);
           var respuestas=response.split(',');
           var user = respuestas[0];
           var id = respuestas[1];
@@ -61,8 +62,8 @@
           }
         },
         error: (err) => {
-          this.mensajeError = 'Correo o contraseña incorrectos.';
-          console.error('Error de autenticación:', err);
+          this.mensajeError = 'Fallo de autenticación.';
+          console.error('Error de autenticación Revisado:', err);
         }
       }
       );

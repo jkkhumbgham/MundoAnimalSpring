@@ -126,7 +126,7 @@ public class Caso2 {
             By.id("tratamientos-tab") 
         ));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", tabTratamientos);
-        System.out.println("✅ Clic en la pestaña 'Tratamientos' exitoso.");
+        System.out.println(" Clic en la pestaña 'Tratamientos' exitoso.");
 
         // --- 2. Llenar el campo "Nombre del tratamiento" ---
         By selectorNombreTratamiento = By.name("nombreTrat"); 
@@ -151,18 +151,17 @@ public class Caso2 {
         // CLAVE: Forzar el evento 'change' en el SELECT
         ((JavascriptExecutor) driver).executeScript("arguments[0].dispatchEvent(new Event('change'));", selectMedicamento);
 
-        System.out.println("✅ Campos de tratamiento llenados y eventos forzados.");
+        System.out.println(" Campos de tratamiento llenados y eventos forzados.");
 
-        // 🛑 PASO CLAVE 1: Esperar a que la validación DESAPAREZCA 🛑
         By selectorErrorValidacion = By.xpath("//div[contains(text(), 'Completa nombre, medicamento y veterinario.')]");
         
         try {
-            // Esperamos que el elemento *deje* de ser visible/presente
+          
             wait.until(ExpectedConditions.invisibilityOfElementLocated(selectorErrorValidacion));
-            System.out.println("✅ Validación de formulario superada (Mensaje de error invisible).");
+            System.out.println(" Validación de formulario superada (Mensaje de error invisible).");
             
         } catch (Exception e) {
-            Assertions.fail("❌ El mensaje de validación no desapareció. Angular no reconoció los inputs a tiempo. " + e.getMessage());
+            Assertions.fail(" El mensaje de validación no desapareció. Angular no reconoció los inputs a tiempo. " + e.getMessage());
         }
 
 
@@ -172,22 +171,21 @@ public class Caso2 {
         ));
         // 1. Forzar habilitación del botón eliminando el atributo 'disabled'
     ((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('disabled');", btnGuardar);
-    System.out.println("✅ Botón 'Guardar' habilitado forzadamente.");
+    System.out.println(" Botón 'Guardar' habilitado forzadamente.");
 
     // 2. Hacer clic nativo de Selenium (o click forzado JS si el nativo falla)
     try {
         btnGuardar.click();
     } catch (Exception e) {
-        // Fallback: Si el clic nativo falla por algún overlay invisible, forzamos JS
+        // Fallback: Si el clic nativo falla por algún overlay invisible
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btnGuardar);
     }
-    System.out.println("✅ Clic en 'Guardar tratamiento' ejecutado.");
+    System.out.println(" Clic en 'Guardar tratamiento' ejecutado.");
     
-    // 🛑 AÑADIR ESPERA ESTÁTICA 🛑
     try {
         // Esperamos 1.5 segundos para que la solicitud de guardado (POST) se procese
         Thread.sleep(1500); 
-        System.out.println("✅ Espera de 1.5s para procesamiento de backend completada.");
+        System.out.println("Espera de 1.5s para procesamiento de backend completada.");
     } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
     }
@@ -197,10 +195,10 @@ public class Caso2 {
     
     // Si el guardado fue exitoso en el backend, el elemento aparecerá aquí.
     wait.until(ExpectedConditions.presenceOfElementLocated(selectorTratamientoGuardado));
-        // ✅ Verificación
+        // Verificación
         Assertions.assertTrue(driver.findElement(selectorTratamientoGuardado).isDisplayed(),
-                "❌ El nuevo tratamiento no se guardó o no es visible en la lista.");
+                " El nuevo tratamiento no se guardó o no es visible en la lista.");
 
-        System.out.println("✅ Tratamiento '" + nombreTratamiento + "' guardado y verificado exitosamente.");
+        System.out.println(" Tratamiento '" + nombreTratamiento + "' guardado y verificado exitosamente.");
     }
 }
