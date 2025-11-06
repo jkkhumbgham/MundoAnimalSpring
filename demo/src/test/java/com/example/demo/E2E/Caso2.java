@@ -3,7 +3,7 @@ package com.example.demo.E2E;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -17,6 +17,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.regex.Matcher;
@@ -71,7 +73,7 @@ public class Caso2 {
     }
 
     // TEST 1: Veterinario accede al detalle de mascota (Corregido)
-    @Test
+     @Test
     @Order(1)
     public void veterinarioPuedeVerMascota() {
 
@@ -199,8 +201,7 @@ public class Caso2 {
     // Si el guardado fue exitoso en el backend, el elemento aparecerá aquí.
     wait.until(ExpectedConditions.presenceOfElementLocated(selectorTratamientoGuardado));
         // Verificación
-        Assertions.assertTrue(driver.findElement(selectorTratamientoGuardado).isDisplayed(),
-                " El nuevo tratamiento no se guardó o no es visible en la lista.");
+        Assertions.assertThat(driver.findElement(selectorTratamientoGuardado).isDisplayed()).isTrue();
 
         System.out.println(" Tratamiento '" + nombreTratamiento + "' guardado y verificado exitosamente.");
     }
@@ -249,6 +250,10 @@ public class Caso2 {
     public void adminVerificaMedicamentosYGanancias() {
         // Ingresar como admin
         login("admin@example.com", "1234");
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"navbarNav\"]//ul//li[4]//a")));
+        WebElement dashboard = driver.findElement(By.xpath("//*[@id=\"navbarNav\"]//ul//li[4]//a"));
+        dashboard.click();
         try {
             wait.until(ExpectedConditions.or(
                     ExpectedConditions.urlContains("/admin"),
@@ -257,41 +262,10 @@ public class Caso2 {
         } catch (Exception ignored) {
         }
 
-        // Intentar leer valores desde el body como fallback general
-        String body = driver.findElement(By.tagName("body")).getText();
-        Integer meds = extractIntegerAfterLabel(body, "Medicamentos suministrados");
-        Double ganancias = extractDoubleAfterLabel(body, "Ganancias");
-
-        // Si no encontramos con esas etiquetas, intentar selectores comunes
-        if (meds == null) {
-            try {
-                WebElement elem = driver.findElement(By.id("medicamentos-suministrados"));
-                String t = elem.getText();
-                meds = extractIntegerAfterLabel(t, "");
-                if (meds == null) {
-                    meds = Integer.parseInt(t.replaceAll("[^0-9]", ""));
-                }
-            } catch (Exception ignored) {}
-        }
-        if (ganancias == null) {
-            try {
-                WebElement elem = driver.findElement(By.id("ganancias-total"));
-                String t = elem.getText();
-                ganancias = extractDoubleAfterLabel(t, "");
-                if (ganancias == null) {
-                    String n = t.replaceAll("[^0-9,\\.]", "").replace(',', '.');
-                    ganancias = Double.parseDouble(n);
-                }
-            } catch (Exception ignored) {}
-        }
-
-        Assertions.assertNotNull(meds, "No se pudo determinar la cantidad de medicamentos suministrados desde el panel admin.");
-        Assertions.assertNotNull(ganancias, "No se pudo determinar las ganancias desde el panel admin.");
-
-        // Comprobaciones mínimas
-        Assertions.assertTrue(meds >= 1, "La cantidad de medicamentos suministrados debe ser al menos 1 tras las operaciones de prueba.");
-        Assertions.assertTrue(ganancias > 0.0, "Las ganancias deben ser mayores a 0 tras las operaciones de prueba.");
-
-        System.out.println(String.format("Admin metrics verificados: medicamentos=%d, ganancias=%.2f", meds, ganancias));
+        WebElement Meds = driver.findElement(By.xpath("//html//body//app-root//app-dashboard//div//div[1]//div[4]//div[2]"));
+        WebElement Ganancias = driver.findElement(By.xpath("//html//body//app-root//app-dashboard//div//div[1]//div[6]//div[2]"));
+        
+        Assertions.assertThat(Meds.getText()).isEqualTo("1");
+        Assertions.assertThat(Ganancias.getText()).isEqualTo("90780");
     }
 }
