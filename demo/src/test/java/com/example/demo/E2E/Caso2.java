@@ -19,6 +19,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class Caso2 {
@@ -112,6 +114,7 @@ public class Caso2 {
 
 
     // TEST 2: Veterinario crea y guarda un nuevo tratamiento
+    // TEST 2: Veterinario crea y guarda un nuevo tratamiento
     @Test
     @Order(2)
     public void veterinarioCreaNuevoTratamiento() throws InterruptedException {
@@ -200,5 +203,95 @@ public class Caso2 {
                 " El nuevo tratamiento no se guardó o no es visible en la lista.");
 
         System.out.println(" Tratamiento '" + nombreTratamiento + "' guardado y verificado exitosamente.");
+    }
+
+    // ------------------ Helpers para admin verification ------------------
+    private static Integer extractIntegerAfterLabel(String bodyText, String label) {
+        if (bodyText == null) return null;
+        int idx = bodyText.indexOf(label);
+        if (idx == -1) return null;
+        String slice = bodyText.substring(idx, Math.min(bodyText.length(), idx + 250));
+        Pattern p = Pattern.compile("(\\d{1,3}(?:[.,\\s]?\\d{3})*|\\d+)");
+        Matcher m = p.matcher(slice);
+        if (m.find()) {
+            String num = m.group(1).replaceAll("[.,\\s]", "");
+            try {
+                return Integer.parseInt(num);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    // Extrae el primer número (posible con decimales) que aparece después de la etiqueta indicada
+    private static Double extractDoubleAfterLabel(String bodyText, String label) {
+        if (bodyText == null) return null;
+        int idx = bodyText.indexOf(label);
+        if (idx == -1) return null;
+        String slice = bodyText.substring(idx, Math.min(bodyText.length(), idx + 300));
+        Pattern p = Pattern.compile("(\\d+[.,]?\\d*)");
+        Matcher m = p.matcher(slice);
+        if (m.find()) {
+            String num = m.group(1).replace(',', '.').replaceAll("[^0-9.]", "");
+            try {
+                return Double.parseDouble(num);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    // TEST 3: Ingresar como admin y verificar cantidad de medicamentos suministrados y ganancias
+    @Test
+    @Order(3)
+    public void adminVerificaMedicamentosYGanancias() {
+        // Ingresar como admin
+        login("admin@example.com", "1234");
+        try {
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.urlContains("/admin"),
+                    ExpectedConditions.presenceOfElementLocated(By.cssSelector("app-admin-dashboard"))
+            ));
+        } catch (Exception ignored) {
+        }
+
+        // Intentar leer valores desde el body como fallback general
+        String body = driver.findElement(By.tagName("body")).getText();
+        Integer meds = extractIntegerAfterLabel(body, "Medicamentos suministrados");
+        Double ganancias = extractDoubleAfterLabel(body, "Ganancias");
+
+        // Si no encontramos con esas etiquetas, intentar selectores comunes
+        if (meds == null) {
+            try {
+                WebElement elem = driver.findElement(By.id("medicamentos-suministrados"));
+                String t = elem.getText();
+                meds = extractIntegerAfterLabel(t, "");
+                if (meds == null) {
+                    meds = Integer.parseInt(t.replaceAll("[^0-9]", ""));
+                }
+            } catch (Exception ignored) {}
+        }
+        if (ganancias == null) {
+            try {
+                WebElement elem = driver.findElement(By.id("ganancias-total"));
+                String t = elem.getText();
+                ganancias = extractDoubleAfterLabel(t, "");
+                if (ganancias == null) {
+                    String n = t.replaceAll("[^0-9,\\.]", "").replace(',', '.');
+                    ganancias = Double.parseDouble(n);
+                }
+            } catch (Exception ignored) {}
+        }
+
+        Assertions.assertNotNull(meds, "No se pudo determinar la cantidad de medicamentos suministrados desde el panel admin.");
+        Assertions.assertNotNull(ganancias, "No se pudo determinar las ganancias desde el panel admin.");
+
+        // Comprobaciones mínimas
+        Assertions.assertTrue(meds >= 1, "La cantidad de medicamentos suministrados debe ser al menos 1 tras las operaciones de prueba.");
+        Assertions.assertTrue(ganancias > 0.0, "Las ganancias deben ser mayores a 0 tras las operaciones de prueba.");
+
+        System.out.println(String.format("Admin metrics verificados: medicamentos=%d, ganancias=%.2f", meds, ganancias));
     }
 }
