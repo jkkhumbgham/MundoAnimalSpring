@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.DTOs.UsuarioTablaDto;
 import com.example.demo.entidades.Usuario;
 
 import com.example.demo.servicio.ServicioUsuario;
@@ -39,7 +40,7 @@ public class UsuarioController {
 
     // Listar usuarios
     @GetMapping("")
-    public List<Usuario> listarUsuarios(HttpServletRequest request, Model model) {
+    public List<UsuarioTablaDto> listarUsuarios(HttpServletRequest request, Model model) {
         
         
         return servicioUsuario.getAllUsuarios();

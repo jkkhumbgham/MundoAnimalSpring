@@ -2,11 +2,12 @@ package com.example.demo.servicio;
 
 import java.util.List;
 
+import com.example.demo.DTOs.UsuarioTablaDto;
 import com.example.demo.entidades.Usuario;
 
 public interface ServicioUsuario {
 //metodo para obtener todos los usuarios
-    List<Usuario> getAllUsuarios();
+    List<UsuarioTablaDto> getAllUsuarios();
     //metodo para obtener usuario por id
     Usuario getUsuarioById(Long id);
     //metodo para agregar usuario

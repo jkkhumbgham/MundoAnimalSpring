@@ -1,11 +1,14 @@
 package com.example.demo.servicio;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DTOs.MascotaTablaDto;
+import com.example.demo.DTOs.MascotaTablaMapper;
 import com.example.demo.entidades.Mascota;
 import com.example.demo.entidades.Tratamiento;
 import com.example.demo.repositorio.RepositorioMascotas;
@@ -24,8 +27,13 @@ public class ServicioMascotaImpl implements ServicioMascotas {
 
     //metodo para obtener todas las mascotas
     @Override
-    public List<Mascota> getAllMascotas() {
-        return repositorio.findAll();
+    public List<MascotaTablaDto> getAllMascotas() {
+        List<Mascota> mascotas = repositorio.findAll();
+        List<MascotaTablaDto> mascotasDto = new ArrayList<>();
+        for(Mascota m: mascotas){
+            mascotasDto.add(MascotaTablaMapper.INSTANCE.convert(m));
+        }
+        return mascotasDto;
     }
     
 

@@ -1,5 +1,7 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DTOs.MascotaTablaDto;
+import com.example.demo.DTOs.MascotaTablaMapper;
 import com.example.demo.controlador.MascotaController;
 import com.example.demo.entidades.Mascota;
 import com.example.demo.servicio.ServicioMascotaImpl;
@@ -51,9 +53,10 @@ public class MascotaControllerTest {
 
     @Test
     void GET_lista() throws Exception {
+        MascotaTablaDto m1 = MascotaTablaMapper.INSTANCE.convert(mascota("Luna", "Perro", "activo", 1L, 10L));
+        MascotaTablaDto m2 = MascotaTablaMapper.INSTANCE.convert(mascota("Michi", "Gato", "inactivo", 2L, 10L));
         when(servicioMascotas.getAllMascotas()).thenReturn(Arrays.asList(
-            mascota("Luna", "Perro", "activo", 1L, 10L),
-            mascota("Michi", "Gato", "inactivo", 2L, 10L)
+            m1, m2
         ));
 
         mvc.perform(get("/mascotas"))

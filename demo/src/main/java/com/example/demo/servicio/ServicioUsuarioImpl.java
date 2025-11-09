@@ -1,10 +1,13 @@
 package com.example.demo.servicio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DTOs.UsuarioTablaDto;
+import com.example.demo.DTOs.UsuarioTablaMapper;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.repositorio.RepositorioUsuarios;
 @Service
@@ -18,8 +21,13 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
     //metodo para buscar todos los usuarios
     @Override
-    public List<Usuario> getAllUsuarios() {
-        return repositorio.findAll();
+    public List<UsuarioTablaDto> getAllUsuarios() {
+        List<Usuario> usuarios = repositorio.findAll();
+        List<UsuarioTablaDto> usuariosDto = new ArrayList<>();
+        for(Usuario u: usuarios){
+            usuariosDto.add(UsuarioTablaMapper.INSTANCE.convert(u));
+        }
+        return usuariosDto;
     }
 
     //metodo para buscar usuario por id

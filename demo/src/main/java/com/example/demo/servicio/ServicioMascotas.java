@@ -2,11 +2,12 @@ package com.example.demo.servicio;
 
 import java.util.List;
 
+import com.example.demo.DTOs.MascotaTablaDto;
 import com.example.demo.entidades.Mascota;
 
 public interface ServicioMascotas {
     //metodo para obtener todas las mascotas
-    public List<Mascota> getAllMascotas();
+    public List<MascotaTablaDto> getAllMascotas();
     //metodo para el soft delete
     public void softdeleteById(Long id);
     //metodo para obtener mascota por id

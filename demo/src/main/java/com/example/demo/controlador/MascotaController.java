@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.DTOs.MascotaTablaDto;
 import com.example.demo.entidades.Mascota;
 import com.example.demo.servicio.ServicioMascotaImpl;
 import com.example.demo.servicio.ServicioUsuarioImpl;
@@ -42,7 +43,7 @@ public class MascotaController {
 
     // Mostrar todas las mascotas
     @GetMapping("/mascotas")
-    public List<Mascota> mostrarMascotasTabla(HttpServletRequest request) {
+    public List<MascotaTablaDto> mostrarMascotasTabla(HttpServletRequest request) {
          return servicioMascotas.getAllMascotas();
     
     }
