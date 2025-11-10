@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.concurrent.ThreadLocalRandom;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import com.example.demo.repositorio.RepositorioMascotas;
 import com.example.demo.repositorio.RepositorioUsuarios;
 import com.example.demo.repositorio.RepositorioVeterinarios;
 import com.example.demo.repositorio.RepositorioTratamiento;
+import com.example.demo.repositorio.RepositorioUsuarioVet;
 import com.example.demo.repositorio.RepositorioMedicamento;
+import com.example.demo.repositorio.RepositorioRoles;
 
 import jakarta.transaction.Transactional;
 @Controller
@@ -34,114 +39,281 @@ public class DatabaseInit implements ApplicationRunner {
     @Autowired
     RepositorioMedicamento medicamentoRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    RepositorioUsuarioVet usuarioVetRepository;
+
+    @Autowired
+    RepositorioRoles rolesRepository;
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        
-        Usuario u1 = new Usuario( "Andres Garcia", "123456789", "juan@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7", 1 );
-        Usuario u2= new Usuario( "Alvaro Morata", "987654321", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",2 );
-        Usuario u3 = new Usuario( "Juan Castro", "555555555", "pablo@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",3 );
-        Usuario u4 =new Usuario( "Omar Perez", "444444444", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",4 );
-        Usuario u5 =new Usuario( "Luis Manuel Seijas", "333333333", "lucia@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",5 );
-        Usuario u6 =new Usuario( "Pablo Hernandez", "222222222", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",6 );
-        Usuario u7 =new Usuario( "Andres Colmenares", "111111111", "lucia@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",7 );
-        Usuario u8 =new Usuario( "Esteban Lopez", "666666666", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",8 );
-        Usuario u9 =new Usuario( "Simba", "999999999", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",9 );
-        Usuario u10 =new Usuario( "Estefania Alba", "000000000", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",10 );
-        Usuario u11 = new Usuario( "Margarita Castro", "888888888", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",11 );
-        Usuario u12 = new Usuario("Maria Lopez", "987654321", "maria@example.com", "abcd1234", "https://randomuser.me/api/portraits/women/2.jpg",12 );
-        Usuario u13 = new Usuario("Carlos Martinez", "1122334455", "carlos@example.com", "pass123", "https://randomuser.me/api/portraits/men/3.jpg",13 );
-        Usuario u14 = new Usuario("Laura Hernandez", "2233445566", "laura@example.com", "laura123", "https://randomuser.me/api/portraits/women/4.jpg",14 );
-        Usuario u15 = new Usuario("Jorge Ramirez", "3344556677", "jorge@example.com", "jorgepass", "https://randomuser.me/api/portraits/men/5.jpg",15 );
-        Usuario u16 = new Usuario("Ana Torres", "4455667788", "ana@example.com", "ana2024", "https://randomuser.me/api/portraits/women/6.jpg",16 );
-        Usuario u17 = new Usuario("David Gutierrez", "5566778899", "david@example.com", "davidpass", "https://randomuser.me/api/portraits/men/7.jpg",17 );
-        Usuario u18 = new Usuario("Paola Jimenez", "6677889900", "paola@example.com", "paola2024", "https://randomuser.me/api/portraits/women/8.jpg",18 );
-        Usuario u19 = new Usuario("Felipe Castro", "7788990011", "felipe@example.com", "felipepass", "https://randomuser.me/api/portraits/men/9.jpg",19 );
-        Usuario u20 = new Usuario("Sofia Vargas", "8899001122", "sofia@example.com", "sofia2024", "https://randomuser.me/api/portraits/women/10.jpg",20 );
-        Usuario u21 = new Usuario("Andres Torres", "9900112233", "andrest@example.com", "andrespass", "https://randomuser.me/api/portraits/men/11.jpg",21 );
-        Usuario u22 = new Usuario("Valentina Moreno", "1011121314", "valentina@example.com", "valen123", "https://randomuser.me/api/portraits/women/12.jpg",22 );
-        Usuario u23 = new Usuario("Ricardo Peña", "1213141516", "ricardo@example.com", "ricardopass", "https://randomuser.me/api/portraits/men/13.jpg",23 );
-        Usuario u24 = new Usuario("Camila Rojas", "1415161718", "camila@example.com", "camila123", "https://randomuser.me/api/portraits/women/14.jpg",24 );
-        Usuario u25 = new Usuario("Mateo Diaz", "1617181920", "mateo@example.com", "mateopass", "https://randomuser.me/api/portraits/men/15.jpg",25 );
-        Usuario u26 = new Usuario("Isabella Ruiz", "1819202122", "isabella@example.com", "isa2024", "https://randomuser.me/api/portraits/women/16.jpg",26 );
-        Usuario u27 = new Usuario("Sebastian Reyes", "2021222324", "sebastian@example.com", "sebas123", "https://randomuser.me/api/portraits/men/17.jpg",27 );
-        Usuario u28 = new Usuario("Natalia Silva", "2223242526", "natalia@example.com", "natalia123", "https://randomuser.me/api/portraits/women/18.jpg",28 );
-        Usuario u29 = new Usuario("Juan Perez", "2425262728", "juanp@example.com", "juanpass", "https://randomuser.me/api/portraits/men/19.jpg",29 );
-        Usuario u30 = new Usuario("Gabriela Fernandez", "2627282930", "gabriela@example.com", "gaby2024", "https://randomuser.me/api/portraits/women/20.jpg",30 );
-        Usuario u31 = new Usuario("Oscar Molina", "2829303132", "oscar@example.com", "oscarpass", "https://randomuser.me/api/portraits/men/21.jpg",31 );
-        Usuario u32 = new Usuario("Daniela Castro", "3031323334", "daniela@example.com", "danipass", "https://randomuser.me/api/portraits/women/22.jpg",32 );
-        Usuario u33 = new Usuario("Santiago Vargas", "3233343536", "santiago@example.com", "santi123", "https://randomuser.me/api/portraits/men/23.jpg",33 );
-        Usuario u34 = new Usuario("Fernanda Pineda", "3435363738", "fernanda@example.com", "fer123", "https://randomuser.me/api/portraits/women/24.jpg",34 );
-        Usuario u35 = new Usuario("Alejandro Ortiz", "3637383940", "alejandro@example.com", "alejo123", "https://randomuser.me/api/portraits/men/25.jpg",35 );
-        Usuario u36 = new Usuario("Lucia Camargo", "3839404142", "lucia@example.com", "luciapass", "https://randomuser.me/api/portraits/women/26.jpg",36 );
-        Usuario u37 = new Usuario("Hugo Herrera", "4041424344", "hugo@example.com", "hugopass", "https://randomuser.me/api/portraits/men/27.jpg",37 );
-        Usuario u38 = new Usuario("Marta Gonzalez", "4243444546", "marta@example.com", "marta2024", "https://randomuser.me/api/portraits/women/28.jpg",38 );
-        Usuario u39 = new Usuario("Pedro Suarez", "4445464748", "pedro@example.com", "pedropass", "https://randomuser.me/api/portraits/men/29.jpg",39 );
-        Usuario u40 = new Usuario("Angela Romero", "4647484950", "angela@example.com", "angelapass", "https://randomuser.me/api/portraits/women/30.jpg",40 );
-        Usuario u41 = new Usuario("Luis Navarro", "4849505152", "luis@example.com", "luis123", "https://randomuser.me/api/portraits/men/31.jpg",41 );
-        Usuario u42 = new Usuario("Catalina Soto", "5051525354", "catalina@example.com", "cata2024", "https://randomuser.me/api/portraits/women/32.jpg",42 );
-        Usuario u43 = new Usuario("Manuel Vargas", "5253545556", "manuel@example.com", "manuelpass", "https://randomuser.me/api/portraits/men/33.jpg",43 );
-        Usuario u44 = new Usuario("Patricia Mejia", "5455565758", "patricia@example.com", "patypassword", "https://randomuser.me/api/portraits/women/34.jpg",44 );
-        Usuario u45 = new Usuario("Rafael Diaz", "5657585960", "rafael@example.com", "rafa2024", "https://randomuser.me/api/portraits/men/35.jpg",45 );
-        Usuario u46 = new Usuario("Sandra Cabrera", "5859606162", "sandra@example.com", "sandrapass", "https://randomuser.me/api/portraits/women/36.jpg",46 );
-        Usuario u47 = new Usuario("Mauricio Vega", "6061626364", "mauricio@example.com", "mauro123", "https://randomuser.me/api/portraits/men/37.jpg",47);
-        Usuario u48 = new Usuario("Veronica Salazar", "6263646566", "veronica@example.com", "vero2024", "https://randomuser.me/api/portraits/women/38.jpg",48);
-        Usuario u49 = new Usuario("Diego Cardenas", "6465666768", "diego@example.com", "diegopass", "https://randomuser.me/api/portraits/men/39.jpg",49);
-        Usuario u50 = new Usuario("Paula Mendoza", "6667686970", "paula@example.com", "paulapass", "https://randomuser.me/api/portraits/women/40.jpg",50);
-        Usuario u51 = new Usuario("Andres Moreno", "6869707072", "admin@example.com", "1234", "https://randomuser.me/api/portraits/men/41.jpg",51);     
 
+        rolesRepository.save(new Role("usuario"));
+        rolesRepository.save(new Role("veterinario"));
+        rolesRepository.save(new Role("admin"));
+
+        Usuario user;
+        UsuarioVet userVet;
         
-        usuarioRepository.save(u1);
-        usuarioRepository.save(u2);
-        usuarioRepository.save(u3);
-        usuarioRepository.save(u4);
-        usuarioRepository.save(u5);
-        usuarioRepository.save(u6);
-        usuarioRepository.save(u7);
-        usuarioRepository.save(u8);
-        usuarioRepository.save(u9);
-        usuarioRepository.save(u10);
-        usuarioRepository.save(u11);
-        usuarioRepository.save(u12);
-        usuarioRepository.save(u13);
-        usuarioRepository.save(u14);
-        usuarioRepository.save(u15);
-        usuarioRepository.save(u16);
-        usuarioRepository.save(u17);
-        usuarioRepository.save(u18);
-        usuarioRepository.save(u19);
-        usuarioRepository.save(u20);
-        usuarioRepository.save(u21);
-        usuarioRepository.save(u22);
-        usuarioRepository.save(u23);
-        usuarioRepository.save(u24);
-        usuarioRepository.save(u25);
-        usuarioRepository.save(u26);
-        usuarioRepository.save(u27);
-        usuarioRepository.save(u28);
-        usuarioRepository.save(u29);
-        usuarioRepository.save(u30);
-        usuarioRepository.save(u31);
-        usuarioRepository.save(u32);
-        usuarioRepository.save(u33);
-        usuarioRepository.save(u34);
-        usuarioRepository.save(u35);
-        usuarioRepository.save(u36);
-        usuarioRepository.save(u37);
-        usuarioRepository.save(u38);
-        usuarioRepository.save(u39);
-        usuarioRepository.save(u40);
-        usuarioRepository.save(u41);
-        usuarioRepository.save(u42);
-        usuarioRepository.save(u43);
-        usuarioRepository.save(u44);
-        usuarioRepository.save(u45);
-        usuarioRepository.save(u46);
-        usuarioRepository.save(u47);
-        usuarioRepository.save(u48);
-        usuarioRepository.save(u49);
-        usuarioRepository.save(u50);
-        usuarioRepository.save(u51);
+        user = new Usuario( "Andres Garcia", "123456789", "juan@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7", 1 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario( "Alvaro Morata", "987654321", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",2 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario( "Juan Castro", "555555555", "pablo@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",3 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  =new Usuario( "Omar Perez", "444444444", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",4 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  =new Usuario( "Luis Manuel Seijas", "333333333", "lucia@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",5 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  =new Usuario( "Pablo Hernandez", "222222222", "maria@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",6 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user =new Usuario( "Andres Colmenares", "111111111", "lucia@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",7 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user =new Usuario( "Esteban Lopez", "666666666", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",8 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user =new Usuario( "Simba", "999999999", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",9 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user =new Usuario( "Estefania Alba", "000000000", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",10 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario( "Margarita Castro", "888888888", "carlos@example.com","1234", "https://thfvnext.bing.com/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?w=118&h=180&c=7&r=0&o=5&cb=thfvnext&pid=1.7",11 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Maria Lopez", "987654321", "maria@example.com", "abcd1234", "https://randomuser.me/api/portraits/women/2.jpg",12 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Carlos Martinez", "1122334455", "carlos@example.com", "pass123", "https://randomuser.me/api/portraits/men/3.jpg",13 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Laura Hernandez", "2233445566", "laura@example.com", "laura123", "https://randomuser.me/api/portraits/women/4.jpg",14 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Jorge Ramirez", "3344556677", "jorge@example.com", "jorgepass", "https://randomuser.me/api/portraits/men/5.jpg",15 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Ana Torres", "4455667788", "ana@example.com", "ana2024", "https://randomuser.me/api/portraits/women/6.jpg",16 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("David Gutierrez", "5566778899", "david@example.com", "davidpass", "https://randomuser.me/api/portraits/men/7.jpg",17 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Paola Jimenez", "6677889900", "paola@example.com", "paola2024", "https://randomuser.me/api/portraits/women/8.jpg",18 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Felipe Castro", "7788990011", "felipe@example.com", "felipepass", "https://randomuser.me/api/portraits/men/9.jpg",19 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Sofia Vargas", "8899001122", "sofia@example.com", "sofia2024", "https://randomuser.me/api/portraits/women/10.jpg",20 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Andres Torres", "9900112233", "andrest@example.com", "andrespass", "https://randomuser.me/api/portraits/men/11.jpg",21 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Valentina Moreno", "1011121314", "valentina@example.com", "valen123", "https://randomuser.me/api/portraits/women/12.jpg",22 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Ricardo Peña", "1213141516", "ricardo@example.com", "ricardopass", "https://randomuser.me/api/portraits/men/13.jpg",23 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Camila Rojas", "1415161718", "camila@example.com", "camila123", "https://randomuser.me/api/portraits/women/14.jpg",24 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Mateo Diaz", "1617181920", "mateo@example.com", "mateopass", "https://randomuser.me/api/portraits/men/15.jpg",25 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Isabella Ruiz", "1819202122", "isabella@example.com", "isa2024", "https://randomuser.me/api/portraits/women/16.jpg",26 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Sebastian Reyes", "2021222324", "sebastian@example.com", "sebas123", "https://randomuser.me/api/portraits/men/17.jpg",27 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Natalia Silva", "2223242526", "natalia@example.com", "natalia123", "https://randomuser.me/api/portraits/women/18.jpg",28 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Juan Perez", "2425262728", "juanp@example.com", "juanpass", "https://randomuser.me/api/portraits/men/19.jpg",29 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Gabriela Fernandez", "2627282930", "gabriela@example.com", "gaby2024", "https://randomuser.me/api/portraits/women/20.jpg",30 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Oscar Molina", "2829303132", "oscar@example.com", "oscarpass", "https://randomuser.me/api/portraits/men/21.jpg",31 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Daniela Castro", "3031323334", "daniela@example.com", "danipass", "https://randomuser.me/api/portraits/women/22.jpg",32 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Santiago Vargas", "3233343536", "santiago@example.com", "santi123", "https://randomuser.me/api/portraits/men/23.jpg",33 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Fernanda Pineda", "3435363738", "fernanda@example.com", "fer123", "https://randomuser.me/api/portraits/women/24.jpg",34 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Alejandro Ortiz", "3637383940", "alejandro@example.com", "alejo123", "https://randomuser.me/api/portraits/men/25.jpg",35 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user = new Usuario("Lucia Camargo", "3839404142", "lucia@example.com", "luciapass", "https://randomuser.me/api/portraits/women/26.jpg",36 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Hugo Herrera", "4041424344", "hugo@example.com", "hugopass", "https://randomuser.me/api/portraits/men/27.jpg",37 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Marta Gonzalez", "4243444546", "marta@example.com", "marta2024", "https://randomuser.me/api/portraits/women/28.jpg",38 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Pedro Suarez", "4445464748", "pedro@example.com", "pedropass", "https://randomuser.me/api/portraits/men/29.jpg",39 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Angela Romero", "4647484950", "angela@example.com", "angelapass", "https://randomuser.me/api/portraits/women/30.jpg",40 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Luis Navarro", "4849505152", "luis@example.com", "luis123", "https://randomuser.me/api/portraits/men/31.jpg",41 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Catalina Soto", "5051525354", "catalina@example.com", "cata2024", "https://randomuser.me/api/portraits/women/32.jpg",42 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Manuel Vargas", "5253545556", "manuel@example.com", "manuelpass", "https://randomuser.me/api/portraits/men/33.jpg",43 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Patricia Mejia", "5455565758", "patricia@example.com", "patypassword", "https://randomuser.me/api/portraits/women/34.jpg",44 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Rafael Diaz", "5657585960", "rafael@example.com", "rafa2024", "https://randomuser.me/api/portraits/men/35.jpg",45 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Sandra Cabrera", "5859606162", "sandra@example.com", "sandrapass", "https://randomuser.me/api/portraits/women/36.jpg",46 );
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Mauricio Vega", "6061626364", "mauricio@example.com", "mauro123", "https://randomuser.me/api/portraits/men/37.jpg",47);
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Veronica Salazar", "6263646566", "veronica@example.com", "vero2024", "https://randomuser.me/api/portraits/women/38.jpg",48);
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Diego Cardenas", "6465666768", "diego@example.com", "diegopass", "https://randomuser.me/api/portraits/men/39.jpg",49);
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Paula Mendoza", "6667686970", "paula@example.com", "paulapass", "https://randomuser.me/api/portraits/women/40.jpg",50);
+        userVet = saveUserClient(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
+        user  = new Usuario("Andres Moreno", "6869707072", "admin@example.com", "1234", "https://randomuser.me/api/portraits/men/41.jpg",51);     
+        userVet = saveUserAdmin(user);
+        user.setUsuarioVet(userVet);
+        usuarioRepository.save(user);
+
 
         mascotaRepository.save(new Mascota(List.of("rabia", "leucemia"),List.of("ninguna conocida"),"Sana", "https://cdn.pixabay.com/photo/2018/09/14/07/57/yellow-lab-3676436_960_720.jpg","Fido", "Perro", "Labrador", "Macho", "Saludable",java.sql.Date.valueOf("2025-08-10"),java.sql.Date.valueOf("2020-01-01"), 30.5f, 123456));
         mascotaRepository.save( new Mascota( List.of("rabia","triple felina", "leucemia"),List.of("ninguna conocida"), "Sana","https://images.unsplash.com/photo-1592194996308-7b43878e84a6", "Whiskers", "Gato", "Siamés", "Hembra", "Saludable",java.sql.Date.valueOf("2025-08-1"),java.sql.Date.valueOf("2019-06-15"), 10.2f, 654321));
@@ -265,18 +437,57 @@ public class DatabaseInit implements ApplicationRunner {
             
 
         }
-        
-        veterinarioRepository.save(new Veterinario("Alberto","veterinario@gmail.com","1234",1,"Ortopedia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
-        veterinarioRepository.save(new Veterinario("Beatriz","vet@gmail.com","1234",2,"Cardiologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
-        veterinarioRepository.save(new Veterinario("Carlos","vete@gmail.com","1234",3,"Dermatologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
-        veterinarioRepository.save(new Veterinario("Diana","veterinaria@gmail.com","1234",4,"Pediatria","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
-        veterinarioRepository.save(new Veterinario("Elena","vett@gmail.com","1234",5,"Traumatologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
-        veterinarioRepository.save(new Veterinario("Fernando","veter@gmail.com","1234",6,"Neurologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
-        veterinarioRepository.save(new Veterinario("Gabriela","veteri@gmail.com","1234",7,"Oftalmologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
-        veterinarioRepository.save(new Veterinario("Hector","veterin@gmail.com","1234",8,"Urologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
-        veterinarioRepository.save(new Veterinario("Isabel","veterina@gmail.com","1234",9,"Ginecologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
-        veterinarioRepository.save(new Veterinario("Javier","veterinar@gmail.com","1234",10,"Oncologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo"));
+        Veterinario vet;
 
+        vet =new Veterinario("Alberto","veterinario@gmail.com","1234",1,"Ortopedia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
+
+        vet=new Veterinario("Beatriz","vet@gmail.com","1234",2,"Cardiologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
+
+        vet=new Veterinario("Carlos","vete@gmail.com","1234",3,"Dermatologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
+
+        vet=new Veterinario("Diana","veterinaria@gmail.com","1234",4,"Pediatria","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
+
+        vet=new Veterinario("Elena","vett@gmail.com","1234",5,"Traumatologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
+
+        vet=new Veterinario("Fernando","veter@gmail.com","1234",6,"Neurologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
+
+        vet=new Veterinario("Gabriela","veteri@gmail.com","1234",7,"Oftalmologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
+
+        vet=new Veterinario("Hector","veterin@gmail.com","1234",8,"Urologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
+
+        vet=new Veterinario("Isabel","veterina@gmail.com","1234",9,"Ginecologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
+
+        vet=new Veterinario("Javier","veterinar@gmail.com","1234",10,"Oncologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        userVet = saveUserVet(vet);
+        vet.setUsuarioVet(userVet);
+        veterinarioRepository.save(vet);
 
 
         medicamentoRepository.save(new Medicamento("ACOLAN", 151300, 4, 60520, 0));
@@ -806,6 +1017,33 @@ public class DatabaseInit implements ApplicationRunner {
         
         
          
+    }
+
+    private UsuarioVet saveUserClient(Usuario usuario){
+        UsuarioVet user = new UsuarioVet();
+        user.setUsername(usuario.getEmail());
+        user.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        Role roles = rolesRepository.findByName("usuario").get();
+        user.setRoles(List.of(roles));
+        return usuarioVetRepository.save(user);
+    }
+
+    private UsuarioVet saveUserVet(Veterinario usuario){
+        UsuarioVet user = new UsuarioVet();
+        user.setUsername(usuario.getEmail());
+        user.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        Role roles = rolesRepository.findByName("veterinario").get();
+        user.setRoles(List.of(roles));
+        return usuarioVetRepository.save(user);
+    }
+
+    private UsuarioVet saveUserAdmin(Usuario usuario){
+        UsuarioVet user = new UsuarioVet();
+        user.setUsername(usuario.getEmail());
+        user.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        Role roles = rolesRepository.findByName("admin").get();
+        user.setRoles(List.of(roles));
+        return usuarioVetRepository.save(user);
     }
     
 }

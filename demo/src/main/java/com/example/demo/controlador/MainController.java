@@ -44,7 +44,7 @@ public class MainController {
         }
         
         
-        if (usuario !=null && password.equals(usuario.getpassword())) {
+        if (usuario !=null && password.equals(usuario.getPassword())) {
             if (usuario.getEmail().equals("admin@example.com")) {
                 return "admin," + usuario.getId();
             }
