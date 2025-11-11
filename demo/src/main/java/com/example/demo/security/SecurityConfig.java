@@ -36,8 +36,7 @@ public class SecurityConfig {
        .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
        .userDetailsService(users)
        .authorizeHttpRequests(auth -> auth
-         .requestMatchers("/auth/**", "/h2-console/**").permitAll()
-  // Use role names consistent with DatabaseInit (lowercase spanish names)
+         .requestMatchers("/auth/**", "/h2/**").permitAll()
   .requestMatchers("/mascotas/**", "/medicamento/**", "/tratamiento/**").hasAnyAuthority("usuario","veterinario","admin")
   .requestMatchers("/veterinario/**", "/admin/**").hasAnyAuthority("veterinario","admin")
          .requestMatchers("/usuario/**").permitAll()

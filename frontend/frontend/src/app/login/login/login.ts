@@ -61,10 +61,14 @@
             this.mensajeError = 'Correo o contraseña incorrectos.'
           }
         },
-        error: (err) => {
-          this.mensajeError = 'Fallo de autenticación.';
-          console.error('Error de autenticación Revisado:', err);
-        }
+        error: err => {
+                console.error('Error de autenticación Revisado:', {
+                  status: err.status,
+                  url: err.url,
+                  message: err.message,
+                  error: err.error
+                });
+              }
       }
       );
         
