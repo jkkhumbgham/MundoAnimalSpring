@@ -15,7 +15,7 @@ import { MascotaDetalle } from './mascotas/mascota-detalle/mascota-detalle/masco
 import { ServiceCards } from './utils/cards/service-cards/service-cards';
 import { FormsCard } from './utils/cards/forms-card/forms-card';
 import { InfoCards } from './utils/cards/info-cards/info-cards';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UsuariosTabla } from './usuarios/usuarios-tabla/usuarios-tabla';
 import { UsuariosDetalle } from './usuarios/usuarios-detalle/usuarios-detalle';
 import { UsuariosFormulario } from './usuarios/usuarios-formulario/usuarios-formulario';
@@ -26,6 +26,7 @@ import { VerMascotasTratadas } from './principal/veterinario/ver-mascotas-tratad
 import { CommonModule } from '@angular/common';
 import { Dashboard } from './admin/dashboard/dashboard';
 import { HeaderAdmin } from './headers/header-admin/header-admin';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { HeaderAdmin } from './headers/header-admin/header-admin';
     CommonModule
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    provideBrowserGlobalErrorListeners(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [App]
 })

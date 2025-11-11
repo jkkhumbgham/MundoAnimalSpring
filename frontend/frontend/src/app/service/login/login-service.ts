@@ -1,5 +1,5 @@
 
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, BehaviorSubject, tap } from 'rxjs';
@@ -8,32 +8,34 @@ import { Observable, BehaviorSubject, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private loggedIn = new BehaviorSubject<boolean>(this.hasSession());
+  private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
   loggedIn$ = this.loggedIn.asObservable();
+  private api = 'http://localhost:8080';
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
 
-  login(email: string, password: string): Observable<string> {
-    const body = new HttpParams()
-      .set('email', email)
-      .set('password', password);
+  login(username: string, password: string): Observable<string> {
+    return this.http.post(this.api + '/auth/login', { username, password }, { responseType: 'text' })
+      .pipe(
+        tap((token: string) => {
+          localStorage.setItem('token', token);
+          localStorage.setItem('session', 'true');
+          this.loggedIn.next(true);
+        })
+      );
+  }
 
-    return this.http.post('http://localhost:8080/login', body, { responseType: 'text' })
-        .pipe(
-    tap((response: any) => {
-      const respuestas = response.split(',');
-      const user = respuestas[0];
-      const id = respuestas[1];
+  signup(username: string, password: string, role: string): Observable<string> {
+    return this.http.post(this.api + '/auth/signup', { username, password, role }, { responseType: 'text' })
+      .pipe(
+        tap(() => {
+          this.loggedIn.next(false);
+        })
+      );
+  }
 
-      localStorage.setItem('session', 'true');
-      localStorage.setItem('id', id);
-      localStorage.setItem('tipoUsuario', user); 
-
-      this.loggedIn.next(true);
-    })
-  );
-    }
   logout() {
+    localStorage.removeItem('token');
     localStorage.removeItem('session');
     localStorage.removeItem('id');
     localStorage.removeItem('tipoUsuario');
@@ -41,7 +43,11 @@ export class LoginService {
     this.router.navigate(['/login']);
   }
 
-  private hasSession(): boolean {
-    return localStorage.getItem('session') === 'true';
+  private hasToken(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 }
