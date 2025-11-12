@@ -37,9 +37,14 @@ public class SecurityConfig {
        .userDetailsService(users)
        .authorizeHttpRequests(auth -> auth
          .requestMatchers("/auth/**", "/h2/**").permitAll()
-  .requestMatchers("/mascotas/**", "/medicamento/**", "/tratamiento/**").hasAnyAuthority("usuario","veterinario","admin")
-  .requestMatchers("/veterinario/**", "/admin/**").hasAnyAuthority("veterinario","admin")
-         .requestMatchers("/usuario/**").permitAll()
+         // Endpoints funcionales para todos los roles autenticados
+         .requestMatchers("/mascotas", "/mascotas/**", "/medicamentos", "/medicamentos/**", "/tratamientos", "/tratamientos/**")
+           .hasAnyAuthority("usuario","veterinario","admin")
+         // Solo veterinario o admin
+         .requestMatchers("/veterinarios", "/veterinarios/**", "/admin", "/admin/**")
+           .hasAnyAuthority("veterinario","admin")
+         // Permitir endpoints de usuarios (compatibilidad con flujo actual del frontend)
+         .requestMatchers("/usuarios/**").permitAll()
          .anyRequest().authenticated()
        )
        .exceptionHandling(e -> e.authenticationEntryPoint((req,res,ex)->{

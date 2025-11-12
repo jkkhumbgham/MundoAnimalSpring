@@ -14,12 +14,16 @@ export class LoginService {
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
 
-  login(username: string, password: string): Observable<string> {
-    return this.http.post(this.api + '/auth/login', { username, password }, { responseType: 'text' })
+  login(username: string, password: string): Observable<any> {
+    return this.http.post<{token: string, role: string, id: number}>(this.api + '/auth/login', { username, password })
       .pipe(
-        tap((token: string) => {
-          localStorage.setItem('token', token);
+        tap((response) => {
+          // Store JWT token
+          localStorage.setItem('token', response.token);
           localStorage.setItem('session', 'true');
+          // Store user role and id
+          localStorage.setItem('tipoUsuario', response.role);
+          localStorage.setItem('id', response.id.toString());
           this.loggedIn.next(true);
         })
       );

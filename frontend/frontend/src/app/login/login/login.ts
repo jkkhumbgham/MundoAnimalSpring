@@ -39,39 +39,34 @@
       this.loginService.login(this.credenciales.email, this.credenciales.password).subscribe({
         next: (response) => {
           console.log(response);
-          var respuestas=response.split(',');
-          var user = respuestas[0];
-          var id = respuestas[1];
-          if (user === 'cliente') {
-            this.usuarioService.getUsuarioByMail(this.credenciales.email).subscribe(data =>{
-              const usuario = data;
-            localStorage.setItem('id', id);
+          // The loginService already stores token, role, and id in localStorage
+          const role = response.role;
+          const id = response.id;
+          
+          if (role === 'usuario') {
+            // Map 'usuario' to 'cliente' for frontend compatibility
             localStorage.setItem('tipoUsuario', 'cliente');
-            this.router.navigate(['/usuarios',usuario?.id]);
+            this.usuarioService.getUsuarioByMail(this.credenciales.email).subscribe(data => {
+              const usuario = data;
+              this.router.navigate(['/usuarios', usuario?.id]);
             });
-          } else if (user === 'veterinario') {
-            localStorage.setItem('id', id);
-            localStorage.setItem('tipoUsuario', 'veterinario');
+          } else if (role === 'veterinario') {
             this.router.navigate(['/usuarios']);
-          } else if (user === 'admin') {
-            localStorage.setItem('id', id);
-            localStorage.setItem('tipoUsuario', 'admin');
+          } else if (role === 'admin') {
             this.router.navigate(['/veterinarios']);
-          } else{
-            this.mensajeError = 'Correo o contraseña incorrectos.'
+          } else {
+            this.mensajeError = 'Correo o contraseña incorrectos.';
           }
         },
         error: err => {
-                console.error('Error de autenticación Revisado:', {
-                  status: err.status,
-                  url: err.url,
-                  message: err.message,
-                  error: err.error
-                });
-              }
-      }
-      );
-        
-      
-  }
+          console.error('Error de autenticación Revisado:', {
+            status: err.status,
+            url: err.url,
+            message: err.message,
+            error: err.error
+          });
+          this.mensajeError = 'Correo o contraseña incorrectos.';
+        }
+      });
+    }
 }

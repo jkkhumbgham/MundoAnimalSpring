@@ -59,11 +59,25 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<String> login(@RequestBody LoginRequest req){
+  public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest req){
     Authentication auth = authManager.authenticate(
       new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword())
     );
-    return ResponseEntity.ok(jwtUtil.generate(auth));
+    
+    // Get user details from database
+    UsuarioVet usuarioVet = userRepo.findByUsername(req.getUsername())
+        .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    
+    // Determine role name (use first role)
+    String roleName = usuarioVet.getRoles().isEmpty() ? "usuario" : usuarioVet.getRoles().get(0).getName();
+    
+    // Generate JWT token
+    String token = jwtUtil.generate(auth);
+    
+    // Create response with token, role, and id
+    LoginResponse response = new LoginResponse(token, roleName, usuarioVet.getId());
+    
+    return ResponseEntity.ok(response);
   }
 
   public static class LoginRequest {
@@ -74,6 +88,25 @@ public class AuthController {
     public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+  }
+
+  public static class LoginResponse {
+    private String token;
+    private String role;
+    private Long id;
+
+    public LoginResponse(String token, String role, Long id) {
+      this.token = token;
+      this.role = role;
+      this.id = id;
+    }
+
+    public String getToken() { return token; }
+    public void setToken(String token) { this.token = token; }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
   }
 
   public static class SignupRequest {

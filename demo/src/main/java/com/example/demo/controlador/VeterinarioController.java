@@ -38,7 +38,7 @@ public class VeterinarioController {
     // Agregar veterinario
     @PostMapping("/agregar")
     public void agregarVeterinario(@RequestBody Veterinario veterinario) {
-        veterinario.setId(null);
+        // el ID se genera automáticamente al guardar, no es necesario forzarlo a null
         servicio.addVeterinario(veterinario);
     }
 
