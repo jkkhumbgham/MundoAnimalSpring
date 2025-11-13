@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties.Http;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,7 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.DTOs.UsuarioTablaDto;
 import com.example.demo.entidades.Usuario;
-
+import com.example.demo.entidades.UsuarioVet;
+import com.example.demo.repositorio.RepositorioUsuarioVet;
+import com.example.demo.security.CustomUserDetilService;
 import com.example.demo.servicio.ServicioUsuario;
 
 import jakarta.servlet.http.Cookie;
@@ -36,7 +41,11 @@ public class UsuarioController {
     @Autowired
     private ServicioUsuario servicioUsuario;
 
+    @Autowired
+    private RepositorioUsuarioVet repositorioUsuarios;
 
+    @Autowired
+    private CustomUserDetilService customUserDetilService;
 
     // Listar usuarios
     @GetMapping("")
@@ -51,31 +60,25 @@ public class UsuarioController {
         servicioUsuario.removeUsuario(id);
         
     }
-    /* 
-    @GetMapping("/agregar")
-    public String agregarUsuario(HttpServletRequest request, Model model) {
-        Usuario usuario = new Usuario(null, "","", "", "", "", null);
-        String role = null;
-
-    if (request.getCookies() != null) {
-        for (Cookie cookie : request.getCookies()) {
-            if ("userRole".equals(cookie.getName())) {
-                role = cookie.getValue();
-                break;
-            }
-        }
-    }
-        model.addAttribute("rol", role);
-        model.addAttribute("usuario", usuario);
-        return "agregar_usuario";
-    }
-    */
+    
 
     // Agregar usuario
     @PostMapping("/agregar")
-    public void agregarfinal(@RequestBody Usuario usuario) {
+    public ResponseEntity agregarfinal(@RequestBody Usuario usuario) {
         usuario.setId(null);
+        if (repositorioUsuarios.existsByUsername(usuario.getEmail())) {
+            return new ResponseEntity<String>("El usuario ya existe",HttpStatus.BAD_REQUEST);
+        }
+        UsuarioVet user = customUserDetilService.mapUsuario(usuario);
+        repositorioUsuarios.save(user);
+        usuario.setUsuarioVet(user);
+        try{
         servicioUsuario.addUsuario(usuario);
+        }catch(Exception e){
+            return new ResponseEntity<Usuario>(usuario,HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Usuario>(usuario,HttpStatus.CREATED);
+
     }
 
     // Editar usuario
@@ -83,25 +86,7 @@ public class UsuarioController {
     public void editarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
         servicioUsuario.updateUsuario(usuario);
     }
-    /* 
-    @GetMapping("/editar/{id}")
-    public String editarUsuario(HttpServletRequest request, @PathVariable Long id, Model model) {
-        Usuario usuario = servicioUsuario.getUsuarioById(id);
-        String role = null;
-
-    if (request.getCookies() != null) {
-        for (Cookie cookie : request.getCookies()) {
-            if ("userRole".equals(cookie.getName())) {
-                role = cookie.getValue();
-                break;
-            }
-        }
-    }
-        model.addAttribute("rol", role);
-        model.addAttribute("usuario", usuario);
-        return "agregar_usuario";
-    }
-        */
+    
 
     // Obtener usuario por id
     @GetMapping("/find/{id}")

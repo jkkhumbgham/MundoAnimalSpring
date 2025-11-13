@@ -3,6 +3,8 @@ package com.example.demo.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entidades.Mascota;
+import com.example.demo.entidades.Usuario;
+import com.example.demo.entidades.UsuarioVet;
 import com.example.demo.entidades.Veterinario;
+import com.example.demo.repositorio.RepositorioUsuarioVet;
+import com.example.demo.security.CustomUserDetilService;
 import com.example.demo.servicio.ServicioVeterinario;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +30,13 @@ import jakarta.servlet.http.HttpServletRequest;
 @CrossOrigin(origins = "http://localhost:4200")
 public class VeterinarioController {
     @Autowired ServicioVeterinario servicio;
+
+    @Autowired
+    private RepositorioUsuarioVet repositorioUsuarios;
+
+    @Autowired
+    private CustomUserDetilService customUserDetilService;
+
 
     // Listar veterinarios
     @GetMapping("")
@@ -37,9 +50,20 @@ public class VeterinarioController {
     }
     // Agregar veterinario
     @PostMapping("/agregar")
-    public void agregarVeterinario(@RequestBody Veterinario veterinario) {
+    public ResponseEntity agregarVeterinario(@RequestBody Veterinario veterinario) {
         veterinario.setId(null);
+        if (repositorioUsuarios.existsByUsername(veterinario.getEmail())) {
+            return new ResponseEntity<String>("El veterinario ya existe",HttpStatus.BAD_REQUEST);
+        }
+        UsuarioVet user = customUserDetilService.mapVeterinario(veterinario);
+        repositorioUsuarios.save(user);
+        veterinario.setUsuarioVet(user);
+        try{
         servicio.addVeterinario(veterinario);
+        }catch(Exception e){
+            return new ResponseEntity<Veterinario>(veterinario,HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Veterinario>(veterinario,HttpStatus.CREATED);
     }
 
     // Editar veterinario

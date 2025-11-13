@@ -13,8 +13,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Tratamiento {
     @Id
     @GeneratedValue
@@ -39,42 +43,9 @@ public class Tratamiento {
     )
     private List<Medicamento> medicamentos = new ArrayList<>();
 
-    public Tratamiento() {
-    }
     public Tratamiento(String nombre) {
         this.nombre = nombre;
         this.medicamentos = new ArrayList<>();
     }
-    public List<Medicamento> getMedicamentos() {
-        return medicamentos;
-    }
-    public void setMedicamentos(List<Medicamento> medicamentos) {
-        this.medicamentos = medicamentos;
-    }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public Veterinario getVeterinario() {
-        return veterinario;
-    }
-    public void setVeterinario(Veterinario veterinario) {
-        this.veterinario = veterinario;
-    }
-    public Mascota getMascota() {
-        return mascota;
-    }
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
-    }
-
     
 }

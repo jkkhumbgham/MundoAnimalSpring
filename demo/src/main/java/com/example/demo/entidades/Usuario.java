@@ -27,6 +27,7 @@ public class Usuario {
     @GeneratedValue
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private UsuarioVet usuarioVet;
     private String nombre;
     private String telefono;

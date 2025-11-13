@@ -11,17 +11,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Transient;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Veterinario {
     @Id
     @GeneratedValue
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private UsuarioVet usuarioVet;
     private String nombre;
     private String email;

@@ -438,53 +438,53 @@ public class DatabaseInit implements ApplicationRunner {
 
         }
         Veterinario vet;
-
-        vet =new Veterinario("Alberto","veterinario@gmail.com","1234",1,"Ortopedia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        
+        vet =new Veterinario.VeterinarioBuilder().nombre("Alberto").email("veterinario@gmail.com").password("1234").cedula(1).especialidad("Ortopedia").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
 
-        vet=new Veterinario("Beatriz","vet@gmail.com","1234",2,"Cardiologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        vet= new Veterinario.VeterinarioBuilder().nombre("Beatriz").email("vet@gmail.com").password("1234").cedula(2).especialidad("cardiologia").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
 
-        vet=new Veterinario("Carlos","vete@gmail.com","1234",3,"Dermatologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        vet=new Veterinario.VeterinarioBuilder().nombre("Carlos").email("vete@gmail.com").password("1234").cedula(3).especialidad("dermatologia").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
 
-        vet=new Veterinario("Diana","veterinaria@gmail.com","1234",4,"Pediatria","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        vet=new Veterinario.VeterinarioBuilder().nombre("Diana").email("veterinaria@gmail.com").password("1234").cedula(4).especialidad("Pediatria").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
 
-        vet=new Veterinario("Elena","vett@gmail.com","1234",5,"Traumatologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        vet=new Veterinario.VeterinarioBuilder().nombre("Elena").email("vett@gmail.com").password("1234").cedula(5).especialidad("Traumatologia").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
 
-        vet=new Veterinario("Fernando","veter@gmail.com","1234",6,"Neurologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        vet=new Veterinario.VeterinarioBuilder().nombre("Fernando").email("veter@gmail.com").password("1234").cedula(6).especialidad("Neurologia").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
 
-        vet=new Veterinario("Gabriela","veteri@gmail.com","1234",7,"Oftalmologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        vet=new Veterinario.VeterinarioBuilder().nombre("Gabriela").email("veteri@gmail.com").password("1234").cedula(7).especialidad("Oftalmologia").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
 
-        vet=new Veterinario("Hector","veterin@gmail.com","1234",8,"Urologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        vet=new Veterinario.VeterinarioBuilder().nombre("Hector").email("veterin@gmail.com").password("1234").cedula(8).especialidad("Urologia").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
 
-        vet=new Veterinario("Isabel","veterina@gmail.com","1234",9,"Ginecologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        vet=new Veterinario.VeterinarioBuilder().nombre("Isabel").email("veterina@gmail.com").password("1234").cedula(9).especialidad("Ginecologia").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
 
-        vet=new Veterinario("Javier","veterinar@gmail.com","1234",10,"Oncologia","https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png","Activo");
+        vet=new Veterinario.VeterinarioBuilder().nombre("Javier").email("veterinar@gmail.com").password("1234").cedula(10).especialidad("Oncologia").foto("https://cdn.pixabay.com/photo/2024/01/20/06/06/ai-generated-8520391_640.png").estado("Activo").build();
         userVet = saveUserVet(vet);
         vet.setUsuarioVet(userVet);
         veterinarioRepository.save(vet);
