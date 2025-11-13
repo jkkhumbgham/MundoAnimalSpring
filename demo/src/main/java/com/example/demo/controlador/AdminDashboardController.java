@@ -29,7 +29,7 @@ public class AdminDashboardController {
   @GetMapping("/resumen")
   public Map<String, Object> resumen() {
   long mascotasActivas = 0;
-  mascotasActivas = mascotas.countByEstadoIgnoreCase("activo");
+  mascotasActivas = mascotas.countByEstadoIgnoreCase("Saludable")+mascotas.countByEstadoIgnoreCase("En tratamiento")+mascotas.countByEstadoIgnoreCase("Recuperándose")+mascotas.countByEstadoIgnoreCase("Control rutinario");
 
     long tratamientosTotales = tratamientos.count(); 
 

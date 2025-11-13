@@ -22,12 +22,14 @@ export class LoginService {
         .pipe(
     tap((response: any) => {
       const respuestas = response.split(',');
-      const user = respuestas[0];
-      const id = respuestas[1];
+      const token = respuestas[0];
+      const user = respuestas[1];
+      const id = respuestas[2];
 
       localStorage.setItem('session', 'true');
       localStorage.setItem('id', id);
       localStorage.setItem('tipoUsuario', user); 
+      localStorage.setItem('token', token);
 
       this.loggedIn.next(true);
     })
@@ -37,6 +39,7 @@ export class LoginService {
     localStorage.removeItem('session');
     localStorage.removeItem('id');
     localStorage.removeItem('tipoUsuario');
+    localStorage.removeItem('token');
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }

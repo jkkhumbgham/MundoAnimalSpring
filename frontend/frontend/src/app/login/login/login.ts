@@ -40,8 +40,8 @@
         next: (response) => {
           console.log(response);
           var respuestas=response.split(',');
-          var user = respuestas[0];
-          var id = respuestas[1];
+          var user = respuestas[1];
+          var id = respuestas[2];
           if (user === 'cliente') {
             this.usuarioService.getUsuarioByMail(this.credenciales.email).subscribe(data =>{
               const usuario = data;
